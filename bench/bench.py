@@ -36,7 +36,6 @@ class DictKVStore(KVStore):
     def delete(self, k):
         self._kv.pop(k, None)
 
-# LevelDB store
 
 # Redis KV store
 class Redis(KVStore):
@@ -69,10 +68,24 @@ class LevelDB(KVStore):
     def __del__(self):
         self.db.close()
 
+class Memcache(KVStore):
+    def __init__(self):
+        self.client = base.Client(('localhost', 11211))
+
+    def set(self, k, v):
+        self.client.set(k, v)
+
+
+    def get(self, k):
+        return self.client.get(k)
+
+    def delete(self, k, v):
+        pass
+
 # config
 CONFIG_KEY_LEN = 10
 CONFIG_VAL_LEN = 10
-CONFIG_NUM_QUERIES = 10000
+CONFIG_NUM_QUERIES = 100
 
 # immutable vars
 GET = 0
