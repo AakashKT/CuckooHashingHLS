@@ -1,3 +1,5 @@
 plyvel
 redis
 pymemcache
+statistics
+prettytable
