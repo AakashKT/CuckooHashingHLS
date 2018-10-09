@@ -68,7 +68,7 @@ class LevelDB(KVStore):
     def __del__(self):
         self.db.close()
 
-class Memcache(KVStore):
+class Memcached(KVStore):
     def __init__(self):
         self.client = base.Client(('localhost', 11211))
 
@@ -79,7 +79,7 @@ class Memcache(KVStore):
     def get(self, k):
         return self.client.get(k)
 
-    def delete(self, k, v):
+    def delete(self, k):
         pass
 
 # config
@@ -88,9 +88,9 @@ CONFIG_VAL_LEN = 10
 CONFIG_NUM_QUERIES = 100
 
 # immutable vars
-GET = 0
-SET = 1
-DEL = 2
+GET = "GET"
+SET = "SET"
+DEL = "DEL"
 
 def rand_string(N):
     """Generate a random alphanumeric string of length N"""
@@ -102,12 +102,12 @@ def get_legal_choices(ks):
     """
     if not ks: return SET
 
-    return random.choice([SET, DEL])
+    return random.choice([GET, SET, DEL])
 
 if __name__ == "__main__":
-    times = defaultdict(lambda: [])
+    times = defaultdict(lambda: defaultdict(lambda: []))
 
-    for kv in [DictKVStore(), Redis(), LevelDB()]:
+    for kv in [DictKVStore(), Redis(), LevelDB(), Memcached()]:
         # current keys
         ks = []
         for _ in range(CONFIG_NUM_QUERIES):
@@ -117,6 +117,7 @@ if __name__ == "__main__":
                 t0 = time.time()
                 kv.get(random.choice(ks))
                 t1 = time.time()
+
             elif choice == SET:
                 k = rand_string(CONFIG_KEY_LEN)
                 v = rand_string(CONFIG_VAL_LEN)
@@ -135,16 +136,19 @@ if __name__ == "__main__":
                 ks.pop(ix)
             else: raise RuntimeError("unknown choice: %s" % choice)
 
-            times[kv.__class__.__name__].append((t1 - t0) * 1000)
+            times[choice][kv.__class__.__name__].append((t1 - t0) * 1000)
 
 
     # finallu print data
-    t = PrettyTable()
-    t.field_names = ["KV", "#USES", "MEDIAN", "MEAN", "STDDEV"]
-    for name, numbers in times.items():
-        t.add_row([name, 
-                   len(numbers), 
-                   statistics.median(numbers), 
-                   statistics.mean(numbers), 
-                   statistics.stdev(numbers)])
-    print(t)
+    for choice, dbtimes in times.items():
+        print("-----")
+        print("command: %s" % choice)
+        t = PrettyTable()
+        t.field_names = ["KV", "#USES", "MEDIAN", "MEAN", "STDDEV"]
+        for name, numbers in dbtimes.items():
+            t.add_row([name, 
+                       len(numbers), 
+                       statistics.median(numbers), 
+                       statistics.mean(numbers), 
+                       statistics.stdev(numbers)])
+        print(t)
