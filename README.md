@@ -16,3 +16,8 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 1. Traffic generator (?)
 2. Traffic checker (?)
 3. Controller test bench
+
+# Considerations of different kinds of KV stores
+
+- Immutable KV store can perform O(1) lookup (https://discodb.readthedocs.io/en/latest/)
+- Ordered KV Store (like LevelDB) (not done before)
