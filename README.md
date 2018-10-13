@@ -21,3 +21,4 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 
 - Immutable KV store can perform O(1) lookup (https://discodb.readthedocs.io/en/latest/)
 - Ordered KV Store (like LevelDB) (not done before)
+- [LSM on a GPU](https://arxiv.org/abs/1707.05354)
