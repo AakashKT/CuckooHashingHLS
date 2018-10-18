@@ -3,3 +3,4 @@ redis
 pymemcache
 statistics
 prettytable
+seaborn
