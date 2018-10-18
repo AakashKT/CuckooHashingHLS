@@ -3,6 +3,8 @@ import time
 from collections import defaultdict
 import random
 import string
+import seaborn as sns
+import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 
 
@@ -96,7 +98,7 @@ def rand_string(N):
     """Generate a random alphanumeric string of length N"""
     return ''.join([random.choice(string.ascii_uppercase + string.digits) for _ in range(N)])
 
-def get_legal_choices(ks):
+def get_legal_commands(ks):
     """Get the legal commands that can be run on ks.
        Returns: GET | SET | DEL
     """
@@ -112,13 +114,13 @@ if __name__ == "__main__":
         ks = []
         for _ in range(CONFIG_NUM_QUERIES):
 
-            choice = get_legal_choices(ks)
-            if choice == GET:
+            command = get_legal_commands(ks)
+            if command == GET:
                 t0 = time.time()
-                kv.get(random.choice(ks))
+                kv.get(random.command(ks))
                 t1 = time.time()
 
-            elif choice == SET:
+            elif command == SET:
                 k = rand_string(CONFIG_KEY_LEN)
                 v = rand_string(CONFIG_VAL_LEN)
 
@@ -126,7 +128,7 @@ if __name__ == "__main__":
                 t0 = time.time()
                 kv.set(k, v)
                 t1 = time.time()
-            elif choice == DEL:
+            elif command == DEL:
                 ix = random.randint(0, len(ks) - 1)
 
                 t0 = time.time()
@@ -134,15 +136,16 @@ if __name__ == "__main__":
                 t1 = time.time()
 
                 ks.pop(ix)
-            else: raise RuntimeError("unknown choice: %s" % choice)
+            else: raise RuntimeError("unknown command: %s" % choice)
 
-            times[choice][kv.__class__.__name__].append((t1 - t0) * 1000)
+            times[command][kv.__class__.__name__].append((t1 - t0) * 1000)
+
 
 
     # finallu print data
-    for choice, dbtimes in times.items():
+    for command, dbtimes in times.items():
         print("-----")
-        print("command: %s" % choice)
+        print("command: %s" % command)
         t = PrettyTable()
         t.field_names = ["KV", "#USES", "MEDIAN", "MEAN", "STDDEV"]
         for name, numbers in dbtimes.items():

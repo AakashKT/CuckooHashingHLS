@@ -1,0 +1,76 @@
+INFO: [COSIM-47] Using XSIM for RTL simulation.
+INFO: [COSIM-14] Instrumenting C test bench ...
+   Build using ""
+   Compiling conv.cpp_pre.cpp.tb.cpp
+   Compiling test_conv.cpp_pre.cpp.tb.cpp
+   Compiling apatb_axpy.cpp
+   Generating cosim.tv.exe
+INFO: [COSIM-302] Starting C TB testing ... 
+INFO: [COSIM-333] Generating C post check test bench ...
+INFO: [COSIM-12] Generating RTL test bench ...
+INFO: [COSIM-323] Starting verilog simulation. 
+INFO: [COSIM-15] Starting XSIM ...
+INFO: [COSIM-316] Starting C post checking ...
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "/home/bollu/software/xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini".
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /home/bollu/software/xilinx/Vivado/2017.4/bin/unwrapped/lnx64.o/xelab xil_defaultlib.apatb_axpy_top glbl -prj axpy.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver --initfile /home/bollu/software/xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini --lib ieee_proposed=./ieee_proposed -s axpy 
+Multi-threading is on. Using 6 slave threads.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by Xilinx, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running fuse with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/glbl.v" into library work
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/AESL_automem_in_r.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_in_r
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/AESL_automem_out_r.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_out_r
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/axpy.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_axpy_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/axpy.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axpy
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.axpy
+Compiling module xil_defaultlib.AESL_automem_in_r
+Compiling module xil_defaultlib.AESL_automem_out_r
+Compiling module xil_defaultlib.apatb_axpy_top
+Compiling module work.glbl
+Built simulation snapshot axpy
+
+****** Webtalk v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source /home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/xsim.dir/axpy/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] '/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/xsim.dir/axpy/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Tue Oct  9 00:15:58 2018. For additional details about this file, please refer to the WebTalk help file at /home/bollu/software/xilinx/Vivado/2017.4/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Tue Oct  9 00:15:58 2018...
+
+****** xsim v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/axpy/xsim_script.tcl
+# xsim {axpy} -autoloadwcfg -tclbatch {axpy.tcl}
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source axpy.tcl
+## run all
+////////////////////////////////////////////////////////////////////////////////////
+// Inter-Transaction Progress: Completed Transaction / Total Transaction
+// Intra-Transaction Progress: Measured Latency / Latency Estimation * 100%
+//
+// RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
+////////////////////////////////////////////////////////////////////////////////////
+// RTL Simulation : 0 / 1 [0.00%] @ "125000"
+// RTL Simulation : 1 / 1 [100.00%] @ "275000"
+////////////////////////////////////////////////////////////////////////////////////
+$finish called at time : 315 ns : File "/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/sim/verilog/axpy.autotb.v" Line 388
+## quit
+INFO: [Common 17-206] Exiting xsim at Tue Oct  9 00:16:10 2018...
+INFO: [COSIM-1000] *** C/RTL co-simulation finished: PASS ***
+INFO: [COSIM-211] II is measurable only when transaction number is greater than 1 in RTL simulation. Otherwise, they will be marked as all NA. If user wants to calculate them, please make sure there are at least 2 transactions in RTL simulation.
