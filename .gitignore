@@ -135,7 +135,6 @@ dmypy.jsonPYTHON
 
 
 #VIVADO
->>>>>>> Added gitignore, trying to understand how to add HLS
 #########################################################################################################
 ##	This is an example .gitignore file for Vivado, please treat it as an example as 
 ##	it might not be complete. In addition, XAPP 1165 should be followed.
@@ -268,14 +267,6 @@ wap
 # Session
 Session.vim
 
-# Temporary
-.netrwhist
-*~
 # Auto-generated tag files
 tags
 # Persistent undo
-[._]*.un~
-=======
-!*.x
-
->>>>>>> Added gitignore, trying to understand how to add HLS
