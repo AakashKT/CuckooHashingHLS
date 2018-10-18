@@ -7,7 +7,41 @@ Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
-INFO: [SIM 211-2] *************** CSIM start ***************
-INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-INFO: [SIM 211-1] CSim done with 0 errors.
-INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-10] Analyzing design file 'hashing/jenkins_hash.c' ...
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 9842 ; free virtual = 29347
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 9842 ; free virtual = 29347
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 9841 ; free virtual = 29346
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 9841 ; free virtual = 29346
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 9821 ; free virtual = 29326
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 9828 ; free virtual = 29333
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'jenkins_one_at_a_time' ...
+WARNING: [SYN 201-107] Renaming port name 'jenkins_one_at_a_time/length' to 'jenkins_one_at_a_time/length_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'jenkins_one_at_a_time'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 7.52 seconds; current allocated memory: 59.584 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 59.740 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'jenkins_one_at_a_time'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'jenkins_one_at_a_time/length_r' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'jenkins_one_at_a_time/key' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'jenkins_one_at_a_time' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'jenkins_one_at_a_time'.
+INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 60.024 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 9817 ; free virtual = 29328
+INFO: [SYSC 207-301] Generating SystemC RTL for jenkins_one_at_a_time.
+INFO: [VHDL 208-304] Generating VHDL RTL for jenkins_one_at_a_time.
+INFO: [VLOG 209-307] Generating Verilog RTL for jenkins_one_at_a_time.
+INFO: [HLS 200-112] Total elapsed time: 8.13 seconds; peak allocated memory: 60.024 MB.

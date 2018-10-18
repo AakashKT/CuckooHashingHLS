@@ -2,20 +2,21 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <csimLog>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-17T00:39:52.936+0530"/>
-        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:85: recipe for target 'obj/jenkins_hash.o' failed&#xA;make: *** [obj/jenkins_hash.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-17T00:39:52.929+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim file generation failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-17T00:25:46.444+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim file generation failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-17T00:23:18.529+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim file generation failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-17T00:18:31.583+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim file generation failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-17T00:17:29.888+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-17T00:16:50.230+0530"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-17T00:15:23.047+0530"/>
-      </csimLog>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
     </logs>
   </errorLogs>
   <warningLogs>
     <logs>
+      <synLog>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'jenkins_one_at_a_time/length' to 'jenkins_one_at_a_time/length_r' to avoid the conflict with HDL keywords or other object names." projectName="hashing" solutionName="solution1" date="2018-10-18T22:13:48.054+0530" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
       <csimLog/>
     </logs>
   </warningLogs>

@@ -25,6 +25,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.861695792" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.924487709" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.982659803" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/lnx64/tools/auto_cc/include"/>
@@ -42,6 +43,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.365235522" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.1481123031" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.318994618" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/lnx64/tools/auto_cc/include"/>
@@ -109,6 +111,7 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1253520528" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.2046823484" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.555382586" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/lnx64/tools/auto_cc/include"/>
@@ -121,6 +124,7 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.1021791301" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.504615855" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.975648148" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/media/aakash/drive2/Vivado/2017.4/lnx64/tools/auto_cc/include"/>

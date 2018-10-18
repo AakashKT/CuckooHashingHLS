@@ -2,13 +2,9 @@
     <checksum>
         <value string="false"/>
     </checksum>
-    <downStreamTool>
-        <DownStreamTool name="vivado"/>
-    </downStreamTool>
-    <clockList>
-        <clock name="default" period="10"/>
-    </clockList>
-    <config/>
+    <config>
+        <schedule model="jenkins_one_at_a_time"/>
+    </config>
     <UIConfigurations>
         <UIAutosynConf boardInfo="ZedBoard Zynq Evaluation and Development Kit (xc7z020clg484-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynq/zynq</Platform>
@@ -68,5 +64,11 @@
         <library name="DefaultPlatform" value="xilinx/zynq/zynq"/>
         <library name="DefaultPlatform" value="xilinx/zynq/zynq_fpv6"/>
     </libraryList>
+    <downStreamTool>
+        <DownStreamTool name="vivado"/>
+    </downStreamTool>
+    <clockList>
+        <clock name="default" default="false" period="10"/>
+    </clockList>
 </solution>
 

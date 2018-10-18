@@ -1,0 +1,174 @@
+
+
+================================================================
+== Vivado HLS Report for 'jenkins_one_at_a_time'
+================================================================
+* Date:           Thu Oct 18 22:13:48 2018
+
+* Version:        2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)
+* Project:        hashing
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      5.96|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         3|          -|          -|     ?|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!tmp)
+3 --> 
+	4  / true
+4 --> 
+	2  / true
+
+* FSM state operations: 
+
+ <State 1> : 1.77ns
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %length_r) nounwind, !map !7"
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1000 x i8]* %key) nounwind, !map !13"
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !19"
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([22 x i8]* @jenkins_one_at_a_tim) nounwind"
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%length_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %length_r) nounwind"
+ST_1 : Operation 10 [1/1] (1.76ns)   --->   "br label %1" [hashing/jenkins_hash.c:11]
+
+ <State 2> : 5.96ns
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%i = phi i32 [ 0, %0 ], [ %i_1, %2 ]"
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%hash = phi i32 [ 0, %0 ], [ %hash_6, %2 ]"
+ST_2 : Operation 13 [1/1] (2.47ns)   --->   "%tmp = icmp eq i32 %i, %length_read" [hashing/jenkins_hash.c:11]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (2.55ns)   --->   "%i_1 = add nsw i32 %i, 1" [hashing/jenkins_hash.c:13]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "br i1 %tmp, label %3, label %2" [hashing/jenkins_hash.c:11]
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%tmp_8 = sext i32 %i to i64" [hashing/jenkins_hash.c:13]
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%key_addr = getelementptr [1000 x i8]* %key, i64 0, i64 %tmp_8" [hashing/jenkins_hash.c:13]
+ST_2 : Operation 18 [2/2] (3.25ns)   --->   "%key_load = load i8* %key_addr, align 1" [hashing/jenkins_hash.c:13]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 1000> <RAM>
+ST_2 : Operation 19 [1/1] (0.00ns) (grouped into LUT with out node hash_1)   --->   "%tmp_1 = shl i32 %hash, 3" [hashing/jenkins_hash.c:18]
+ST_2 : Operation 20 [1/1] (2.55ns) (out node of the LUT)   --->   "%hash_1 = add i32 %hash, %tmp_1" [hashing/jenkins_hash.c:18]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_3 = call i21 @_ssdm_op_PartSelect.i21.i32.i32.i32(i32 %hash_1, i32 11, i32 31)" [hashing/jenkins_hash.c:19]
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%tmp_6 = zext i21 %tmp_3 to i32" [hashing/jenkins_hash.c:19]
+ST_2 : Operation 23 [1/1] (0.86ns)   --->   "%hash_2 = xor i32 %tmp_6, %hash_1" [hashing/jenkins_hash.c:19]   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns) (grouped into LUT with out node hash_3)   --->   "%tmp_4 = shl i32 %hash_2, 15" [hashing/jenkins_hash.c:20]
+ST_2 : Operation 25 [1/1] (2.55ns) (out node of the LUT)   --->   "%hash_3 = add i32 %hash_2, %tmp_4" [hashing/jenkins_hash.c:20]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "ret i32 %hash_3" [hashing/jenkins_hash.c:22]
+
+ <State 3> : 5.81ns
+ST_3 : Operation 27 [1/2] (3.25ns)   --->   "%key_load = load i8* %key_addr, align 1" [hashing/jenkins_hash.c:13]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 1000> <RAM>
+ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_9 = sext i8 %key_load to i32" [hashing/jenkins_hash.c:13]
+ST_3 : Operation 29 [1/1] (2.55ns)   --->   "%hash_4 = add i32 %tmp_9, %hash" [hashing/jenkins_hash.c:13]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+ <State 4> : 3.41ns
+ST_4 : Operation 30 [1/1] (0.00ns) (grouped into LUT with out node hash_5)   --->   "%tmp_5 = shl i32 %hash_4, 10" [hashing/jenkins_hash.c:14]
+ST_4 : Operation 31 [1/1] (2.55ns) (out node of the LUT)   --->   "%hash_5 = add i32 %hash_4, %tmp_5" [hashing/jenkins_hash.c:14]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_2 = call i26 @_ssdm_op_PartSelect.i26.i32.i32.i32(i32 %hash_5, i32 6, i32 31)" [hashing/jenkins_hash.c:15]
+ST_4 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_s = zext i26 %tmp_2 to i32" [hashing/jenkins_hash.c:15]
+ST_4 : Operation 34 [1/1] (0.86ns)   --->   "%hash_6 = xor i32 %tmp_s, %hash_5" [hashing/jenkins_hash.c:15]   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 35 [1/1] (0.00ns)   --->   "br label %1" [hashing/jenkins_hash.c:16]
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', hashing/jenkins_hash.c:13) [10]  (1.77 ns)
+
+ <State 2>: 5.96ns
+The critical path consists of the following:
+	'phi' operation ('hash') with incoming values : ('hash', hashing/jenkins_hash.c:15) [11]  (0 ns)
+	'add' operation ('hash', hashing/jenkins_hash.c:18) [29]  (2.55 ns)
+	'xor' operation ('hash', hashing/jenkins_hash.c:19) [32]  (0.86 ns)
+	'add' operation ('hash', hashing/jenkins_hash.c:20) [34]  (2.55 ns)
+
+ <State 3>: 5.81ns
+The critical path consists of the following:
+	'load' operation ('key_load', hashing/jenkins_hash.c:13) on array 'key' [18]  (3.25 ns)
+	'add' operation ('hash', hashing/jenkins_hash.c:13) [20]  (2.55 ns)
+
+ <State 4>: 3.41ns
+The critical path consists of the following:
+	'shl' operation ('tmp_5', hashing/jenkins_hash.c:14) [21]  (0 ns)
+	'add' operation ('hash', hashing/jenkins_hash.c:14) [22]  (2.55 ns)
+	'xor' operation ('hash', hashing/jenkins_hash.c:15) [25]  (0.86 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -5,6 +5,6 @@
 #include<math.h>
 #include<stdint.h>
 
-uint32_t jenkins_one_at_a_time(const char* key, int length);
+uint32_t jenkins_one_at_a_time(int length, const char key[1000]);
 
 #endif

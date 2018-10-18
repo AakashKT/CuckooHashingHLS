@@ -47,6 +47,11 @@
 			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c</location>
 		</link>
 		<link>
+			<name>source/jenkins_hash.h</name>
+			<type>1</type>
+			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.h</location>
+		</link>
+		<link>
 			<name>testbench/jenkins_hash_test.c</name>
 			<type>1</type>
 			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash_test.c</location>

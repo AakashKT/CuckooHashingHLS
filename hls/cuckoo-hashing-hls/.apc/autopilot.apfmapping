@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="conv.h" path="/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/src/conv.h"/>
-    <originFiles name="conv.cpp" path="/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/src/conv.cpp"/>
+    <originFiles name="conv.h" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/src/conv.h"/>
+    <originFiles name="conv.cpp" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/src/conv.cpp"/>
   </source>
   <testbench>
-    <originFiles name="test_conv.cpp" path="/home/bollu/work/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/test/test_conv.cpp"/>
+    <originFiles name="test_conv.cpp" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/cuckoo-hashing-hls/solution1/test/test_conv.cpp"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

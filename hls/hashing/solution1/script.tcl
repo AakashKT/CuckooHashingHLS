@@ -4,7 +4,9 @@
 ## Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project hashing
+set_top jenkins_one_at_a_time
 add_files hashing/jenkins_hash.c
+add_files hashing/jenkins_hash.h
 add_files -tb hashing/jenkins_hash_test.c
 open_solution "solution1"
 set_part {xc7z020clg484-1} -tool vivado

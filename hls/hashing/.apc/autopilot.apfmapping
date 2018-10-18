@@ -2,6 +2,7 @@
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
     <originFiles name="jenkins_hash.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c"/>
+    <originFiles name="jenkins_hash.h" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.h"/>
   </source>
   <testbench>
     <originFiles name="jenkins_hash_test.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash_test.c"/>
