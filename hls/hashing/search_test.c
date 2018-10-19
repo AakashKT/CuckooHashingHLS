@@ -3,9 +3,9 @@
 
 int main()
 {
-	VALUE_ADDR val_addr[100000];
-	for(int i=0;i<100000;i++)
-		val_addr[i] = rand() % 1000;
+	VALUE_ADDR val_addr[NUM_VALUE_ADDRS];
+	for(int i=0;i<NUM_VALUE_ADDRS;i++)
+		val_addr[i] = rand() % NUM_VALUE_ADDRS;
 	
 	HASH h1 = jenkins_one_at_a_time(6, "AAKASH");
 	HASH h2 = jenkins_one_at_a_time(9, "SIDDHARTH");
