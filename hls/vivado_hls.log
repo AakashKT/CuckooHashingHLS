@@ -1,34 +1,54 @@
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:07 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Sat Oct 20 00:06:03 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls'
 INFO: [HLS 200-10] Opening project '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing'.
+INFO: [HLS 200-10] Adding design file 'hashing/execute.c' to the project
+INFO: [HLS 200-10] Adding design file 'hashing/jenkins_hash.c' to the project
+INFO: [HLS 200-10] Adding design file 'hashing/search.c' to the project
+INFO: [HLS 200-10] Adding test bench file 'hashing/execute_test.c' to the project
 INFO: [HLS 200-10] Opening solution '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
-INFO: [SIM 211-2] *************** CSIM start ***************
-INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling(apcc) ../../../search_test.c in debug mode
-INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:08 IST 2018
-INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
-INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/256341539965708358144
-INFO: [APCC 202-1] APCC is done.
-   Compiling(apcc) ../../../jenkins_hash.c in debug mode
-INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:12 IST 2018
-INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
-INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/256951539965712185388
-INFO: [APCC 202-1] APCC is done.
-   Compiling(apcc) ../../../search.c in debug mode
-INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:15 IST 2018
-INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
-INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/257551539965716023496
-INFO: [APCC 202-1] APCC is done.
-   Generating csim.exe
-ADDRESS FOR AAKASH : 175ADDRESS FOR SIDDHARTH : 576INFO: [SIM 211-1] CSim done with 0 errors.
-INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-10] Analyzing design file 'hashing/search.c' ...
+INFO: [HLS 200-10] Analyzing design file 'hashing/jenkins_hash.c' ...
+INFO: [HLS 200-10] Analyzing design file 'hashing/execute.c' ...
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1107 ; free virtual = 23902
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1107 ; free virtual = 23902
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1105 ; free virtual = 23900
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1105 ; free virtual = 23900
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1087 ; free virtual = 23881
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1095 ; free virtual = 23889
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'execute' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'execute'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 15.48 seconds; current allocated memory: 59.612 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 59.780 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'execute'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'execute/op_type' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'execute/hash' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'execute/val_addr' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'execute/key_val_dram' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'execute/val_addr_bram' to 'bram'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'execute' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'execute'.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 60.024 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:19 ; elapsed = 00:00:16 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1088 ; free virtual = 23883
+INFO: [SYSC 207-301] Generating SystemC RTL for execute.
+INFO: [VHDL 208-304] Generating VHDL RTL for execute.
+INFO: [VLOG 209-307] Generating Verilog RTL for execute.
+INFO: [HLS 200-112] Total elapsed time: 15.95 seconds; peak allocated memory: 60.024 MB.

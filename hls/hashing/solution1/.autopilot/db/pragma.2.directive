@@ -1,0 +1,16 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="execute" label="">
+<pragma name="INTERFACE">
+<option name="bram" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="val_addr_bram"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="execute" label="">
+<pragma name="INTERFACE">
+<option name="ap_memory" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="key_val_dram"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

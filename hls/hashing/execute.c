@@ -4,6 +4,7 @@ VALUE execute(int op_type, HASH hash, VALUE_ADDR val_addr,
 		KV key_val_dram[NUM_VALUES * 2],
 		VALUE_ADDR val_addr_bram[NUM_VALUE_ADDRS])
 {
+#pragma HLS INTERFACE bram port=val_addr_bram
 #pragma HLS INTERFACE ap_memory port=key_val_dram
 	if(op_type == OP_TYPE_INSERT)
 	{

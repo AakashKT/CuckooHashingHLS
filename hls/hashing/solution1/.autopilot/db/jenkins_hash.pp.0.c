@@ -133,6 +133,14 @@
 
 
 
+# 1 "hashing/def.h" 1
+
+
+
+
+
+
+
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/features.h" 1 3 4
@@ -873,7 +881,7 @@ extern int ftrylockfile (FILE *__stream) __attribute__ ((__nothrow__ )) ;
 
 
 extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ ));
-# 5 "hashing/jenkins_hash.h" 2
+# 9 "hashing/def.h" 2
 # 1 "/usr/include/math.h" 1 3 4
 # 31 "/usr/include/math.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/math-vector.h" 1 3 4
@@ -1788,7 +1796,7 @@ struct exception
 
 
 extern int matherr (struct exception *__exc);
-# 6 "hashing/jenkins_hash.h" 2
+# 10 "hashing/def.h" 2
 # 1 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 1 3
 # 33 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 3
 # 1 "/usr/include/stdint.h" 1 3 4
@@ -1863,15 +1871,29 @@ typedef unsigned long int uintptr_t;
 typedef long int intmax_t;
 typedef unsigned long int uintmax_t;
 # 34 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 2 3
-# 7 "hashing/jenkins_hash.h" 2
+# 11 "hashing/def.h" 2
 
-uint32_t jenkins_one_at_a_time(int length, const char key[1000]);
+typedef char KEY;
+typedef uint32_t HASH;
+typedef uint32_t VALUE;
+typedef uint32_t VALUE_ADDR;
+typedef uint32_t KV;
+
+
+
+
+
+static const int NUM_VALUES = 40;
+
+
+
+static const int NUM_VALUE_ADDRS= 10;
+# 5 "hashing/jenkins_hash.h" 2
+
+HASH jenkins_one_at_a_time(int length, KEY key[1000]);
 # 2 "hashing/jenkins_hash.c" 2
 
-
-
-
-uint32_t jenkins_one_at_a_time(int length, const char key[1000])
+HASH jenkins_one_at_a_time(int length, KEY key[1000])
 {
  int i = 0;
  uint32_t hash = 0;

@@ -47,6 +47,11 @@
 			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/.tcls</location>
 		</link>
 		<link>
+			<name>source/execute.c</name>
+			<type>1</type>
+			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute.c</location>
+		</link>
+		<link>
 			<name>source/jenkins_hash.c</name>
 			<type>1</type>
 			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c</location>
@@ -57,9 +62,9 @@
 			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search.c</location>
 		</link>
 		<link>
-			<name>testbench/search_test.c</name>
+			<name>testbench/execute_test.c</name>
 			<type>1</type>
-			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search_test.c</location>
+			<location>/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute_test.c</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>

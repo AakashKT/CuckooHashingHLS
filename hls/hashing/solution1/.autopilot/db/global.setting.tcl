@@ -1,5 +1,5 @@
 
-set TopModule "jenkins_one_at_a_time"
+set TopModule "execute"
 set ClockPeriod "10.000000"
 set ClockList {ap_clk}
 set multiClockList {}
@@ -41,10 +41,10 @@ set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg484:-1"
-set SourceFiles {sc {} c ../jenkins_hash.c}
-set SourceFlags {sc {} c {{}}}
+set SourceFiles {sc {} c {../search.c ../jenkins_hash.c ../execute.c}}
+set SourceFlags {sc {} c {{} {} {}}}
 set DirectiveFile {/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/solution1.directive}
-set TBFiles {verilog ../jenkins_hash_test.c bc ../jenkins_hash_test.c vhdl ../jenkins_hash_test.c sc ../jenkins_hash_test.c cas ../jenkins_hash_test.c c {}}
+set TBFiles {verilog ../execute_test.c bc ../execute_test.c vhdl ../execute_test.c sc ../execute_test.c cas ../execute_test.c c {}}
 set SpecLanguage "C"
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

@@ -1,1 +1,1 @@
-jenkins_one_at_a_time
+execute

@@ -2,24 +2,39 @@ INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling(apcc) ../../../search_test.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:08 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 22:41:10 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/256341539965708358144
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/275921539969070200315
+INFO: [APCC 202-1] APCC is done.
+   Compiling(apcc) ../../../execute.c in debug mode
+INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 22:41:13 IST 2018
+INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
+INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
+../../../execute.c:17:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+../../../execute.c:17:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/276741539969074054081
 INFO: [APCC 202-1] APCC is done.
    Compiling(apcc) ../../../jenkins_hash.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:12 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 22:41:17 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/256951539965712185388
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/277391539969077861402
 INFO: [APCC 202-1] APCC is done.
    Compiling(apcc) ../../../search.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:15 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 22:41:21 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/257551539965716023496
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/278071539969081731756
 INFO: [APCC 202-1] APCC is done.
    Generating csim.exe
 ADDRESS FOR AAKASH : 175ADDRESS FOR SIDDHARTH : 576

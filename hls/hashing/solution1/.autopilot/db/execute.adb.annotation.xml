@@ -1,0 +1,10 @@
+<annotationInfo>
+<item  id="18" filename="hashing/execute.c" linenumber="9" name="tmp" contextFuncName="execute" moduleName="execute" rtlName="tmp_fu_106_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="18" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="21" filename="hashing/execute.c" linenumber="13" name="tmp_1" contextFuncName="execute" moduleName="execute" rtlName="tmp_1_fu_112_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="18" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="22" filename="hashing/execute.c" linenumber="15" name="tmp_2" contextFuncName="execute" moduleName="execute" rtlName="tmp_2_fu_118_p1" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="25" filename="hashing/execute.c" linenumber="16" name="tmp_3" contextFuncName="execute" moduleName="execute" rtlName="tmp_3_fu_123_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="39" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="26" filename="hashing/execute.c" linenumber="16" name="tmp_4" contextFuncName="execute" moduleName="execute" rtlName="tmp_4_fu_129_p1" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="29" filename="hashing/execute.c" linenumber="18" name="tmp_5" contextFuncName="execute" moduleName="execute" rtlName="tmp_5_fu_134_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="18" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="32" filename="hashing/execute.c" linenumber="31" name="stored_val2_0_s" contextFuncName="execute" moduleName="execute" rtlName="stored_val2_0_s_fu_143_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="32" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+<item  id="37" filename="hashing/execute.c" linenumber="19" name="tmp_s" contextFuncName="execute" moduleName="execute" rtlName="tmp_s_fu_139_p1" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls"></item>
+</annotationInfo>

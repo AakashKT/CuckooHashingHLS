@@ -3,8 +3,9 @@
   <source>
     <originFiles name="search.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search.c"/>
     <originFiles name="jenkins_hash.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c"/>
+    <originFiles name="execute.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute.c"/>
   </source>
   <testbench>
-    <originFiles name="search_test.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search_test.c"/>
+    <originFiles name="execute_test.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute_test.c"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

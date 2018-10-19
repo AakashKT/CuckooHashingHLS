@@ -1,3 +1,10 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
-<sourceFile name=""/>
+<sourceFile name="">
+<directive functionLabel="" functionName="search" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="val_addr_bram"/>
+<option name="core" value="RAM_1P_BRAM"/>
+</pragma>
+</directive>
+</sourceFile>
 </AutoPilot:ProjectResources>

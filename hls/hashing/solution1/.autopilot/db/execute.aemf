@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1539974179000">
+  <ports id="1" name="op_type" type="PortType" originalName="op_type" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="2" name="hash" type="PortType" originalName="hash" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="3" name="val_addr" type="PortType" originalName="val_addr" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="4" name="key_val_dram" type="PortType" originalName="key_val_dram" coreName="RAM" bitwidth="32" direction="DirInOut" iftype="IfTypeRegister" arraysize="80">
+    <dataInputObjs>load</dataInputObjs>
+    <dataInputObjs>store</dataInputObjs>
+    <dataInputObjs>load</dataInputObjs>
+    <dataOutputObjs>load</dataOutputObjs>
+    <dataOutputObjs>store</dataOutputObjs>
+    <dataOutputObjs>load</dataOutputObjs>
+  </ports>
+  <ports id="5" name="val_addr_bram" type="PortType" originalName="val_addr_bram" coreName="RAM" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="10"/>
+  <ports id="15" name="ap_return" direction="DirOut">
+    <dataInputObjs>ret</dataInputObjs>
+  </ports>
+  <edges id="50" source_obj="//@ports.2" sink_obj="//@blocks.0/@node_objs.0"/>
+  <edges id="52" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="54" source_obj="//@ports.0" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="55" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="58" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="59" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="60" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="61" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="70" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.1/@node_objs.2"/>
+  <edges id="78" source_obj="//@blocks.1/@node_objs.1" sink_obj="//@blocks.1/@node_objs.4"/>
+  <edges id="79" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.1/@node_objs.4"/>
+  <edges id="80" source_obj="//@blocks.1/@node_objs.0" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="81" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="82" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="83" source_obj="//@blocks.1/@node_objs.4" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="84" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="85" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="95" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.4/@node_objs.2"/>
+  <edges id="96" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.5/@node_objs.0"/>
+  <edges id="97" source_obj="//@blocks.1/@node_objs.4" sink_obj="//@blocks.2/@node_objs.0"/>
+  <edges id="98" source_obj="//@blocks.1/@node_objs.3" sink_obj="//@blocks.2/@node_objs.0"/>
+  <edges id="100" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.2/@node_objs.1"/>
+  <edges id="101" source_obj="//@blocks.2/@node_objs.0" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="102" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="103" source_obj="//@blocks.1/@node_objs.3" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="104" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="106" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.6/@node_objs.0"/>
+  <edges id="107" source_obj="//@blocks.6/@node_objs.0" sink_obj="//@blocks.6/@node_objs.1"/>
+  <edges id="164" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.6"/>
+  <edges id="165" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="166" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.3"/>
+  <edges id="167" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.2"/>
+  <edges id="168" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.6"/>
+  <edges id="169" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.4"/>
+  <edges id="170" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.5"/>
+  <edges id="171" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.5"/>
+  <edges id="172" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.6"/>
+  <edges source_obj="//@blocks.6/@node_objs.1" sink_obj="//@ports.5"/>
+  <edges id="-1" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="-1" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.4/@node_objs.1"/>
+  <edges id="-1" source_obj="//@ports.3" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="-1" source_obj="//@ports.3" sink_obj="//@blocks.4/@node_objs.1"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.2" sink_obj="//@blocks.1/@node_objs.3"/>
+  <edges id="-1" source_obj="//@ports.3" sink_obj="//@blocks.1/@node_objs.3"/>
+  <edges id="-1" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.4/@node_objs.0"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.1" sink_obj="//@ports.3"/>
+  <edges id="-1" source_obj="//@blocks.4/@node_objs.1" sink_obj="//@ports.3"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.3" sink_obj="//@ports.3"/>
+  <blocks id="20" name="block_20" type="BlockType">
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>UnifiedReturnBlock</controlOutputObjs>
+    <controlOutputObjs>block_31</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="13" name="val_addr_read" originalName="val_addr" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>val_addr</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="14" name="hash_read" originalName="hash" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>hash</dataInputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="15" name="op_type_read" originalName="op_type" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>op_type</dataInputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="18" name="tmp" lineNumber="9" fileName="hashing/execute.c" fileDirectory=".." rtlName="tmp_fu_106_p2" contextFuncName="execute" bitwidth="1" opcode="icmp" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="9" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="19" name="node_19" lineNumber="9" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="9" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>block_31</controlInputObjs>
+      <controlInputObjs>UnifiedReturnBlock</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>9</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="31" name="block_31" type="BlockType">
+    <controlInputObjs>block_20</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_36</controlOutputObjs>
+    <controlOutputObjs>block_34</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="21" name="tmp_1" lineNumber="13" fileName="hashing/execute.c" fileDirectory=".." rtlName="tmp_1_fu_112_p2" contextFuncName="execute" bitwidth="1" opcode="icmp" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="13" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="24" name="stored_hash" lineNumber="15" originalName="stored_hash" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" bitwidth="32" opcode="load" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="15" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>key_val_dram</dataInputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>key_val_dram</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="tmp_3" lineNumber="16" fileName="hashing/execute.c" fileDirectory=".." rtlName="tmp_3_fu_123_p2" contextFuncName="execute" bitwidth="32" opcode="add" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="16" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="28" name="stored_val" lineNumber="16" originalName="stored_val" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" bitwidth="32" opcode="load" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="16" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>add</dataInputObjs>
+      <dataInputObjs>key_val_dram</dataInputObjs>
+      <dataOutputObjs>select</dataOutputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <dataOutputObjs>key_val_dram</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="29" name="tmp_5" lineNumber="18" fileName="hashing/execute.c" fileDirectory=".." rtlName="tmp_5_fu_134_p2" contextFuncName="execute" bitwidth="1" opcode="icmp" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="18" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+      <dataOutputObjs>select</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="30" name="node_30" lineNumber="13" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="13" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>block_34</controlInputObjs>
+      <controlInputObjs>block_36</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>13</validLinenumbers>
+      <validLinenumbers>15</validLinenumbers>
+      <validLinenumbers>16</validLinenumbers>
+      <validLinenumbers>18</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="34" name="block_34" type="BlockType">
+    <controlInputObjs>block_31</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>UnifiedReturnBlock</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="32" name="stored_val2_0_s" lineNumber="31" fileName="hashing/execute.c" fileDirectory=".." rtlName="stored_val2_0_s_fu_143_p3" contextFuncName="execute" bitwidth="32" opcode="select" nodeLabel="2" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="31" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="33" name="node_33" lineNumber="38" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" nodeLabel="2" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="38" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <controlInputObjs>UnifiedReturnBlock</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>31</validLinenumbers>
+      <validLinenumbers>38</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="36" name="block_36" type="BlockType">
+    <controlInputObjs>block_31</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_42</controlOutputObjs>
+    <controlOutputObjs>._crit_edge1</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="35" name="node_35" lineNumber="18" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="18" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>._crit_edge1</controlInputObjs>
+      <controlInputObjs>block_42</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>18</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="42" name="block_42" type="BlockType">
+    <controlInputObjs>block_36</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>._crit_edge1</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="39" name="node_39" lineNumber="19" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="store" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="19" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="40" name="node_40" lineNumber="20" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="store" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="20" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>key_val_dram</dataInputObjs>
+      <dataOutputObjs>key_val_dram</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="41" name="node_41" lineNumber="21" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="21" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <controlInputObjs>._crit_edge1</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>19</validLinenumbers>
+      <validLinenumbers>20</validLinenumbers>
+      <validLinenumbers>21</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="44" name="._crit_edge1" type="BlockType">
+    <controlInputObjs>block_36</controlInputObjs>
+    <controlInputObjs>block_42</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>UnifiedReturnBlock</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="43" name="node_43" lineNumber="23" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="br" nodeLabel="1" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="23" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <controlInputObjs>UnifiedReturnBlock</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>23</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="47" name="UnifiedReturnBlock" type="BlockType">
+    <controlInputObjs>block_20</controlInputObjs>
+    <controlInputObjs>block_34</controlInputObjs>
+    <controlInputObjs>._crit_edge1</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="45" name="UnifiedRetVal" originalName="stored_val" bitwidth="32" opcode="phi" nodeLabel="2" m_display="0">
+      <dataInputObjs>select</dataInputObjs>
+      <dataInputObjs>load</dataInputObjs>
+      <dataOutputObjs>ret</dataOutputObjs>
+      <controlInputObjs>block_34</controlInputObjs>
+      <controlInputObjs>._crit_edge1</controlInputObjs>
+      <controlInputObjs>block_20</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="46" name="node_46" lineNumber="38" fileName="hashing/execute.c" fileDirectory=".." contextFuncName="execute" opcode="ret" nodeLabel="2" m_display="0">
+      <inlineStackInfo fileName="hashing/execute.c" linenumber="38" fileDirectory="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls" functionName="execute"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>ap_return</dataOutputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="hashing/execute.c">
+      <validLinenumbers>38</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <regnodes realName="key_val_dram_addr_reg_164">
+    <nodeIds>23</nodeIds>
+  </regnodes>
+  <regnodes realName="key_val_dram_addr_1_reg_169">
+    <nodeIds>27</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_reg_156">
+    <nodeIds>18</nodeIds>
+  </regnodes>
+  <regnodes realName="hash_read_reg_150">
+    <nodeIds>14</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_1_reg_160">
+    <nodeIds>21</nodeIds>
+  </regnodes>
+  <regnodes realName="UnifiedRetVal_reg_93">
+    <nodeIds>45</nodeIds>
+  </regnodes>
+  <regnodes realName="stored_val_reg_174">
+    <nodeIds>28</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_5_reg_180">
+    <nodeIds>29</nodeIds>
+  </regnodes>
+  <expressionNodes realName="key_val_dram_addr_gep_fu_56">
+    <nodeIds>23</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_1_fu_112">
+    <nodeIds>21</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="key_val_dram_addr_1_gep_fu_68">
+    <nodeIds>27</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="stored_val2_0_s_fu_143">
+    <nodeIds>32</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_2_fu_118">
+    <nodeIds>22</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_4_fu_129">
+    <nodeIds>26</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_fu_106">
+    <nodeIds>18</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="UnifiedRetVal_phi_fu_97">
+    <nodeIds>45</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_3_fu_123">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_5_fu_134">
+    <nodeIds>29</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="val_addr_bram_addr_gep_fu_79">
+    <nodeIds>38</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_s_fu_139">
+    <nodeIds>37</nodeIds>
+  </expressionNodes>
+  <ioNodes realName="hash_read_read_fu_44">
+    <nodeIds>14</nodeIds>
+  </ioNodes>
+  <ioNodes realName="val_addr_read_read_fu_38">
+    <nodeIds>13</nodeIds>
+  </ioNodes>
+  <ioNodes realName="op_type_read_read_fu_50">
+    <nodeIds>15</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="key_val_dram">
+    <nodeIds>24</nodeIds>
+    <nodeIds>40</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="key_val_dram" portID="1">
+    <nodeIds>28</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="val_addr_bram">
+    <nodeIds>39</nodeIds>
+  </memoryPorts>
+  <ioPorts name="hash">
+    <contents name="read">
+      <nodeIds>14</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="key_val_dram(p0)">
+    <contents name="load">
+      <nodeIds>24</nodeIds>
+    </contents>
+    <contents name="store">
+      <nodeIds>40</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="key_val_dram(p1)">
+    <contents name="load">
+      <nodeIds>28</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="op_type">
+    <contents name="read">
+      <nodeIds>15</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="val_addr">
+    <contents name="read">
+      <nodeIds>13</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="val_addr_bram(p0)">
+    <contents name="store">
+      <nodeIds>39</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="ap_return">
+    <contents name="ret">
+      <nodeIds>46</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="6" stage="1" latency="1"/>
+      <operations id="7" stage="1" latency="1"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="11" stage="1" latency="1"/>
+      <operations id="12" stage="1" latency="1"/>
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="16" stage="1" latency="1"/>
+      <operations id="17" stage="1" latency="1"/>
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="2" latency="2"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="1"/>
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="28" stage="2" latency="2"/>
+    </states>
+    <states id="2">
+      <operations id="24" stage="1" latency="2"/>
+      <operations id="28" stage="1" latency="2"/>
+      <operations id="29" stage="1" latency="1"/>
+      <operations id="30" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+    </states>
+    <states id="3">
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="45" stage="1" latency="1"/>
+      <operations id="46" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="21"/>
+    </transitions>
+    <transitions inState="1" outState="3">
+      <condition id="20"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="23"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="execute" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="2" mMaxLatency="-1">
+      <basicBlocks>20</basicBlocks>
+      <basicBlocks>31</basicBlocks>
+      <basicBlocks>34</basicBlocks>
+      <basicBlocks>36</basicBlocks>
+      <basicBlocks>42</basicBlocks>
+      <basicBlocks>44</basicBlocks>
+      <basicBlocks>47</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

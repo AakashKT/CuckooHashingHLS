@@ -1,12 +1,14 @@
 #include "jenkins_hash.h"
 #include "search.h"
 #include "execute.h"
-
+#include <assert.h>
 int main()
 {
 	printf("YO\n");
 
 	VALUE_ADDR val_addr[NUM_VALUE_ADDRS];
+#pragma HLS INTERFACE bram port=val_addr
+
 	KV key_val_dram[NUM_VALUES * 2];
 
 	for(int i=0;i< NUM_VALUE_ADDRS;i++)
@@ -37,6 +39,9 @@ int main()
 	printf("ADDR OF AAKASH : %u\n", v1);
 	printf("ADDR OF SIDDHARTH : %u\n", v2);
 	printf("ADDR OF RANDOM : %d\n", v3);
+	assert(v1 == 0);
+	assert(v2 == 1);
+	assert(v3 == -1);
 
 	VALUE f1;
 	VALUE f2;
@@ -48,10 +53,12 @@ int main()
 		f2 = execute(OP_TYPE_SEARCH, h2, v2, key_val_dram, val_addr);
 
 	printf("VALUE DELETED : %u\n", f1);
+	assert(f1 == 42);
 	printf("VALUE SEARCHED : %u\n", f2);
-
+	assert(f2 == 43);
 
 	f1 = execute(OP_TYPE_SEARCH, h1, v1, key_val_dram, val_addr);
 	printf("SEARCH RESULT OF DELETED VALUE : %d\n", f1);
+	assert (f1 == -1);
 	return 0;
 }

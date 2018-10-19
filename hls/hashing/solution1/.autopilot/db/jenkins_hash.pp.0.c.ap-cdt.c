@@ -133,6 +133,14 @@
 #pragma empty_line
 #pragma empty_line
 #pragma empty_line
+#pragma line 1 "hashing/def.h" 1
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
 #pragma line 1 "/usr/include/stdio.h" 1 3 4
 #pragma line 27 "/usr/include/stdio.h" 3 4
 #pragma line 1 "/usr/include/features.h" 1 3 4
@@ -873,7 +881,7 @@ extern int ftrylockfile (FILE *__stream) __attribute__ ((__nothrow__ )) ;
 #pragma empty_line
 #pragma empty_line
 extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ ));
-#pragma line 5 "hashing/jenkins_hash.h" 2
+#pragma line 9 "hashing/def.h" 2
 #pragma line 1 "/usr/include/math.h" 1 3 4
 #pragma line 31 "/usr/include/math.h" 3 4
 #pragma line 1 "/usr/include/x86_64-linux-gnu/bits/math-vector.h" 1 3 4
@@ -1788,7 +1796,7 @@ struct exception
 #pragma empty_line
 #pragma empty_line
 extern int matherr (struct exception *__exc);
-#pragma line 6 "hashing/jenkins_hash.h" 2
+#pragma line 10 "hashing/def.h" 2
 #pragma line 1 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 1 3
 #pragma line 33 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 3
 #pragma line 1 "/usr/include/stdint.h" 1 3 4
@@ -1863,15 +1871,29 @@ typedef unsigned long int uintptr_t;
 typedef long int intmax_t;
 typedef unsigned long int uintmax_t;
 #pragma line 34 "/media/aakash/drive2/Vivado/2017.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stdint.h" 2 3
-#pragma line 7 "hashing/jenkins_hash.h" 2
+#pragma line 11 "hashing/def.h" 2
 #pragma empty_line
-uint32_t jenkins_one_at_a_time(int length, const char key[1000]);
+typedef char KEY;
+typedef uint32_t HASH;
+typedef uint32_t VALUE;
+typedef uint32_t VALUE_ADDR;
+typedef uint32_t KV;
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+static const int NUM_VALUES = 40;
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+static const int NUM_VALUE_ADDRS= 10;
+#pragma line 5 "hashing/jenkins_hash.h" 2
+#pragma empty_line
+HASH jenkins_one_at_a_time(int length, KEY key[1000]);
 #pragma line 2 "hashing/jenkins_hash.c" 2
 #pragma empty_line
-#pragma empty_line
-#pragma empty_line
-#pragma empty_line
-uint32_t jenkins_one_at_a_time(int length, const char key[1000])
+HASH jenkins_one_at_a_time(int length, KEY key[1000])
 {_ssdm_SpecArrayDimSize(key,1000);
  int i = 0;
  uint32_t hash = 0;
