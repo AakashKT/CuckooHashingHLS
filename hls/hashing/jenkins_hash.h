@@ -3,6 +3,6 @@
 
 #include "def.h"
 
-VALUE jenkins_one_at_a_time(int length, KEY key[1000]);
+HASH jenkins_one_at_a_time(int length, KEY key[1000]);
 
 #endif

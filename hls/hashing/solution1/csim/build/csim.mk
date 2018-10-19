@@ -21,7 +21,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../jenkins_hash_test.c ../../../jenkins_hash.c ../../../search.c
+HLS_SOURCES = ../../../search_test.c ../../../jenkins_hash.c ../../../search.c
 
 TARGET := csim.exe
 
@@ -75,11 +75,11 @@ all: $(TARGET)
 
 AUTOCC := apcc  
 
-$(ObjDir)/jenkins_hash_test.o: ../../../jenkins_hash_test.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../jenkins_hash_test.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/search_test.o: ../../../search_test.c $(ObjDir)/.dir
+	$(Echo) "   Compiling(apcc) ../../../search_test.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/jenkins_hash_test.d
+-include $(ObjDir)/search_test.d
 
 $(ObjDir)/jenkins_hash.o: ../../../jenkins_hash.c $(ObjDir)/.dir
 	$(Echo) "   Compiling(apcc) ../../../jenkins_hash.c in $(BuildMode) mode" $(AVE_DIR_DLOG)

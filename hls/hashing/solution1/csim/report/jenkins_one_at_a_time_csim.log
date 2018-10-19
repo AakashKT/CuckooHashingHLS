@@ -2,27 +2,37 @@ INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling(apcc) ../../../jenkins_hash_test.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:02:16 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:16:15 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/226771539963136524113
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/236111539963975772474
 INFO: [APCC 202-1] APCC is done.
    Compiling(apcc) ../../../jenkins_hash.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:02:20 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:16:19 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/227381539963140434914
+INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/236711539963979617321
 INFO: [APCC 202-1] APCC is done.
    Compiling(apcc) ../../../search.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:02:24 IST 2018
+INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:16:23 IST 2018
 INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
 INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/csim/build'
-INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/227981539963144339937
-INFO: [APCC 202-1] APCC is done.
-   Generating csim.exe
-Hash for 'AAKASH' : 3561689091
-Hash for 'TEST_KEY_2' : 1007159669
-INFO: [SIM 1] CSim done with 0 errors.
+../../../search.c:3:34: error: expected parameter declarator
+VALUE_ADDR search(KEY key[1000], )
+                                 ^
+1 error generated.
+ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.
+
+FORMAT
+  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]
+      <string>
+      <uint>
+      <string>
+      <string>
+
+csim.mk:91: recipe for target 'obj/search.o' failed
+make: *** [obj/search.o] Error 1
+CRITICAL WARNING: [SIM 100] 'csim_design' failed: compilation error(s).
 INFO: [SIM 3] *************** CSIM finish ***************

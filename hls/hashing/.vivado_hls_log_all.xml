@@ -7,6 +7,14 @@
       <mgLog/>
       <packageLog/>
       <csimLog>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T21:42:57.338+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T21:42:26.405+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T21:41:20.323+0530"/>
+        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:85: recipe for target 'obj/search_test.o' failed&#xA;make: *** [obj/search_test.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-19T21:41:20.315+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T21:16:24.386+0530"/>
+        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:91: recipe for target 'obj/search.o' failed&#xA;make: *** [obj/search.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-19T21:16:24.377+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T21:15:55.499+0530"/>
+        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:79: recipe for target 'obj/jenkins_hash_test.o' failed&#xA;make: *** [obj/jenkins_hash_test.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-19T21:15:55.492+0530"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-19T20:52:50.393+0530"/>
         <logs message="@E Simulation failed: SIGSEGV." projectName="hashing" solutionName="solution1" date="2018-10-19T20:52:50.386+0530"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-19T20:51:52.726+0530"/>

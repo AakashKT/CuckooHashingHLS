@@ -1,13 +1,5 @@
-INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:07 IST 2018
-INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
-INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls'
-INFO: [HLS 200-10] Opening project '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing'.
-INFO: [HLS 200-10] Opening solution '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1'.
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
-INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
-INFO: [SIM 211-2] *************** CSIM start ***************
-INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling(apcc) ../../../search_test.c in debug mode
 INFO: [HLS 200-10] Running '/media/aakash/drive2/Vivado/2017.4/bin/unwrapped/lnx64.o/apcc'
 INFO: [HLS 200-10] For user 'aakash' on host 'aakash-linux' (Linux_x86_64 version 4.15.0-36-generic) on Fri Oct 19 21:45:08 IST 2018
@@ -30,5 +22,6 @@ INFO: [HLS 200-10] In directory '/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/h
 INFO: [APCC 202-3] Tmp directory is /tmp/apcc_db_aakash/257551539965716023496
 INFO: [APCC 202-1] APCC is done.
    Generating csim.exe
-ADDRESS FOR AAKASH : 175ADDRESS FOR SIDDHARTH : 576INFO: [SIM 211-1] CSim done with 0 errors.
-INFO: [SIM 211-3] *************** CSIM finish ***************
+ADDRESS FOR AAKASH : 175ADDRESS FOR SIDDHARTH : 576
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

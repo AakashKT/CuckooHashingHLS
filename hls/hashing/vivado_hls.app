@@ -1,8 +1,8 @@
-<project xmlns="com.autoesl.autopilot.project" name="hashing" top="jenkins_one_at_a_time">
+<project xmlns="com.autoesl.autopilot.project" name="hashing" top="search">
     <files>
         <file name="hashing/jenkins_hash.c" sc="0" tb="false" cflags=""/>
         <file name="hashing/search.c" sc="0" tb="false" cflags=""/>
-        <file name="../jenkins_hash_test.c" sc="0" tb="1" cflags=""/>
+        <file name="../search_test.c" sc="0" tb="1" cflags=""/>
     </files>
     <includePaths/>
     <libraryPaths/>

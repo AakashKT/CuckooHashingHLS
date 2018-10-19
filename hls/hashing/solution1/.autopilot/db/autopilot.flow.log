@@ -1,4 +1,4 @@
-INFO: [HLS 200-0] Workspace /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1 opened at Fri Oct 19 21:02:15 IST 2018
+INFO: [HLS 200-0] Workspace /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1 opened at Fri Oct 19 21:45:07 IST 2018
 Execute     config_clock -quiet -name default -period 10 -default=false 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 Command     config_clock returned 0; 0 sec.
@@ -26,9 +26,9 @@ Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xili
 Command         ap_source returned 0; 0 sec.
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.lib 
 Command         ap_source returned 0; 0 sec.
-Command       ap_source returned 0; 0.01 sec.
-Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_old.lib 
 Command       ap_source returned 0; 0 sec.
+Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_old.lib 
+Command       ap_source returned 0; 0.01 sec.
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_vivado.lib 
 Command       ap_source returned 0; 0 sec.
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx.hlp 
@@ -41,8 +41,8 @@ Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xi
 Command           ap_source returned 0; 0 sec.
 Command         ap_source returned 0; 0 sec.
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
-Command         ap_source returned 0; 0.01 sec.
-Command       ap_source returned 0; 0.01 sec.
+Command         ap_source returned 0; 0 sec.
+Command       ap_source returned 0; 0 sec.
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/zynq/dsp48e1.hlp 
 Command       ap_source returned 0; 0 sec.
 Execute       get_default_platform 
@@ -63,7 +63,7 @@ Command         ap_source returned 0; 0 sec.
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
 Command         ap_source returned 0; 0 sec.
 Command       ap_source returned 0; 0 sec.
-Command     import_lib returned 0; 0.02 sec.
+Command     import_lib returned 0; 0.01 sec.
 Execute     source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
@@ -77,32 +77,32 @@ Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xi
 Execute             source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
 Command             ap_source returned 0; 0 sec.
 Execute             source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
-Command             ap_source returned 0; 0.01 sec.
+Command             ap_source returned 0; 0 sec.
 Command           ap_source returned 0; 0.01 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
 Command           ap_source returned 0; 0.01 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
-Command           ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.01 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
-Command           ap_source returned 0; 0.09 sec.
+Command           ap_source returned 0; 0.08 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
 Command           ap_source returned 0; 0 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
 Command           ap_source returned 0; 0 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
-Command           ap_source returned 0; 0.01 sec.
-Command         ap_source returned 0; 0.12 sec.
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.11 sec.
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
 Command         ap_source returned 0; 0 sec.
-Command       ap_source returned 0; 0.12 sec.
-Command     ap_source returned 0; 0.12 sec.
+Command       ap_source returned 0; 0.11 sec.
+Command     ap_source returned 0; 0.11 sec.
 Execute     open_platform DefaultPlatform 
 Command     open_platform returned 0; 0 sec.
 Execute     import_lib /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6 
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv7.lib 
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_hp.lib 
-Command         ap_source returned 0; 0 sec.
-Command       ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.01 sec.
+Command       ap_source returned 0; 0.01 sec.
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv.hlp 
 Execute         source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx.hlp 
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/target_info.tcl 
@@ -114,12 +114,12 @@ Execute             source /media/aakash/drive2/Vivado/2017.4/common/technology/
 Command             ap_source returned 0; 0 sec.
 Command           ap_source returned 0; 0 sec.
 Execute           source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
-Command           ap_source returned 0; 0.01 sec.
-Command         ap_source returned 0; 0.01 sec.
-Command       ap_source returned 0; 0.01 sec.
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0 sec.
+Command       ap_source returned 0; 0 sec.
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/zynq/zynq_hp.hlp 
 Command       ap_source returned 0; 0 sec.
-Command     import_lib returned 0; 0.01 sec.
+Command     import_lib returned 0; 0.02 sec.
 Execute     source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
 Execute       source /media/aakash/drive2/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
 Command       ap_source returned 0; 0 sec.
@@ -129,14 +129,14 @@ Execute       add_library xilinx/zynq/zynq:xc7z020:clg484:-1
 Execute         get_default_platform 
 Command         get_default_platform returned 0; 0 sec.
 Execute         license_isbetapart xc7z020 
-Command         license_isbetapart returned 1; 0 sec.
+Command         license_isbetapart returned 1; 0.01 sec.
 Execute         get_default_platform 
 Command         get_default_platform returned 0; 0 sec.
 Execute         config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
 Command         config_chip_info returned 0; 0 sec.
 Execute         config_chip_info -quiet -speed slow 
 Command         config_chip_info returned 0; 0 sec.
-Command       add_library returned 0; 0 sec.
+Command       add_library returned 0; 0.01 sec.
 Execute       add_library xilinx/zynq/zynq_fpv6 
 Execute         get_default_platform 
 Command         get_default_platform returned 0; 0 sec.
@@ -159,9 +159,9 @@ INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
 Execute     source csim/.lst_opt.tcl 
 Command     ap_source returned 0; 0 sec.
-Execute     is_encrypted /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash_test.c 
+Execute     is_encrypted /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search_test.c 
 Command     is_encrypted returned 0; 0 sec.
-Execute     is_xip /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash_test.c 
+Execute     is_xip /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search_test.c 
 Command     is_xip returned 0; 0 sec.
 Execute     is_encrypted /home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c 
 Command     is_encrypted returned 0; 0 sec.
@@ -177,7 +177,7 @@ Execute     source run_sim.tcl
 Command     ap_source returned 0; 0.02 sec.
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-Command   csim_design returned 0; 11.86 sec.
-Command ap_source returned 0; 12.06 sec.
+Command   csim_design returned 0; 11.63 sec.
+Command ap_source returned 0; 11.82 sec.
 Execute cleanup_all 
 Command cleanup_all returned 0; 0 sec.

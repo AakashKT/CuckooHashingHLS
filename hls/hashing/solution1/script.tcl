@@ -4,10 +4,10 @@
 ## Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project hashing
-set_top jenkins_one_at_a_time
+set_top search
 add_files hashing/jenkins_hash.c
 add_files hashing/search.c
-add_files -tb hashing/jenkins_hash_test.c
+add_files -tb hashing/search_test.c
 open_solution "solution1"
 set_part {xc7z020clg484-1} -tool vivado
 create_clock -period 10 -name default
