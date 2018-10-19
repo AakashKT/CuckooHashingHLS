@@ -1,7 +1,0 @@
-Running: xsim.dir/axpy/xsimk -simmode gui -wdb axpy.wdb -simrunnum 0 -socket 50995
-Design successfully loaded
-Design Loading Memory Usage: 40196 KB (Peak: 40252 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 122384 KB (Peak: 179464 KB)
-Simulation CPU Usage: 10 ms

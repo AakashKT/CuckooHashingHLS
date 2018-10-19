@@ -1,7 +1,0 @@
-<annotationInfo>
-<item  id="15" filename="cuckoo-hashing-hls/solution1/src/conv.cpp" linenumber="3" name="exitcond" contextFuncName="axpy" moduleName="axpy" rtlName="exitcond_fu_75_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="8" fileDirectory="/home/bollu/work/CuckooHashingHLS/hls"></item>
-<item  id="17" filename="cuckoo-hashing-hls/solution1/src/conv.cpp" linenumber="3" name="i_1" contextFuncName="axpy" moduleName="axpy" rtlName="i_1_fu_81_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="10" fileDirectory="/home/bollu/work/CuckooHashingHLS/hls"></item>
-<item  id="20" filename="cuckoo-hashing-hls/solution1/src/conv.cpp" linenumber="4" name="tmp" contextFuncName="axpy" moduleName="axpy" rtlName="tmp_fu_87_p1" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="/home/bollu/work/CuckooHashingHLS/hls"></item>
-<item  id="23" filename="cuckoo-hashing-hls/solution1/src/conv.cpp" linenumber="5" name="tmp_1" contextFuncName="axpy" moduleName="axpy" rtlName="tmp_1_fu_92_p2" latency="0" BRAM="-1" DSP="3" FF="0" LUT="20" fileDirectory="/home/bollu/work/CuckooHashingHLS/hls"></item>
-<item  id="24" filename="cuckoo-hashing-hls/solution1/src/conv.cpp" linenumber="5" name="y" contextFuncName="axpy" moduleName="axpy" rtlName="out_r_d0" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="39" fileDirectory="/home/bollu/work/CuckooHashingHLS/hls"></item>
-</annotationInfo>
