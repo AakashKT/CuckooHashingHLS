@@ -12,7 +12,7 @@ int main()
 	
 	VALUE_ADDR v1 = search(h1, val_addr);
 	VALUE_ADDR v2 = search(h2, val_addr);
-	
+	printf("------\n");
 	printf("ADDRESS FOR AAKASH : %u", v1);
 	printf("ADDRESS FOR SIDDHARTH : %u", v2);
 	

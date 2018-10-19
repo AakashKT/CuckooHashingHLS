@@ -3,6 +3,6 @@
 
 #include "def.h"
 
-VALUE_ADDR search(HASH h, VALUE_ADDR val_addr[100000]);
+VALUE_ADDR search(HASH h, VALUE_ADDR val_addr_bram[100000]);
 
 #endif
