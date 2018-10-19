@@ -1,9 +1,6 @@
 #include "jenkins_hash.h"
 
-#include<stdio.h>
-#include<math.h>
-
-uint32_t jenkins_one_at_a_time(int length, const char key[1000])
+VALUE jenkins_one_at_a_time(int length, KEY key[1000])
 {
 	int i = 0;
 	uint32_t hash = 0;

@@ -6,7 +6,16 @@
       <simLog/>
       <mgLog/>
       <packageLog/>
-      <csimLog/>
+      <csimLog>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-19T20:52:50.393+0530"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="hashing" solutionName="solution1" date="2018-10-19T20:52:50.386+0530"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="hashing" solutionName="solution1" date="2018-10-19T20:51:52.726+0530"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="hashing" solutionName="solution1" date="2018-10-19T20:51:52.719+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T20:51:22.843+0530"/>
+        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:85: recipe for target 'obj/jenkins_hash.o' failed&#xA;make: *** [obj/jenkins_hash.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-19T20:51:22.834+0530"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="hashing" solutionName="solution1" date="2018-10-19T20:50:17.118+0530"/>
+        <logs message="ERROR: [HLS 200-101] Message ID '1-1' value invalid for uint argument.&#xA;&#xA;&#xA;FORMAT&#xA;  ap_puts_err [OPTIONS] [ Message namespace] [ Message ID] [ Message string] [ Tcl message key]&#xA;      &lt;string>&#xA;      &lt;uint>&#xA;      &lt;string>&#xA;      &lt;string>&#xA;&#xA;&#xA;csim.mk:79: recipe for target 'obj/jenkins_hash_test.o' failed&#xA;make: *** [obj/jenkins_hash_test.o] Error 1" projectName="hashing" solutionName="solution1" date="2018-10-19T20:50:17.110+0530"/>
+      </csimLog>
     </logs>
   </errorLogs>
   <warningLogs>
