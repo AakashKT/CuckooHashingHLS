@@ -176,7 +176,12 @@ std::pair<bool, std::string> response_equal(Response r1, Response r2) {
 Request create_random_request(int random[3]) {
 	Request req;
 	req.tag = (OpType)(random[0] % 3);
-	req.key = random[1];
+
+	// Pick keys from a very small key space
+	// to make sure that we get SEARCH and DELETE,
+	// of keys that we have already seen, as well
+	// as collisions.
+	req.key = random[1] % 5;
 
 	switch (req.tag) {
 	case OP_TYPE_INSERT:
@@ -194,10 +199,89 @@ Request create_random_request(int random[3]) {
 	return req;
 }
 
-static const int NUM_TESTS = 50;
+// Collect statistics about the run
+struct Statistics {
+	// number of searches that returned a Value
+	int num_useful_searches;
+	// number of searches that did not hit a Key
+	int num_non_useful_searches;
+	// number of inserts that collided
+	int num_colliding_inserts;
+	// number of inserts that successfully inserted
+	int num_successful_inserts;
+	// number of deletes that deleted a Value
+	int num_useful_deletes;
+	// number of deletes that did not hit a Key
+	int num_non_useful_deletes;
+
+
+	Statistics() :
+	num_useful_searches(0),
+	num_non_useful_searches(0),
+	num_colliding_inserts(0),
+	num_successful_inserts(0),
+	num_useful_deletes(0),
+	num_non_useful_deletes (0) {}
+};
+
+// Update the hit statistics of our KV store
+// based on the response success
+void update_statistics(Response r, Statistics *s) {
+	assert (s != NULL);
+	switch (r.tag) {
+	case OP_TYPE_INSERT:
+		if (r.insert_collided) {
+			s->num_colliding_inserts++;
+		} else {
+			s->num_successful_inserts++;
+		}
+		return;
+	case OP_TYPE_SEARCH:
+		if (r.search_element_not_found) {
+			s->num_non_useful_searches++;
+		} else {
+			s->num_useful_searches++;
+		}
+		return;
+
+	case OP_TYPE_DELETE:
+		if (r.delete_element_not_found) {
+			s->num_non_useful_deletes++;
+		} else {
+			s->num_useful_deletes++;
+		}
+		return;
+
+	case OP_TYPE_ILLEGAL:
+		assert(false && "illegal tag");
+	}
+}
+
+void print_statistics(const Statistics s) {
+	std::cout <<"Inserts:";
+	std::cout << "\n\tsuccessful: " << s.num_successful_inserts;
+	std::cout<<"\n\tcollisions: " << s.num_colliding_inserts;
+
+	std::cout<<"\n\n";
+
+	std::cout<<"Deletes:";
+	std::cout<<"\n\tuseful: " << s.num_useful_deletes;
+	std::cout<<"\n\tnon useful: " << s.num_non_useful_deletes;
+
+	std::cout << "\n\n";
+
+	std::cout<<"Searches:";
+	std::cout<<"\n\tuseful: " << s.num_useful_searches;
+	std::cout<<"\n\tnon useful: " << s.num_non_useful_searches;
+
+	std::cout<<"\n";
+}
+
+static const int NUM_TESTS = 1000;
 int main()
 {
 	srand(time(NULL));
+
 
 	// stored in BRAM
 	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
@@ -205,6 +289,9 @@ int main()
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 
 	std::map<Key, Value> testmap;
+
+	Statistics stats;
+
 
 	for(int i = 0; i < NUM_TESTS; i++) {
 		std::cout << "(" << i << ")===\n";
@@ -250,7 +337,15 @@ int main()
 			std::cout << check.second;
 			return 1;
 		}
+
+		// NOTE: this actually gives us another way to
+		// compare responses.
+		// If the stats are not equal for
+		// two Responses, then we know that they are not equal!
+		update_statistics(reference, &stats);
 	}
+
+	print_statistics(stats);
 
 	return 0;
 }

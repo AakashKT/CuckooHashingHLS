@@ -18,32 +18,26 @@ struct KMetadata {
 	// should be bool
 	bool occupied;
 
-	// default constructor that initializes this sanely
+	// default constructor that initializes occupied correctly.
 	KMetadata();
 };
 
 struct KV {
 	Key key;
 	Value value;
+
+	// no default constructor to make sure
+	// that we get fast construction.
 };
 
 
-/* a dummy hash function to test */
+// a dummy hash function to test
 int terrible_hash_fn(int key);
 
-/* function to pick the correct hash bucket from the key.
- * returns: n, 0 <= n < NUM_HASH_TABLES
- */
+// function to pick the correct hash bucket from the key.
+// returns: n, 0 <= n < NUM_HASH_TABLES
 int hash_picker_fn(int key, int salt);
 
-/*
-// type of hash function
-typedef int (*HashFn)(int);
-
-static const HashFn G_HASH_FUNCTIONS[NUM_HASH_TABLES] = {
-	terrible_hash_fn, terrible_hash_fn
-};
-*/
 
 
 enum OpType{
@@ -51,8 +45,6 @@ enum OpType{
 	OP_TYPE_INSERT  = 0,
 	OP_TYPE_DELETE = 1,
 	OP_TYPE_SEARCH = 2,
-	// request to ask FPGA to initialize memory
-	OP_TYPE_INIT_MEMORY = 3
 };
 
 struct Request {
@@ -67,11 +59,13 @@ struct Request {
 
 struct Response {
 	OpType tag;
+	// value that is returned if the request was a searches.
 	Value search_value;
-	// TODO: use bool!
-	// TODO: merge {delte, search} element not found bits.
+	// if the element was not found, then this bit is set.
 	bool delete_element_not_found;
+	// if the searched element was not found, then this bit is set.
 	bool search_element_not_found;
+	// if there was an insert collision, then this bit is set.
 	bool insert_collided;
 	Response();
 };
