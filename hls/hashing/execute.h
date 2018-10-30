@@ -70,6 +70,10 @@ struct Response {
 	Response();
 };
 
-Response execute(Request req);
+Response execute(Request req,
+		// stored in BRAM: (k, address in DRAM)
+		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+		// stored in DRAM: (key, value)
+		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
 #endif
