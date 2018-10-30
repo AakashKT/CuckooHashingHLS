@@ -1,4 +1,5 @@
-#ifndef EXECUTE_
+#pragma once
+#ifndef EXECUTE
 #define EXECUTE_
 
 // number of hash tables;
@@ -26,9 +27,7 @@ struct KV {
 typedef int (*HashFn)(int);
 
 /* a dummy hash function to test */
-int  terrible_hash_fn(int key) {
-	return key;
-}
+int terrible_hash_fn(int key);
 
 int hash_picker_fn(int key) {
 	return key % NUM_HASH_TABLES;

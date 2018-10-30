@@ -1,6 +1,14 @@
 #include "execute.h"
 #include <assert.h>
 
+int terrible_hash_fn(int key) {
+	return key;
+}
+
+int hash_picker_fn(int key) {
+	return key % NUM_HASH_TABLES;
+}
+
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
