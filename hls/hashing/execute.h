@@ -11,17 +11,16 @@ typedef int Key;
 typedef int DRAMAddr;
 typedef int Value;
 
-typedef struct {
+struct KMetadata {
 	Key key;
 	// should be bool
 	bool occupied;
-} KMetadata;
+};
 
-typedef struct {
+struct KV {
 	Key key;
 	Value value;
-} KV;
-
+};
 
 /* type of hash function */
 typedef int (*HashFn)(int);
@@ -40,24 +39,24 @@ static const HashFn G_HASH_FUNCTIONS[NUM_HASH_TABLES] = {
 };
 
 
-typedef enum {
+enum OpType{
 	OP_TYPE_ILLEGAL = -1,
 	OP_TYPE_INSERT,
 	OP_TYPE_DELETE,
 	OP_TYPE_SEARCH
-} OpType;
+};
 
 
-typedef struct {
+struct Request {
 	OpType tag;
 	Key key;
 
 	// if tag == insert, value to be inserted
 	Value insert_value;
-} Request;
+};
 
 
-typedef struct {
+struct Response {
 	OpType tag;
 	Value search_value;
 	// TODO: use bool!
@@ -65,7 +64,7 @@ typedef struct {
 	bool delete_element_not_found;
 	bool search_element_not_found;
 	bool insert_collided;
-} Response;
+};
 
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
