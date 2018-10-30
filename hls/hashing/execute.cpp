@@ -3,7 +3,7 @@
 
 //http://www.azillionmonkeys.com/qed/hash.html
 int terrible_hash_fn(int key, int salt) {
-	return (key + salt + salt * salt) % HASH_TABLE_SIZE;
+	return (key ^ salt) % HASH_TABLE_SIZE;
 }
 
 int hash_picker_fn(int key) {
@@ -25,6 +25,13 @@ Response execute(Request req,
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+	// DRAM: synthesize as AXI
+	#pragma HLS INTERFACE m_axi depth=1 port=key_to_val
+
+	// BRAM
+	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
+	#pragma HLS INTERFACE ap_memory port=key_to_metadata
+
 	Response resp;
 	resp.tag = req.tag;
 
