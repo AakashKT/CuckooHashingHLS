@@ -29,9 +29,10 @@ typedef int (*HashFn)(int);
 /* a dummy hash function to test */
 int terrible_hash_fn(int key);
 
-int hash_picker_fn(int key) {
-	return key % NUM_HASH_TABLES;
-}
+/* function to pick the correct hash bucket from the key.
+ * returns: n, 0 <= n < NUM_HASH_TABLES
+ */
+int hash_picker_fn(int key);
 
 static const HashFn G_HASH_FUNCTIONS[NUM_HASH_TABLES] = {
 	terrible_hash_fn, terrible_hash_fn
