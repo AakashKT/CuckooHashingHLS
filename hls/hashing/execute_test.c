@@ -4,7 +4,6 @@
 #include <assert.h>
 int main()
 {
-	printf("YO\n");
 
 	VALUE_ADDR val_addr[NUM_VALUE_ADDRS];
 #pragma HLS INTERFACE bram port=val_addr
