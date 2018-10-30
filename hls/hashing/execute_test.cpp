@@ -213,6 +213,8 @@ struct Statistics {
 	int num_useful_deletes;
 	// number of deletes that did not hit a Key
 	int num_non_useful_deletes;
+	// total number of requests
+	int total;
 
 
 	Statistics() :
@@ -221,13 +223,16 @@ struct Statistics {
 	num_colliding_inserts(0),
 	num_successful_inserts(0),
 	num_useful_deletes(0),
-	num_non_useful_deletes (0) {}
+	num_non_useful_deletes (0),
+	total(0){}
 };
 
 // Update the hit statistics of our KV store
 // based on the response success
 void update_statistics(Response r, Statistics *s) {
 	assert (s != NULL);
+	s->total++;
+
 	switch (r.tag) {
 	case OP_TYPE_INSERT:
 		if (r.insert_collided) {
@@ -274,6 +279,9 @@ void print_statistics(const Statistics s) {
 	std::cout<<"\n\tuseful: " << s.num_useful_searches;
 	std::cout<<"\n\tnon useful: " << s.num_non_useful_searches;
 
+	std::cout << "\n";
+	std::cout<<"TOTAL: " << s.total;
+
 	std::cout<<"\n";
 }
 
@@ -310,6 +318,12 @@ int main()
 		std::cout << response_to_string(fpga);
 		std::cout << "--\n";
 
+		// NOTE: this actually gives us another way to
+		// compare responses.
+		// If the stats are not equal for
+		// two Responses, then we know that they are not equal!
+		update_statistics(fpga, &stats);
+
 
 		// If we tried to insert and failed, we can't
 		// simulate it, since it's just a hash collision.
@@ -317,8 +331,6 @@ int main()
 		// Otherwise, we continue.
 		if ((fpga.tag == OP_TYPE_INSERT &&
 						fpga.insert_collided)) {
-			// don't count this test case.
-			i--;
 			continue;
 		}
 
@@ -338,11 +350,6 @@ int main()
 			return 1;
 		}
 
-		// NOTE: this actually gives us another way to
-		// compare responses.
-		// If the stats are not equal for
-		// two Responses, then we know that they are not equal!
-		update_statistics(reference, &stats);
 	}
 
 	print_statistics(stats);
