@@ -9,6 +9,9 @@ int terrible_hash_fn(int key, int salt) {
 int hash_picker_fn(int key) {
 	return key % NUM_HASH_TABLES;
 }
+
+KMetadata::KMetadata() : occupied(false) {};
+
 Response::Response() : tag(OP_TYPE_ILLEGAL),
 		search_value(0),
 		delete_element_not_found(false),
@@ -17,14 +20,13 @@ Response::Response() : tag(OP_TYPE_ILLEGAL),
 }
 
 
-
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
 	Response resp;
-	resp.tag = OP_TYPE_ILLEGAL;
+	resp.tag = req.tag;
 
 	int hashes[NUM_HASH_TABLES];
 
@@ -59,8 +61,6 @@ Response execute(Request req,
 		break;
 
 	case OP_TYPE_INSERT:
-
-		resp.tag = OP_TYPE_INSERT;
 		if (key_to_metadata[pick_ix][hash].occupied) {
 			resp.insert_collided = true;
 			break;
@@ -83,16 +83,15 @@ Response execute(Request req,
 		break;
 
 	case OP_TYPE_DELETE:
-		resp.tag = OP_TYPE_DELETE;
-
-		if (key_to_metadata[pick_ix][hash].occupied == false) {
+		// If the location is unoccupied or occupied by another
+		// key, bail
+		if (key_to_metadata[pick_ix][hash].occupied == false ||
+				key_to_metadata[pick_ix][hash].key != req.key) {
 			resp.delete_element_not_found = true;
 			break;
 		}
-		else {
-			resp.delete_element_not_found = false;
-		}
 
+		resp.delete_element_not_found = false;
 		assert (key_to_metadata[pick_ix][hash].occupied == true);
 
 		// tombstone the data.
@@ -101,13 +100,20 @@ Response execute(Request req,
 		break;
 
 	case OP_TYPE_SEARCH:
-		if (key_to_metadata[pick_ix][hash].occupied == true) {
+
+		// TODO: increase code reuse between this branch
+		// and the delete branch.
+
+		if (key_to_metadata[pick_ix][hash].occupied == false ||
+				key_to_metadata[pick_ix][hash].key != req.key) {
 			resp.search_element_not_found = true;
+			break;
 		}
-		else {
-			resp.search_element_not_found = false;
-		}
+
+
+		resp.search_element_not_found = false;
 		resp.tag = OP_TYPE_SEARCH;
+
 		resp.search_value = key_to_val[pick_ix][hash].value;
 		break;
 	}

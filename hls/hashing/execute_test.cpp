@@ -33,7 +33,10 @@ std::string request_to_string(Request r) {
 
 	ss << "tag := " << optype_to_string(r.tag);
 	ss << "| key := " << r.key;
-	ss << "| insert_value := " << r.insert_value;
+
+	if (r.tag == OP_TYPE_INSERT) {
+		ss << "| insert_value := " << r.insert_value;
+	}
 
 	return ss.str();
 }
@@ -41,7 +44,7 @@ std::string request_to_string(Request r) {
 std::string response_to_string(Response r) {
 	std::stringstream ss;
 
-	ss << "tag := " << optype_to_string(r.tag);
+	ss << "tag := " << optype_to_string(r.tag) << "| ";
 	switch (r.tag) {
 	case OP_TYPE_INSERT:
 		if (r.insert_collided) {
@@ -97,6 +100,7 @@ Response simulate_request(Request req, std::map<Key, Value> &testmap) {
 
 		if (it == testmap.end()) {
 			res.delete_element_not_found = true;
+			return res;
 		}
 
 		testmap.erase(it);

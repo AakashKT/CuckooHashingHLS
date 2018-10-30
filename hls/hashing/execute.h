@@ -17,6 +17,9 @@ struct KMetadata {
 	Key key;
 	// should be bool
 	bool occupied;
+
+	// default constructor that initializes this sanely
+	KMetadata();
 };
 
 struct KV {
@@ -47,7 +50,9 @@ enum OpType{
 	OP_TYPE_ILLEGAL = -1,
 	OP_TYPE_INSERT  = 0,
 	OP_TYPE_DELETE = 1,
-	OP_TYPE_SEARCH = 2
+	OP_TYPE_SEARCH = 2,
+	// request to ask FPGA to initialize memory
+	OP_TYPE_INIT_MEMORY = 3
 };
 
 struct Request {
