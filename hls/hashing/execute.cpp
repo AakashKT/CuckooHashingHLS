@@ -4,11 +4,11 @@
 
 
 //http://www.azillionmonkeys.com/qed/hash.html
-int terrible_hash_fn(int key, int salt) {
-	return (key + salt *salt) % HASH_TABLE_SIZE;
+unsigned terrible_hash_fn(int key, int salt) {
+	return ((unsigned int)(key + salt) % HASH_TABLE_SIZE);
 }
 
-int hash_picker_fn(int key) {
+unsigned hash_picker_fn(int key) {
 	return key % NUM_HASH_TABLES;
 }
 
@@ -21,7 +21,7 @@ Response::Response() : tag(OP_TYPE_ILLEGAL),
 		insert_collided(false) {
 }
 
-Request create_random_request(int random[3]) {
+Request create_random_request(unsigned int random[3]) {
 	Request req;
 	req.tag = (OpType)(random[0] % 3);
 
@@ -162,12 +162,12 @@ Response execute(Request req,
 
 // I'm asuming int is 32 bit
 ap_int<32> lfsr_init() {
-	return (int)0XCAFEBABE;
+	return 0XCAFEBABE;
 }
 
 ap_int<32> lfsr_next(ap_int<32> lfsr) {
-    /* taps: 16 14 13 11; feedback polynomial: x^16 + x^14 + x^13 + x^11 + 1 */
-    int bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+    // taps: 32 30 29 27; feedback polynomial: x^32 + x^30 + x^29 + x^27
+	ap_int<32> bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
     return (lfsr >> 1) | (bit << 31);
 }
 
@@ -179,9 +179,13 @@ void traffic_generate_and_execute() {
 	// stored in DRAM: (key, value)
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 
-
-	int random[3];
+	ap_int<32> lfsr = lfsr_init();
+	unsigned int random[3];
 	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
+		for(int j = 0; j < 3; j++) {
+			random[j] = lfsr_next(lfsr);
+		}
+
 		Request req = create_random_request(random);
 		execute(req, key_to_metadata, key_to_val);
 	}

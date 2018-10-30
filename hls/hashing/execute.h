@@ -83,6 +83,6 @@ void traffic_generate_and_execute();
 
 // Helper function to generate a random request,
 // given some random seed.
-Request create_random_request(int random[3]);
+Request create_random_request(unsigned int random[3]);
 
 #endif

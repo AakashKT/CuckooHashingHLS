@@ -278,7 +278,7 @@ int main()
 	for(int i = 0; i < NUM_TESTS; i++) {
 		std::cout << "(" << i << ")===\n";
 
-		int random[3] = {rand(), rand(), rand()};
+		unsigned int random[3] = {rand(), rand(), rand()};
 
 		Request req = create_random_request(random);
 
