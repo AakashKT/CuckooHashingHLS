@@ -1,9 +1,11 @@
 #include "execute.h"
 #include <assert.h>
+#include <ap_int.h>
+
 
 //http://www.azillionmonkeys.com/qed/hash.html
 int terrible_hash_fn(int key, int salt) {
-	return (key ^ salt) % HASH_TABLE_SIZE;
+	return (key + salt *salt) % HASH_TABLE_SIZE;
 }
 
 int hash_picker_fn(int key) {
@@ -153,4 +155,34 @@ Response execute(Request req,
 	}
 
 	return resp;
+}
+
+// A lightweight LSFR implementation
+// http://homepage.mac.com/afj/taplist.html
+
+// I'm asuming int is 32 bit
+ap_int<32> lfsr_init() {
+	return (int)0XCAFEBABE;
+}
+
+ap_int<32> lfsr_next(ap_int<32> lfsr) {
+    /* taps: 16 14 13 11; feedback polynomial: x^16 + x^14 + x^13 + x^11 + 1 */
+    int bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+    return (lfsr >> 1) | (bit << 31);
+}
+
+void traffic_generate_and_execute() {
+	static const int NUM_REQUESTS_TO_GENERATE = 1000;
+
+	// stored in BRAM
+	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
+	// stored in DRAM: (key, value)
+	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
+
+
+	int random[3];
+	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
+		Request req = create_random_request(random);
+		execute(req, key_to_metadata, key_to_val);
+	}
 }
