@@ -42,15 +42,15 @@ Response execute(Request req,
 	case OP_TYPE_INSERT:
 
 		resp.tag = OP_TYPE_INSERT;
-		if (key_to_metadata[pick_ix][hash].occupied == 1) {
-			resp.insert_collided = 1;
+		if (key_to_metadata[pick_ix][hash].occupied) {
+			resp.insert_collided = true;
 			break;
 		}
 		else {
-			resp.insert_collided = 0;
+			resp.insert_collided = false;
 		}
 
-		assert (key_to_metadata[pick_ix][hash].occupied == 0);
+		assert (key_to_metadata[pick_ix][hash].occupied == false);
 
 		// TODO: check for collision
 		// DRAM
@@ -60,33 +60,33 @@ Response execute(Request req,
 		// BRAM
 		key_to_metadata[pick_ix][hash].key = req.key;
 		// I don't understand this two tiered mechanism thing.
-		key_to_metadata[pick_ix][hash].occupied = 1;
+		key_to_metadata[pick_ix][hash].occupied = true;
 		break;
 
 	case OP_TYPE_DELETE:
 		resp.tag = OP_TYPE_DELETE;
 
-		if (key_to_metadata[pick_ix][hash].occupied == 0) {
-			resp.delete_element_not_found = 1;
+		if (key_to_metadata[pick_ix][hash].occupied == false) {
+			resp.delete_element_not_found = true;
 			break;
 		}
 		else {
-			resp.delete_element_not_found = 0;
+			resp.delete_element_not_found = false;
 		}
 
-		assert (key_to_metadata[pick_ix][hash].occupied == 1);
+		assert (key_to_metadata[pick_ix][hash].occupied == true);
 
 		// tombstone the data.
-		key_to_metadata[pick_ix][hash].occupied = 0;
+		key_to_metadata[pick_ix][hash].occupied = false;
 
 		break;
 
 	case OP_TYPE_SEARCH:
-		if (key_to_metadata[pick_ix][hash].occupied == 0) {
-			resp.search_element_not_found = 1;
+		if (key_to_metadata[pick_ix][hash].occupied == true) {
+			resp.search_element_not_found = true;
 		}
 		else {
-			resp.search_element_not_found = 0;
+			resp.search_element_not_found = false;
 		}
 		resp.tag = OP_TYPE_SEARCH;
 		resp.search_value = key_to_val[pick_ix][hash].value;

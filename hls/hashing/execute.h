@@ -14,7 +14,7 @@ typedef int Value;
 typedef struct {
 	Key key;
 	// should be bool
-	int occupied;
+	bool occupied;
 } KMetadata;
 
 typedef struct {
@@ -62,9 +62,9 @@ typedef struct {
 	Value search_value;
 	// TODO: use bool!
 	// TODO: merge {delte, search} element not found bits.
-	int delete_element_not_found;
-	int search_element_not_found;
-	int insert_collided;
+	bool delete_element_not_found;
+	bool search_element_not_found;
+	bool insert_collided;
 } Response;
 
 Response execute(Request req,

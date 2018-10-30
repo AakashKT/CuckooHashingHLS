@@ -10,5 +10,5 @@ int main()
 	// stored in DRAM: (key, value)
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
-
+	return 0;
 }
