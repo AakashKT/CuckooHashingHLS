@@ -1,8 +1,9 @@
 #include "execute.h"
 #include <assert.h>
 
-int terrible_hash_fn(int key) {
-	return key;
+//http://www.azillionmonkeys.com/qed/hash.html
+int terrible_hash_fn(int key, int salt) {
+	return (key + salt + salt * salt) % HASH_TABLE_SIZE;
 }
 
 int hash_picker_fn(int key) {
@@ -14,6 +15,8 @@ Response::Response() : tag(OP_TYPE_ILLEGAL),
 		search_element_not_found(false),
 		insert_collided(false) {
 }
+
+
 
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
@@ -29,7 +32,7 @@ Response execute(Request req,
 	int pick_ix = hash_picker_fn(req.key);
 
 	assert (pick_ix >= 0);
-	assert (pick_ix <= NUM_HASH_TABLES - 1);
+	assert (pick_ix < NUM_HASH_TABLES);
 
 	/*
 	// we can't write nice code like this, because there's
@@ -39,8 +42,10 @@ Response execute(Request req,
 	}
 	*/
 
-	hashes[0] = terrible_hash_fn(req.key);
-	hashes[1] = terrible_hash_fn(req.key);
+	static const int salt = 0xDEADBEEF;
+	hashes[0] = terrible_hash_fn(req.key, salt);
+	hashes[1] = terrible_hash_fn(req.key, salt);
+	hashes[2] = terrible_hash_fn(req.key, salt);
 
 	// pick the correct hash to now perform the  operation
 	const int hash = hashes[pick_ix];
