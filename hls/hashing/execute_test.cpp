@@ -115,6 +115,9 @@ Response simulate_request(Request req, std::map<Key, Value> &testmap) {
 
 		res.search_value = it->second;
 		break;
+
+	case OP_TYPE_ILLEGAL:
+		assert(false && "illegal request");
 	}
 
 	return res;
@@ -175,7 +178,7 @@ std::pair<bool, std::string> response_equal(Response r1, Response r2) {
 // Code to generate a random request, given randomness.
 Request create_random_request(int random[3]) {
 	Request req;
-	req.tag = (OpType)(random[0] % 3);
+	req.tag = static_cast<OpType>(random[0] % 3);
 
 	// Pick keys from a very small key space
 	// to make sure that we get SEARCH and DELETE,
@@ -290,12 +293,6 @@ int main()
 {
 	srand(time(NULL));
 
-
-	// stored in BRAM
-	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
-	// stored in DRAM: (key, value)
-	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
-
 	std::map<Key, Value> testmap;
 
 	Statistics stats;
@@ -312,7 +309,7 @@ int main()
 		std::cout << request_to_string(req);
 		std::cout<<"--\n";
 
-		Response fpga = execute(req, key_to_metadata, key_to_val);
+		Response fpga = execute(req);
 
 		std::cout << "FPGA response: ";
 		std::cout << response_to_string(fpga);
