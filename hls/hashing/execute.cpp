@@ -178,6 +178,12 @@ void traffic_generate_and_execute() {
 	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 	// stored in DRAM: (key, value)
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
+#pragma HLS INTERFACE m_axi depth=1 port=key_to_val
+
+// BRAM
+#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
+#pragma HLS INTERFACE ap_memory port=key_to_metadata
+
 
 	ap_int<32> lfsr = lfsr_init();
 	unsigned int random[3];

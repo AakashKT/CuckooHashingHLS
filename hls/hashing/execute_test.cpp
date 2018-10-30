@@ -278,7 +278,11 @@ int main()
 	for(int i = 0; i < NUM_TESTS; i++) {
 		std::cout << "(" << i << ")===\n";
 
-		unsigned int random[3] = {rand(), rand(), rand()};
+		unsigned int random[3] = {
+				static_cast<unsigned int>(rand()),
+				static_cast<unsigned int>(rand()),
+				static_cast<unsigned int>(rand())
+		};
 
 		Request req = create_random_request(random);
 
@@ -327,6 +331,11 @@ int main()
 	}
 
 	print_statistics(stats);
+
+
+	// really nothing to do here, there's no output I can see,
+	// but I call it anyway?...
+	traffic_generate_and_execute();
 
 	return 0;
 }
