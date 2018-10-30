@@ -172,32 +172,6 @@ std::pair<bool, std::string> response_equal(Response r1, Response r2) {
 	return std::make_pair(true, "");
 }
 
-// Code to generate a random request, given randomness.
-Request create_random_request(int random[3]) {
-	Request req;
-	req.tag = (OpType)(random[0] % 3);
-
-	// Pick keys from a very small key space
-	// to make sure that we get SEARCH and DELETE,
-	// of keys that we have already seen, as well
-	// as collisions.
-	req.key = random[1] % 5;
-
-	switch (req.tag) {
-	case OP_TYPE_INSERT:
-		req.insert_value = random[2];
-		return req;
-
-	case OP_TYPE_DELETE:
-	case OP_TYPE_SEARCH:
-		return req;
-	default:
-		assert (false && "unknown tag type");
-	}
-
-	assert (false && "unreachable");
-	return req;
-}
 
 // Collect statistics about the run
 struct Statistics {

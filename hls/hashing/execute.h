@@ -76,4 +76,13 @@ Response execute(Request req,
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
+// generate traffic and execute requests.
+// Note that this is _not_ a replacement for the test bench,
+// because the test bench checks functional correctness
+void traffic_generate_and_execute();
+
+// Helper function to generate a random request,
+// given some random seed.
+Request create_random_request(int random[3]);
+
 #endif
