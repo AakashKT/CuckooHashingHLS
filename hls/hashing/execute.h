@@ -64,7 +64,9 @@ struct Response {
 	bool delete_element_not_found;
 	bool search_element_not_found;
 	bool insert_collided;
+	Response();
 };
+
 
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)

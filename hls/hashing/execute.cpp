@@ -8,6 +8,12 @@ int terrible_hash_fn(int key) {
 int hash_picker_fn(int key) {
 	return key % NUM_HASH_TABLES;
 }
+Response::Response() : tag(OP_TYPE_ILLEGAL),
+		search_value(0),
+		delete_element_not_found(false),
+		search_element_not_found(false),
+		insert_collided(false) {
+}
 
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
