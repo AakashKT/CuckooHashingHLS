@@ -4,9 +4,9 @@
 
 // --- Make these sizes prime, so that hashing works decent ---
 // number of hash tables;
-static const int NUM_HASH_TABLES = 3;
+static const int NUM_HASH_TABLES = 4;
 // size of each hash table
-static const int HASH_TABLE_SIZE = 97;
+static const int HASH_TABLE_SIZE = 128;
 
 typedef int Key;
 // an address in DRAM;

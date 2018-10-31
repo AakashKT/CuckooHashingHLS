@@ -76,14 +76,15 @@ Response execute(Request req,
 	// we can't write nice code like this, because there's
 	// no function pointer support :(
 	for(int i = 0; i < NHASH; i++) {
-		hashes[i] = G_HASH_FUNCTIONS[i](req.key);
+		hashes[i] = G_HASH_FUNCTIONS[i](req.key, salt[i]);
 	}
 	*/
 
-	static const int salt = 0xDEADBEEF;
-	hashes[0] = terrible_hash_fn(req.key, salt);
-	hashes[1] = terrible_hash_fn(req.key, salt);
-	hashes[2] = terrible_hash_fn(req.key, salt);
+	// How do I parallelize this?
+	static const int salt[] = {0xDEADBEEF, 0XCAFEBABE, 100};
+	hashes[0] = terrible_hash_fn(req.key, salt[0]);
+	hashes[1] = terrible_hash_fn(req.key, salt[1]);
+	hashes[2] = terrible_hash_fn(req.key, salt[2]);
 
 	// pick the correct hash to now perform the  operation
 	const int hash = hashes[pick_ix];
@@ -107,7 +108,6 @@ Response execute(Request req,
 
 		assert (key_to_metadata[pick_ix][hash].occupied == false);
 
-		// TODO: check for collision
 		// DRAM
 		key_to_val[pick_ix][hash].key = hash;
 		key_to_val[pick_ix][hash].value = req.insert_value;
@@ -115,6 +115,7 @@ Response execute(Request req,
 		// BRAM
 		key_to_metadata[pick_ix][hash].key = req.key;
 		// I don't understand this two tiered mechanism thing.
+		// TODO: in the metadata, do we need to store the address? I think not, right?
 		key_to_metadata[pick_ix][hash].occupied = true;
 		break;
 
