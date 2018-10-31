@@ -81,7 +81,7 @@ Response execute(Request req,
 	*/
 
 	// How do I parallelize this?
-	static const int salt[] = {0xDEADBEEF, 0XCAFEBABE, 100};
+	static const int salt[] = {1, 2, 100};
 	hashes[0] = terrible_hash_fn(req.key, salt[0]);
 	hashes[1] = terrible_hash_fn(req.key, salt[1]);
 	hashes[2] = terrible_hash_fn(req.key, salt[2]);
