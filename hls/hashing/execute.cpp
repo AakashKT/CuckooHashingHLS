@@ -234,12 +234,15 @@ void traffic_generate_and_execute() {
 void traffic_generate_and_execute_param(
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
  KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+#pragma HLS INTERFACE m_axi depth=1000 port=key_to_val
+#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
+#pragma HLS INTERFACE ap_memory port=key_to_metadata
 	// DRAM: synthesize as AXI
-	#pragma HLS INTERFACE m_axi port=key_to_val
+
 
 	// BRAM
-	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
-	#pragma HLS INTERFACE ap_memory port=key_to_metadata
+
+
 
 	static const int NUM_REQUESTS_TO_GENERATE = 1000;
 

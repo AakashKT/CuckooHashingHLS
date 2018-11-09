@@ -396,6 +396,7 @@ int main()
 	// really nothing to do here, there's no output I can see,
 	// but I call it anyway?...
 	traffic_generate_and_execute();
+	traffic_generate_and_execute_param(key_to_metadata, key_to_val);
 
 	return 0;
 }
