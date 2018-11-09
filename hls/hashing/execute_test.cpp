@@ -262,7 +262,8 @@ void print_statistics(const Statistics s) {
 
 
 // run the initialization request
-void initialize(KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+void initialize(KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+		KV kv[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
 	// initialize.
 	// For whatever reason, the RTL is fucked.
 	for(int i = 0; i < NUM_HASH_TABLES; i++) {
@@ -287,6 +288,16 @@ void push_rand_requests(std::vector<Request> &rs) {
 	}
 }
 
+void push_test_insert_search(std::vector<Request> &rs) {
+	// hit
+	rs.push_back(Request::mkInsert(10, 42));
+	rs.push_back(Request::mSearch(10));
+
+	//miss
+	rs.push_back(Request::mSearch(20));
+
+}
+
 int main()
 {
 	srand(time(NULL));
@@ -300,11 +311,12 @@ int main()
 	std::map<Key, Value> testmap;
 	Statistics stats;
 
-	initialize(key_to_metadata);
+	initialize(key_to_metadata, key_to_val);
 
 	// populate tests
 	std::vector<Request> reqs;
-	push_rand_requests(reqs);
+	//push_rand_requests(reqs);
+	push_test_insert_search(reqs);
 
 	// run tests
 	int count = 0;
