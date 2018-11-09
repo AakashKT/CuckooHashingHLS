@@ -40,12 +40,20 @@ int hash_picker_fn(int key, int salt);
 
 
 
+/*
 enum OpType{
 	OP_TYPE_ILLEGAL = -1,
 	OP_TYPE_INSERT  = 0,
 	OP_TYPE_DELETE = 1,
 	OP_TYPE_SEARCH = 2,
 };
+*/
+
+typedef int OpType;
+#define OP_TYPE_ILLEGAL (-1)
+#define OP_TYPE_INSERT 0
+#define OP_TYPE_DELETE 1
+#define OP_TYPE_SEARCH 2
 
 struct Request {
 	OpType tag;

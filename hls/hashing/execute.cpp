@@ -1,6 +1,6 @@
 #include "execute.h"
 #include <assert.h>
-#include <ap_int.h>
+// #include <ap_int.h>
 
 
 //http://www.azillionmonkeys.com/qed/hash.html
@@ -23,7 +23,8 @@ Response::Response() : tag(OP_TYPE_ILLEGAL),
 
 Request create_random_request(unsigned int random[3]) {
 	Request req;
-	req.tag = (OpType)(random[0] % 3);
+	// req.tag = static_cast<OpType>(random[0] % 3);
+	req.tag = OP_TYPE_INSERT;
 
 	// Pick keys from a very small key space
 	// to make sure that we get SEARCH and DELETE,
@@ -161,14 +162,15 @@ Response execute(Request req,
 // A lightweight LSFR implementation
 // http://homepage.mac.com/afj/taplist.html
 
+typedef int int32;
 // I'm asuming int is 32 bit
-ap_int<32> lfsr_init() {
+int32 lfsr_init() {
 	return 0XCAFEBABE;
 }
 
-ap_int<32> lfsr_next(ap_int<32> lfsr) {
+int32 lfsr_next(int32 lfsr) {
     // taps: 32 30 29 27; feedback polynomial: x^32 + x^30 + x^29 + x^27
-	ap_int<32> bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
+	int32 bit  = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5) ) & 1;
     return (lfsr >> 1) | (bit << 31);
 }
 
@@ -186,7 +188,7 @@ void traffic_generate_and_execute() {
 #pragma HLS INTERFACE ap_memory port=key_to_metadata
 
 
-	ap_int<32> lfsr = lfsr_init();
+	int32 lfsr = lfsr_init();
 	unsigned int random[3];
 	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
 		for(int j = 0; j < 3; j++) {
