@@ -304,6 +304,8 @@ int main()
 		std::cout << request_to_string(req);
 		std::cout<<"--\n";
 
+
+		std::cout << "calling execute() on FPGA...\n";
 		Response fpga = execute(req, key_to_metadata, key_to_val);
 
 		std::cout << "FPGA response: ";

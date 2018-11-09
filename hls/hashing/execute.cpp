@@ -1,5 +1,6 @@
 #include "execute.h"
 #include <assert.h>
+#include <iostream>
 // #include <ap_int.h>
 
 
@@ -24,7 +25,7 @@ Response::Response() : tag(OP_TYPE_ILLEGAL),
 Request create_random_request(unsigned int random[3]) {
 	Request req;
 	// req.tag = static_cast<OpType>(random[0] % 3);
-	req.tag = OP_TYPE_INSERT;
+	req.tag = random[0] % 3;
 
 	// Pick keys from a very small key space
 	// to make sure that we get SEARCH and DELETE,
@@ -63,9 +64,11 @@ Response execute(Request req,
 	// BRAM
 	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
 	#pragma HLS INTERFACE ap_memory port=key_to_metadata
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	Response resp;
 	resp.tag = req.tag;
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	int hashes[NUM_HASH_TABLES];
 
@@ -74,6 +77,7 @@ Response execute(Request req,
 
 	assert (pick_ix >= 0);
 	assert (pick_ix < NUM_HASH_TABLES);
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	/*
 	// we can't write nice code like this, because there's
@@ -82,6 +86,7 @@ Response execute(Request req,
 		hashes[i] = G_HASH_FUNCTIONS[i](req.key, salt[i]);
 	}
 	*/
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	// How do I parallelize this?
 	static const int salt[] = {1, 2, 100};
@@ -89,18 +94,27 @@ Response execute(Request req,
 	hashes[1] = terrible_hash_fn(req.key, salt[1]);
 	hashes[2] = terrible_hash_fn(req.key, salt[2]);
 
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
+
 	// pick the correct hash to now perform the  operation
-	const int hash = hashes[pick_ix];
+	const unsigned int hash = hashes[pick_ix];
+
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	assert (hash >= 0);
 	assert (hash < HASH_TABLE_SIZE);
 
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
+
 	switch (req.tag) {
 	case OP_TYPE_ILLEGAL:
+		std::cout << __FILE__ << ":" << __LINE__ << "\n";
 		assert(0 && "received request with illegal tag");
 		break;
 
 	case OP_TYPE_INSERT:
+		std::cout << __FILE__ << ":" << __LINE__ << "\n";
+
 		if (key_to_metadata[pick_ix][hash].occupied) {
 			resp.insert_collided = true;
 			break;
@@ -123,6 +137,8 @@ Response execute(Request req,
 		break;
 
 	case OP_TYPE_DELETE:
+		std::cout << __FILE__ << ":" << __LINE__ << "\n";
+
 		// If the location is unoccupied or occupied by another
 		// key, bail
 		if (key_to_metadata[pick_ix][hash].occupied == false ||
@@ -140,6 +156,7 @@ Response execute(Request req,
 		break;
 
 	case OP_TYPE_SEARCH:
+		std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 		// TODO: increase code reuse between this branch
 		// and the delete branch.
@@ -157,6 +174,7 @@ Response execute(Request req,
 		resp.search_value = key_to_val[pick_ix][hash].value;
 		break;
 	}
+	std::cout << __FILE__ << ":" << __LINE__ << "\n";
 
 	return resp;
 }
