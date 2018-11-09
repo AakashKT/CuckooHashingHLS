@@ -29,6 +29,13 @@ Request Request::mkInsert(Key k, Value v) {
 	return r;
 }
 
+Request Request::mkDelete(Key k) {
+	Request r;
+	r.key = k;
+	r.tag = OP_TYPE_DELETE;
+	return r;
+}
+
 
 // Metatada
 KMetadata::KMetadata() : occupied(false) {};
@@ -79,7 +86,7 @@ Response execute(Request req,
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
 	// DRAM: synthesize as AXI
-	#pragma HLS INTERFACE m_axi depth=1 port=key_to_val
+	#pragma HLS INTERFACE m_axi port=key_to_val
 
 	// BRAM
 	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
@@ -205,7 +212,7 @@ void traffic_generate_and_execute() {
 	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 	// stored in DRAM: (key, value)
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
-#pragma HLS INTERFACE m_axi depth=1 port=key_to_val
+#pragma HLS INTERFACE m_axi port=key_to_val
 
 // BRAM
 #pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM

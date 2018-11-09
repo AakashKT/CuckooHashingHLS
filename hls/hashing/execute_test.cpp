@@ -288,19 +288,31 @@ void push_rand_requests(std::vector<Request> &rs) {
 	}
 }
 
-void push_test_insert_search(std::vector<Request> &rs) {
-	// hit
+void push_deterministic_requests(std::vector<Request> &rs) {
+	assert(rs.size() == 0 && "deterministic requests should be before random requests");
+	// insert hit
 	rs.push_back(Request::mkInsert(10, 42));
+
+	// insert: collide
+	rs.push_back(Request::mkInsert(10, 42));
+
+
+	//search: hit
 	rs.push_back(Request::mSearch(10));
 
-	//miss
+	//search: miss
 	rs.push_back(Request::mSearch(20));
+
+	// delete:hit
+	rs.push_back(Request::mkDelete(10));
+	// delete:miss
+	rs.push_back(Request::mkDelete(10));
 
 }
 
 int main()
 {
-	srand(time(NULL));
+	// srand(time(NULL));
 
 
 	// stored in BRAM
@@ -315,8 +327,8 @@ int main()
 
 	// populate tests
 	std::vector<Request> reqs;
-	//push_rand_requests(reqs);
-	push_test_insert_search(reqs);
+	push_deterministic_requests(reqs);
+	push_rand_requests(reqs);
 
 	// run tests
 	int count = 0;
