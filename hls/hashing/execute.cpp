@@ -68,10 +68,10 @@ Response execute(Request req,
 	Response resp;
 	resp.tag = req.tag;
 
-	int hashes[NUM_HASH_TABLES];
+	unsigned int hashes[NUM_HASH_TABLES];
 
 	// value that is used to pick the hash function h_n
-	int pick_ix = hash_picker_fn(req.key);
+	unsigned int pick_ix = hash_picker_fn(req.key);
 
 	assert (pick_ix >= 0);
 	assert (pick_ix < NUM_HASH_TABLES);
