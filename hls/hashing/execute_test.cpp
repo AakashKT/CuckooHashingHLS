@@ -125,31 +125,32 @@ Response simulate_request(Request req, std::map<Key, Value> &testmap) {
 // Checks if two responses are semantically equal
 // If returns false, then the std::string contains the
 // error details
-std::pair<bool, std::string> response_equal(Response r1, Response r2) {
+std::pair<bool, std::string> response_equal(std::string name1, Response r1,
+		std::string name2, Response r2) {
 	std::stringstream ss;
 
 	if (r1.tag != r2.tag) {
-		ss << "R1 tag: " << r1.tag << " | R2 tag: " << r2.tag;
+		ss << name1 << " tag: " << r1.tag << " | " << name2 << " tag: " << r2.tag;
 		return std::make_pair(false, ss.str());
 	}
 
 	switch (r1.tag) {
 	case OP_TYPE_INSERT:
 		if (r1.insert_collided != r2.insert_collided) {
-			ss << "R1 insert collided: " << r1.insert_collided;
-			ss << "| R2 insert collided:  " << r2.insert_collided;
+			ss << name1 << " insert collided: " << r1.insert_collided << "\n";
+			ss << name2 << " insert collided:  " << r2.insert_collided;
 			return std::make_pair(false, ss.str());
 		}
 		break;
 	case OP_TYPE_SEARCH:
 		if (r1.search_element_not_found != r2.search_element_not_found) {
-			ss << "R1 search state: " << r1.search_element_not_found;
-			ss << "|R2 search state: " << r2.search_element_not_found;
+			ss << name1 << " search state: " << r1.search_element_not_found << "\n";
+			ss << name2 << " R2 search state: " << r2.search_element_not_found;
 			return std::make_pair(false, ss.str());
 		}
 		if (r1.search_value != r2.search_value) {
-			ss << "R1 value: " << r1.search_value;
-			ss << "|R2 value: " << r2.search_value;
+			ss << name1 << " value: " << r1.search_value << "\n";
+			ss << name2 << " value: " << r2.search_value;
 
 			return std::make_pair(false, ss.str());
 		}
@@ -158,8 +159,8 @@ std::pair<bool, std::string> response_equal(Response r1, Response r2) {
 	case OP_TYPE_DELETE:
 		if (r1.delete_element_not_found != r2.delete_element_not_found) {
 			ss << "Delete element not found: ";
-			ss << "R1: " << r1.delete_element_not_found;
-			ss << "|R2: " << r2.delete_element_not_found;
+			ss << name1  << " delete elem not found: "<< r1.delete_element_not_found << "\n";
+			ss << name2 <<" delete elem not found: " << r2.delete_element_not_found;
 
 			return std::make_pair(false, ss.str());
 		}
@@ -259,6 +260,18 @@ void print_statistics(const Statistics s) {
 	std::cout<<"\n";
 }
 
+
+// run the initialization request
+void initialize(KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+	// initialize.
+	// For whatever reason, the RTL is fucked.
+	for(int i = 0; i < NUM_HASH_TABLES; i++) {
+		for(int j = 0 ; j < HASH_TABLE_SIZE; j++) {
+			key_to_metadata[i][j].occupied = false;
+		}
+	}
+}
+
 static const int NUM_TESTS = 1000;
 int main()
 {
@@ -274,6 +287,7 @@ int main()
 
 	Statistics stats;
 
+	initialize(key_to_metadata);
 
 	for(int i = 0; i < NUM_TESTS; i++) {
 		std::cout << "(" << i << ")===\n";
@@ -320,11 +334,17 @@ int main()
 		std::cout << "--\n";
 
 		std::pair<bool, std::string> check =
-				response_equal(reference, fpga);
+				response_equal("reference", reference, "FPGA", fpga);
 
 		if (!check.first) {
+			std::cout << "\n****\n";
 			std::cout << "Reference data does not match test data";
-			std::cout << check.second;
+
+			std::cout << "REFERENCE: " << response_to_string(reference);
+			std::cout << "\n";
+			std::cout << "TEST: " << response_to_string(fpga);
+			std::cout << "\n\n" << check.second;
+			std::cout << "\n****\n";
 			return 1;
 		}
 

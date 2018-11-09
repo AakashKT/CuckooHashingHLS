@@ -30,11 +30,13 @@ Request create_random_request(unsigned int random[3]) {
 	// to make sure that we get SEARCH and DELETE,
 	// of keys that we have already seen, as well
 	// as collisions.
-	req.key = random[1] % 5;
+	static const int KEY_SPACE = 5;
+	req.key = random[1] % KEY_SPACE;
 
 	switch (req.tag) {
 	case OP_TYPE_INSERT:
-		req.insert_value = random[2];
+		static const int VALUE_SPACE = 5;
+		req.insert_value = random[2] % VALUE_SPACE;
 		return req;
 
 	case OP_TYPE_DELETE:
