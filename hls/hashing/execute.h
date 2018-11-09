@@ -96,6 +96,14 @@ Response execute(Request req,
 // because the test bench checks functional correctness
 void traffic_generate_and_execute();
 
+
+// traffic generate as a parametric function, so we can
+// test what the HLS looks like.
+void traffic_generate_and_execute_param(
+		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+ KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
+
+
 // Helper function to generate a random request,
 // given some random seed.
 Request create_random_request(unsigned int random[3]);

@@ -230,3 +230,28 @@ void traffic_generate_and_execute() {
 		execute(req, key_to_metadata, key_to_val);
 	}
 }
+
+void traffic_generate_and_execute_param(
+		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+ KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+	// DRAM: synthesize as AXI
+	#pragma HLS INTERFACE m_axi port=key_to_val
+
+	// BRAM
+	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
+	#pragma HLS INTERFACE ap_memory port=key_to_metadata
+
+	static const int NUM_REQUESTS_TO_GENERATE = 1000;
+
+
+	int32 lfsr = lfsr_init();
+	unsigned int random[3];
+	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
+		for(int j = 0; j < 3; j++) {
+			random[j] = lfsr_next(lfsr);
+		}
+
+		Request req = create_random_request(random);
+		execute(req, key_to_metadata, key_to_val);
+	}
+}
