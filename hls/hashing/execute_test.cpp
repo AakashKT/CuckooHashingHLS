@@ -7,7 +7,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
 
@@ -272,7 +272,21 @@ void initialize(KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
 	}
 }
 
-static const int NUM_TESTS = 1000;
+
+// wow, I feel so ugly, why can't we just have lambdas.
+void push_rand_requests(std::vector<Request> &rs) {
+	static const int NUM_TESTS = 1000;
+
+	for(int i = 0; i < NUM_TESTS; ++i) {
+		unsigned int random[3] = {
+				static_cast<unsigned int>(rand()),
+				static_cast<unsigned int>(rand()),
+				static_cast<unsigned int>(rand())
+		};
+		rs.push_back(create_random_request(random));
+	}
+}
+
 int main()
 {
 	srand(time(NULL));
@@ -284,21 +298,20 @@ int main()
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 
 	std::map<Key, Value> testmap;
-
 	Statistics stats;
 
 	initialize(key_to_metadata);
 
-	for(int i = 0; i < NUM_TESTS; i++) {
-		std::cout << "(" << i << ")===\n";
+	// populate tests
+	std::vector<Request> reqs;
+	push_rand_requests(reqs);
 
-		unsigned int random[3] = {
-				static_cast<unsigned int>(rand()),
-				static_cast<unsigned int>(rand()),
-				static_cast<unsigned int>(rand())
-		};
-
-		Request req = create_random_request(random);
+	// run tests
+	int count = 0;
+	for(std::vector<Request>::iterator it = reqs.begin();
+			it != reqs.end(); ++it, ++count) {
+		const Request req = *it;
+		std::cout << "(" << count << ")===\n";
 
 		std::cout << "request: ";
 		std::cout << request_to_string(req);

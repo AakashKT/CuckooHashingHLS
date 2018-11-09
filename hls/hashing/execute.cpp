@@ -13,7 +13,27 @@ unsigned hash_picker_fn(int key) {
 	return key % NUM_HASH_TABLES;
 }
 
+// Request
+
+Request Request::mSearch(Key k) {
+	Request r;
+	r.tag = OP_TYPE_SEARCH;
+	r.key = k;
+	return r;
+}
+Request Request::mkInsert(Key k, Value v) {
+	Request r;
+	r.key = k;
+	r.tag= OP_TYPE_INSERT;
+	r.insert_value = v;
+	return r;
+}
+
+
+// Metatada
 KMetadata::KMetadata() : occupied(false) {};
+
+// Response
 
 Response::Response() : tag(OP_TYPE_ILLEGAL),
 		search_value(0),

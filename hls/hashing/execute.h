@@ -61,6 +61,10 @@ struct Request {
 
 	// if tag == insert, value to be inserted
 	Value insert_value;
+
+	static Request mSearch(Key k);
+	static Request mkInsert(Key k, Value v);
+
 };
 
 
