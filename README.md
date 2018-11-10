@@ -27,10 +27,16 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 - Make sure that the test bench is not the bottleneck!
 
 
-##
-
 # Considerations of different kinds of KV stores
 
 - [Immutable KV store can perform O(1) lookup](https://discodb.readthedocs.io/en/latest/)
 - Ordered KV Store (like LevelDB) (not done before)
 - [LSM on a GPU](https://arxiv.org/abs/1707.05354)
+
+# Reading
+Read about the vivado HLS tutorials on using BRAM/DRAM.
+
+
+# People to contact to burn the FPGA
+- Poornavathi 
+- Vivek Gupta
