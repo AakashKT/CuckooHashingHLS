@@ -27,6 +27,10 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 - Make sure that the test bench is not the bottleneck!
 
 
+# Life-saving links for Vivado
+- [How to program a Zynq (just C code)](http://blog.dev-flow.com/en/8-first-use-of-the-zynq-7000-processor-system-on-a-zynq/)
+
+
 # Considerations of different kinds of KV stores
 
 - [Immutable KV store can perform O(1) lookup](https://discodb.readthedocs.io/en/latest/)
