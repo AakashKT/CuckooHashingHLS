@@ -34,6 +34,13 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 - [Detailed tutorial with pictures on connecting to Zedboard](https://www.avnet.com/opasdata/d120001/medias/docus/3/SILICA_Xilinx_Zynq_ZedBoard_Vivado_Workshop_ver1.0.pdf)
 - [Correct way to setup drivers for Ubuntu](https://www.xilinx.com/support/answers/66440.html)
 
+Oh my fucking god, Vivado's own tools don't detect their own serial
+ports. Fix this using:
+
+```
+sudo minicom -D /dev/ttyACM0 -b 115200 -8 -o
+```
+
 
 # Considerations of different kinds of KV stores
 
