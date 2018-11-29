@@ -1,3 +1,4 @@
+
 # CuckooHashingHLS
 HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.org/document/7577355/
 
@@ -29,6 +30,9 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 
 # Life-saving links for Vivado
 - [How to program a Zynq (just C code)](http://blog.dev-flow.com/en/8-first-use-of-the-zynq-7000-processor-system-on-a-zynq/)
+- [Setting up drivers for Ubuntu to get USB/JTAG working for Zedboard](http://svenand.blogdrives.com/archive/172.html#.VNTZqmjF-Sp)
+- [Detailed tutorial with pictures on connecting to Zedboard](https://www.avnet.com/opasdata/d120001/medias/docus/3/SILICA_Xilinx_Zynq_ZedBoard_Vivado_Workshop_ver1.0.pdf)
+- [Correct way to setup drivers for Ubuntu](https://www.xilinx.com/support/answers/66440.html)
 
 
 # Considerations of different kinds of KV stores
@@ -42,5 +46,5 @@ Read about the vivado HLS tutorials on using BRAM/DRAM.
 
 
 # People to contact to burn the FPGA
-- Poornavathi 
+- Poornavathi
 - Vivek Gupta
