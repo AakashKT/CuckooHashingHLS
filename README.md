@@ -33,6 +33,8 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 - [Setting up drivers for Ubuntu to get USB/JTAG working for Zedboard](http://svenand.blogdrives.com/archive/172.html#.VNTZqmjF-Sp)
 - [Detailed tutorial with pictures on connecting to Zedboard](https://www.avnet.com/opasdata/d120001/medias/docus/3/SILICA_Xilinx_Zynq_ZedBoard_Vivado_Workshop_ver1.0.pdf)
 - [Correct way to setup drivers for Ubuntu](https://www.xilinx.com/support/answers/66440.html)
+- [Exampe of Matmul using HLS](https://www.xilinx.com/support/documentation/application_notes/xapp1170-zynq-hls.pdf)
+- [Video clearly explaining how to connect AXI and BRAM](https://www.youtube.com/watch?v=BUVbKonhc2w)
 
 Oh my fucking god, Vivado's own tools don't detect their own serial
 ports. Fix this using:
