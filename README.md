@@ -44,7 +44,7 @@ sudo minicom -D /dev/ttyACM0 -b 115200 -8 -o
 ```
 
 # SDAccel craziness
-
+**[link to tutorial we were following](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2017_1/ug1028-sdsoc-intro-tutorial.pdf)**
 - The executable is named `.exe` while it's actually an ELF executable (The SDAccel tutorials say it is called as `.elf`)
 - the board is supposed to automatically boot into linux, which it does not. One is expected to call `bootd` manually (for "boot default") so it boots ito linux. (The SDAccel tutorials say it automatically boots into it)
 - At this point, the SD card is unreadable. It took a bunch of time to figure out that the SD card needs to be mounted by us, and has the mount name `/dev/mmcblk0p1`. (The SDAccel tutorials say that it should be automatically mounted)
