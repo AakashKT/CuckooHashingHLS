@@ -58,6 +58,7 @@ zynq> /hashing.elf
 
 At this point, clearly we have some linker issues (why does `xocc` not correctly statically link? What's up with it? Why does it expect it to be able to load a shared library? **WTF is happening**). do note that this is _not_ the way the process
 is supposed to go according to the tutorial!  
+- Of course, there's no static library version of `libxilinxopencl.so`, so that's a dead end. I'm completely unsure if the tutorial even makes sense. 
 
 # Considerations of different kinds of KV stores
 
