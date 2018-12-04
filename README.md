@@ -128,3 +128,13 @@ Read about the vivado HLS tutorials on using BRAM/DRAM.
 - Poornavathi
 - Vivek Gupta
 - Praneet Kakarla: `+91 73 82 96 83 69`: `praneethrdd877@gmail.com`
+
+# Zip file meanings
+- `v1-fpga-synthesized-can-write-loop-to-memory.zip`: We can synthesize memory correctly, since we're
+able to read back what we wrote --- note that this was not possible before. However, stdout is garbled.
+- `v2-fpga-correct-stdout-incorrect-request-response.zip`: We got stdout to behave (ie, not look like garbage)
+by asking the linker to kindly increase the amount of space available to us on the stack and the heap.
+It provides a measly `1K` otherwise.
+- `v3-fpga-correct-stdout-correct-test-array-response.zip`: We add a new argument to the kernel that stores `2 * i` at array index `i`,
+this contains legal values. So the problem is *not* that the kernel is not running (it is!) the problem is that we're not
+able to serialize de-serailize the struct.
