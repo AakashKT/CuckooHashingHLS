@@ -321,6 +321,15 @@ void check_response_serialize(Response r) {
 	assert (r.search_value == runpack.search_value);
 }
 
+void check_request_serialize(Request r) {
+	uint64_t packed = request_pack(r);
+	Request r2 = request_unpack(packed);
+
+	assert(r.insert_value == r2.insert_value);
+	assert(r.key == r2.key);
+	assert(r.tag == r2.tag);
+}
+
 int main()
 {
 	// srand(time(NULL));
@@ -347,6 +356,10 @@ int main()
 	for(std::vector<Request>::iterator it = reqs.begin();
 			it != reqs.end(); ++it, ++count) {
 		const Request req = *it;
+
+		// Check that requests serialize properly
+		check_request_serialize(req);
+
 		std::cout << "(" << count << ")===\n";
 
 		std::cout << "request: ";
