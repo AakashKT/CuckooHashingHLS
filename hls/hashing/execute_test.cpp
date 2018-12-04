@@ -311,9 +311,11 @@ void push_deterministic_requests(std::vector<Request> &rs) {
 }
 
 
+
 void check_response_serialize(Response r) {
-	uint64_t packed = response_pack(r);
-	Response runpack = response_unpack(packed);
+	uint32_t packarr[RESPONSE_PACK_STRIDE];
+	response_pack(r, packarr);
+	Response runpack = response_unpack(packarr);
 
 	assert (r.delete_element_not_found == runpack.delete_element_not_found);
 	assert (r.insert_collided == runpack.insert_collided);
@@ -322,13 +324,16 @@ void check_response_serialize(Response r) {
 }
 
 void check_request_serialize(Request r) {
-	uint64_t packed = request_pack(r);
-	Request r2 = request_unpack(packed);
+	uint32_t packarr[REQUEST_PACK_STRIDE];
+
+	request_pack(r, packarr);
+	Request r2 = request_unpack(packarr);
 
 	assert(r.insert_value == r2.insert_value);
 	assert(r.key == r2.key);
 	assert(r.tag == r2.tag);
 }
+
 
 int main()
 {
@@ -420,14 +425,12 @@ int main()
 
 	print_statistics(stats);
 
-	RequestResponse reqresps[NUM_TEST_REQUESTS];
+	uint32_t reqresps[(REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE)* NUM_TEST_REQUESTS];
+	uint32_t test_zynq_access[NUM_TEST_REQUESTS];
 	// really nothing to do here, there's no output I can see,
 	// but I call it anyway?...
-	traffic_generate_and_execute(reqresps, key_to_metadata, key_to_val);
-	// TODO: validate the request and response pairs. It should be OK since we validate
-	// the internals anyway.
-
-	traffic_generate_and_execute_param(key_to_metadata, key_to_val);
+	traffic_generate_and_execute(test_zynq_access,
+			reqresps, key_to_metadata, key_to_val);
 
 	return 0;
 }

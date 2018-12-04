@@ -58,14 +58,10 @@ typedef uint8_t OpType;
 #define OP_TYPE_SEARCH 2
 #define OP_TYPE_ILLEGAL 3
 
-// 5 bytes
 struct Request {
-	// 1 byte
 	OpType tag;
-	// 2 bytes
 	Key key;
 
-	// 2 bytes
 	// if tag == insert, value to be inserted
 	Value insert_value;
 
@@ -77,11 +73,12 @@ struct Request {
 
 };
 
-uint64_t request_pack(Request r);
-Request request_unpack(uint64_t packed);
+// number of uint32_t's needed to hold a Request
+static const int REQUEST_PACK_STRIDE = 3;
+void request_pack(Request r, uint32_t *base);
+Request request_unpack(const uint32_t *base);
 
 
-// 1 byte + 4 bytes + 2 bits ~ 6 bytes
 struct Response {
 	// 1 byte
 	OpType tag;
@@ -96,8 +93,10 @@ struct Response {
 	Response();
 };
 
-uint64_t response_pack(Response r);
-Response response_unpack(uint64_t packed);
+// number of uint32_t's needed to hold a Request
+static const int RESPONSE_PACK_STRIDE = 3;
+void response_pack(Response r, uint32_t *base);
+Response response_unpack(const uint32_t *base);
 
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
@@ -108,28 +107,21 @@ Response execute(Request req,
 // generate traffic and execute requests.
 // Note that this is _not_ a replacement for the test bench,
 // because the test bench checks functional correctness
-static const int NUM_TEST_REQUESTS = 1;
+static const int NUM_TEST_REQUESTS = 10;
 
 
 
 
-struct RequestResponse {
-	Request req;
-	Response resp;
-};
+
 // size of the request/response pair in uint64's
-void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
+void traffic_generate_and_execute(
+		uint32_t test_zynq_access[NUM_TEST_REQUESTS],
+		uint32_t reqresps[(REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE) * NUM_TEST_REQUESTS],
 		// stored in BRAM
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
-
-// traffic generate as a parametric function, so we can
-// test what the HLS looks like.
-void traffic_generate_and_execute_param(
-		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
- KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
 
 // Helper function to generate a random request,

@@ -86,16 +86,75 @@ union RequestPacker {
 	uint64_t packed;
 };
 
-uint64_t request_pack(Request r) {
-	RequestPacker rp;
-	rp.r = r;
-	return rp.packed;
+void request_pack(Request r, uint32_t *base) {
+	uint32_t *packed = base;
+	*packed = r.insert_value;
+	packed++;
+
+	*packed = r.key;
+	packed++;
+
+	*packed = r.tag;
+	packed++;
+	assert(packed - base == REQUEST_PACK_STRIDE);
 }
-Request request_unpack(uint64_t packed) {
-	RequestPacker rp;
-	rp.packed = packed;
-	return rp.r;
+
+Request request_unpack(const uint32_t *base) {
+	Request r;
+	const uint32_t *packed = base;
+	r.insert_value = *packed;
+	packed++;
+
+	r.key  = *packed;
+	packed++;
+
+	r.tag = *packed;
+	packed++;
+	assert(packed - base == REQUEST_PACK_STRIDE);
+
+	return r;
+
 }
+
+
+void response_pack(Response r, uint32_t *base) {
+	uint32_t *packed = base;
+
+	*packed = r.search_value;
+	packed++;
+
+	*packed = r.tag;
+	packed++;
+
+	*packed = (r.delete_element_not_found << 2) |
+			(r.insert_collided << 1) |
+			(r.search_element_not_found);
+
+	packed++;
+
+	assert(packed - base == RESPONSE_PACK_STRIDE);
+}
+Response response_unpack(const uint32_t *base) {
+	const uint32_t *packed = base;
+	Response r;
+
+
+	r.search_value = *packed;
+	packed++;
+
+	r.tag = *packed;
+	packed++;
+
+	r.search_element_not_found = *packed & 0x1;
+	r.insert_collided = *packed & (1 << 1);
+	r.delete_element_not_found = *packed & (1 << 2);
+	packed++;
+
+	assert(packed - base == RESPONSE_PACK_STRIDE);
+
+	return r;
+}
+
 
 uint64_t response_pack(Response r) {
 	uint64_t packed;
@@ -136,6 +195,8 @@ Response execute(Request req,
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+
+
 	// DRAM: synthesize as AXI
 
 	Response resp;
@@ -251,7 +312,9 @@ int32 lfsr_next(int32 lfsr) {
     return (lfsr >> 1) | (bit << 31);
 }
 
-void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
+void traffic_generate_and_execute(
+		uint32_t test_zynq_access[NUM_TEST_REQUESTS],
+		uint32_t reqresps[(REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE) * NUM_TEST_REQUESTS],
 		// stored in BRAM
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
@@ -259,10 +322,11 @@ void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
 #pragma HLS DATA_PACK variable=reqresps
 #pragma HLS DATA_PACK variable=key_to_val
 #pragma HLS DATA_PACK variable=key_to_metadata
-#pragma HLS INTERFACE s_axilite depth=300 port=return
-#pragma HLS INTERFACE bram depth=900 port=key_to_val
-#pragma HLS INTERFACE bram depth=900 port=key_to_metadata bundle=key_to_metadata
-#pragma HLS INTERFACE bram depth=900 port=reqresps
+#pragma HLS INTERFACE s_axilite port=return
+#pragma HLS INTERFACE bram port=key_to_val
+#pragma HLS INTERFACE bram port=test_zynq_access
+#pragma HLS INTERFACE bram port=key_to_metadata bundle=key_to_metadata
+#pragma HLS INTERFACE bram port=reqresps
 
 
 
@@ -272,6 +336,9 @@ void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
 
 	unsigned int random[3];
 	for(int i = 0; i < NUM_TEST_REQUESTS; i++) {
+		//test_zynq_access[i] = i * 2;
+
+
 		for(int j = 0; j < 3; j++) {
 			random[j] = lfsr_next(lfsr);
 		}
@@ -281,36 +348,7 @@ void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
 		Request req = create_random_request(random);
 		Response resp = execute(req, key_to_metadata, key_to_val);
 
-
-		reqresps[i].req = req;
-		reqresps[i].resp = resp;
-	}
-}
-
-void traffic_generate_and_execute_param(
-		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
- KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
-#pragma HLS INTERFACE m_axi depth=1000 port=key_to_val
-#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
-#pragma HLS INTERFACE ap_memory port=key_to_metadata
-	// DRAM: synthesize as AXI
-
-
-	// BRAM
-
-
-
-	static const int NUM_REQUESTS_TO_GENERATE = 1000;
-
-
-	int32 lfsr = lfsr_init();
-	unsigned int random[3];
-	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
-		for(int j = 0; j < 3; j++) {
-			random[j] = lfsr_next(lfsr);
-		}
-
-		Request req = create_random_request(random);
-		execute(req, key_to_metadata, key_to_val);
+		request_pack(req, reqresps + i * (REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE));
+		response_pack(resp, reqresps + i * (REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE) + REQUEST_PACK_STRIDE);
 	}
 }
