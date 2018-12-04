@@ -2,22 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="init_platform" key="selection"/>
+		<item value="LookupConfig" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="lookupconfig"/>
+			<item value="XTraffic_LookupConfig"/>
+			<item value="XPAR_TRAFF"/>
+			<item value="DEVICE_ID"/>
+			<item value="_Config"/>
 			<item value="init_platform"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="317" key="DIALOG_WIDTH"/>
+		<item value="337" key="DIALOG_WIDTH"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="442" key="DIALOG_HEIGHT"/>
-		<item value="769" key="DIALOG_X_ORIGIN"/>
-		<item value="308" key="DIALOG_Y_ORIGIN"/>
+		<item value="462" key="DIALOG_HEIGHT"/>
+		<item value="1102" key="DIALOG_X_ORIGIN"/>
+		<item value="246" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

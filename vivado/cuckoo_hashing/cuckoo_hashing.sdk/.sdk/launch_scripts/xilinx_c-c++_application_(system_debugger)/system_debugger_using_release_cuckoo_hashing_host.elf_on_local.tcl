@@ -10,7 +10,7 @@ ps7_post_config
 targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248783359"} -index 0
 rst -processor
 targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248783359"} -index 0
-dow /home/bollu/work/CuckooHashingHLS/vivado/cuckoo_hashing/cuckoo_hashing.sdk/cuckoo_hashing_host/Debug/cuckoo_hashing_host.elf
+dow /home/bollu/work/CuckooHashingHLS/vivado/cuckoo_hashing/cuckoo_hashing.sdk/cuckoo_hashing_host/Release/cuckoo_hashing_host.elf
 configparams force-mem-access 0
 targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248783359"} -index 0
 con

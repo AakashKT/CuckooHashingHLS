@@ -50,23 +50,99 @@
 #include <stdint.h>
 #include "xil_printf.h"
 #include "xtraffic_generate_and_execute.h"
+#include "xparameters.h"
+
 
 volatile uint64_t *memory = (uint64_t*)(0x40000000);
+
+
+XTraffic_generate_and_execute_Config *fpga_cfg = NULL;
+XTraffic_generate_and_execute fpga;
+
+// try to initialize the FPGA, return -1 on error
+int init_fpga() {
+    xil_printf("calling lookupConfig\n\r");
+
+
+    fpga_cfg = XTraffic_generate_and_execute_LookupConfig(XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID);
+
+    xil_printf("!!!!!!!!!!!!!!!!!!!!!!\n\r");
+    if (fpga_cfg == NULL) {
+    	xil_printf("FAILED TO INIT FPGA CONFIG OBJECT\n\r");
+    	return -1;
+    }
+
+    int status  = XTraffic_generate_and_execute_CfgInitialize(&fpga, fpga_cfg);
+    if (status != XST_SUCCESS) {
+    	xil_printf("FAILED TO INITIALIZE FPGA USING CONFIG | status: %d\n\r", status);
+    	return -1;
+    }
+
+    xil_printf("INITIALIZED FPGA SUCCESSFULLY \n\r");
+
+    return 0;
+
+
+}
+
+
 int main()
 {
-    init_platform();
+    // init_platform();
 
-    print("Hello World\n\r");
+    xil_printf("-------\n\r");
+    xil_printf("-------\n\r");
+    xil_printf("-------\n\r");
 
-    uint64_t i;
+    xil_printf("calling lookupConfig\n\r");
 
+
+    fpga_cfg = XTraffic_generate_and_execute_LookupConfig(XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID);
+
+    xil_printf("!!!!!!!!!!!!!!!!!!!!!!\n\r");
+    if (fpga_cfg == NULL) {
+    	xil_printf("FAILED TO INIT FPGA CONFIG OBJECT\n\r");
+    	return -1;
+    }
+
+    int status  = XTraffic_generate_and_execute_CfgInitialize(&fpga, fpga_cfg);
+    if (status != XST_SUCCESS) {
+    	xil_printf("FAILED TO INITIALIZE FPGA USING CONFIG | status: %d\n\r", status);
+    	return -1;
+    }
+
+    xil_printf("INITIALIZED FPGA SUCCESSFULLY \n\r");
+
+
+    uint32_t i;
     for(i = 0; i < 30; i++) memory[i] = i;
 
-    for(i = 0; i < 30; i++) {
+    for(i = 0; i < 5; i++) {
     	xil_printf("memory[%u] = %u\n\r", i, memory[i]);
     }
 
-    print("-------\n\r");
+    xil_printf("Hello World\n\r");
+    xil_printf("-------\n\r");
+
+    return 0;
+
+
+    /*
+    const int INIT_FPGA = init_fpga();
+    if (-1 == INIT_FPGA) {
+    	return 1;
+    }
+    */
+
+    /*
+    for(i = 0; i < 30; i++) memory[i] = i;
+
+    for(i = 0; i < 5; i++) {
+    	xil_printf("memory[%u] = %u\n\r", i, memory[i]);
+    }
+    */
+
+    xil_printf("-------\n\r");
     cleanup_platform();
     return 0;
 }
