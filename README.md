@@ -138,3 +138,5 @@ It provides a measly `1K` otherwise.
 - `v3-fpga-correct-stdout-correct-test-array-response.zip`: We add a new argument to the kernel that stores `2 * i` at array index `i`,
 this contains legal values. So the problem is *not* that the kernel is not running (it is!) the problem is that we're not
 able to serialize de-serailize the struct.
+- `v4-fpga-runs-correctly-on-4-tests.zip` actually desrializes requests and responses properly, and provides the right values on the other side.
+  This is awesome. Next test will scale this up.

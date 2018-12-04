@@ -81,10 +81,6 @@ Request create_random_request(unsigned int random[3]) {
 }
 
 
-union RequestPacker {
-	Request r;
-	uint64_t packed;
-};
 
 void request_pack(Request r, uint32_t *base) {
 	uint32_t *packed = base;
@@ -156,33 +152,6 @@ Response response_unpack(const uint32_t *base) {
 }
 
 
-uint64_t response_pack(Response r) {
-	uint64_t packed;
-	packed = r.tag;
-	packed = (packed << 32) | r.search_value;
-	packed = (packed << 1) | r.delete_element_not_found;
-	packed = (packed << 1) | r.search_element_not_found;
-	packed =  (packed << 1 ) | r.insert_collided;
-	return packed;
-}
-Response response_unpack(uint64_t packed) {
-	Response r;
-	r.insert_collided = packed & 1;
-	packed = packed >> 1;
-
-	r.search_element_not_found = packed & 1;
-	packed = packed >> 1;
-
-	r.delete_element_not_found = packed & 1;
-	packed = packed >> 1;
-
-	r.search_value = packed & (((uint64_t)1 << 33) - 1);
-	packed = packed >> 32;
-
-	r.tag = packed;
-
-	return r;
-}
 
 
 
@@ -319,6 +288,8 @@ void traffic_generate_and_execute(
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+#pragma HLS RESOURCE variable=reqresps core=RAM_1P_BRAM
+#pragma HLS RESOURCE variable=test_zynq_access core=RAM_1P_BRAM
 #pragma HLS DATA_PACK variable=reqresps
 #pragma HLS DATA_PACK variable=key_to_val
 #pragma HLS DATA_PACK variable=key_to_metadata
@@ -328,11 +299,7 @@ void traffic_generate_and_execute(
 #pragma HLS INTERFACE bram port=key_to_metadata bundle=key_to_metadata
 #pragma HLS INTERFACE bram port=reqresps
 
-
-
 	int32 lfsr = lfsr_init();
-	//index at whch rrps is being written to
-	int writeix = 0;
 
 	unsigned int random[3];
 	for(int i = 0; i < NUM_TEST_REQUESTS; i++) {

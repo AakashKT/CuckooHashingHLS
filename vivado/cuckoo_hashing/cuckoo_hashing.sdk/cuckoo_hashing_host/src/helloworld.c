@@ -53,8 +53,12 @@
 #include "xparameters.h"
 #include "types.h"
 #include "xil_cache.h"
+#include "xil_io.h"
 #include <assert.h>
-volatile struct RequestResponse *memory = (struct RequestResponse*)(0x40000000);
+volatile  uint32_t *memory = (uint32_t*)(0x40000000);
+volatile uint32_t *ints = (uint32_t*)(0x42000000);
+
+const int NUM_ITEMS = 4;
 
 
 void print_tag(OpType tag) {
@@ -103,19 +107,28 @@ void print_response(struct Response r) {
 
 }
 
-XTraffic_generate_and_execute_Config *fpga_cfg = NULL;
-XTraffic_generate_and_execute fpga;
 
 int main()
 {
 	Xil_DCacheDisable();
-	init_platform();
+	// init_platform();
 	uint32_t i = 0;
 	print("123456789-123456789\n\r");
 
+
+    printf("testing memory:\n\r");
+
+    for(i = 0; i < 10; i++) {
+    	memory[i] = 42;
+    	assert(memory[i] == 42);
+
+    	ints[i] = 42;
+    	assert(ints[i] == 42);
+
+    }
     xil_printf("calling lookupConfig\n\r");
 
-
+    /*
     fpga_cfg = XTraffic_generate_and_execute_LookupConfig(XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID);
 
     print("123456789-123456789\n\r");
@@ -124,23 +137,34 @@ int main()
     	return -1;
     }
 
-    int status  = XTraffic_generate_and_execute_CfgInitialize(&fpga, fpga_cfg);
-    if (status != XST_SUCCESS) {
-    	xil_printf("FAILED TO INITIALIZE FPGA USING CONFIG | status: %d\n\r", status);
+    const int cfg_status  = XTraffic_generate_and_execute_CfgInitialize(&fpga, fpga_cfg);
+    if (cfg_status != XST_SUCCESS) {
+    	xil_printf("FAILED TO INITIALIZE FPGA CONFIG | status: %d\n\r", cfg_status);
     	return -1;
     }
 
-    xil_printf("INITIALIZED FPGA SUCCESSFULLY \n\r");
 
-    xil_printf("EXECUTING FPGA...\n\r");
+    */
+    // XTraffic_generate_and_execute_Config *fpga_cfg = NULL;
+    XTraffic_generate_and_execute fpga;
+    const int fpga_status = XTraffic_generate_and_execute_Initialize(&fpga, XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID) ;
+    if (fpga_status != XST_SUCCESS) {
+    	xil_printf("FAILED TO INITIALIZE FPGA: | status: %d\n\r", fpga_status);
+    	return -1;
+    }
+    else {
+    	xil_printf("INITIALIZED FPGA.\n\r");
+    }
+
+    xil_printf("BOOTED UP FPGA SUCCESSFULLY \n\r");
+
+    xil_printf("EXECUTING FPGA\n\r");
     XTraffic_generate_and_execute_Start(&fpga);
 
     uint32_t count = 0;
-    while (!XTraffic_generate_and_execute_IsDone(&fpga)) {
-		if (count++ % 200) {
-			print(".");
-		}
-
+    while (1 != XTraffic_generate_and_execute_IsDone(&fpga)) {
+		print(".");
+		count += 1;
 		if (count == 200 * 20) {
 			count = 0;
 			print("\r\n");
@@ -149,13 +173,23 @@ int main()
     xil_printf("EXECUTED FPGA!\n\r");
     xil_printf("-------\n\r");
 
-    const int NUM_ITEMS = 1;
+    for(i = 0; i < NUM_ITEMS; i++) {
+
+    	xil_printf("ints[%u] = %u\n\r", i, ints[i]);
+    	assert(ints[i] == 2 * i);
+    }
+    xil_printf("FPGA PROGRAM IS CORRECT. NOW READING VALUES\n\r");
+
     for(i = 0; i < NUM_ITEMS; i++) {
     	xil_printf("\n\rREQUEST:\n\r");
-    	print_request(memory[i].req);
+    	Request req = request_unpack(memory + i * (REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE));
+    	Response resp = response_unpack(memory + i * (REQUEST_PACK_STRIDE + RESPONSE_PACK_STRIDE) + REQUEST_PACK_STRIDE);
+
+    	print_request(req);
     	xil_printf("\n\rRESPONSE:\n\r");
-    	print_response(memory[i].resp);
+    	print_response(resp);
     	xil_printf("\n\r----\n\r");
+
     }
     xil_printf("DONE.\n\r===\n\r");
 
@@ -177,9 +211,10 @@ int main()
     for(i = 0; i < 5; i++) {
     	xil_printf("memory[%u] = %u\n\r", i, memory[i]);
     }
-    */
-
     xil_printf("-------\n\r");
     cleanup_platform();
     return 0;
+    */
+
+
 }

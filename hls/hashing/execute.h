@@ -107,7 +107,7 @@ Response execute(Request req,
 // generate traffic and execute requests.
 // Note that this is _not_ a replacement for the test bench,
 // because the test bench checks functional correctness
-static const int NUM_TEST_REQUESTS = 10;
+static const int NUM_TEST_REQUESTS = 4;
 
 
 
