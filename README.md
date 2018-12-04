@@ -44,7 +44,34 @@ ports. Fix this using:
 sudo minicom -D /dev/ttyACM0 -b 115200 -8 -o
 ```
 
-# HLS bugs
+# HLS bugs / nits / nice to have features that dont exist
+- Unable to create BRAM for fields such as `bool`, `int16`. The data buses
+will be `8/16` bits long, with error:
+
+```
+[BD 41-241] Message from IP propagation TCL of /blk_mem_gen_7: set_property
+error: Validation failed for parameter 'Write Width A(Write_Width_A)' for BD
+Cell 'blk_mem_gen_7'. Value '8' is out of the range (32,1024) Customization
+errors found on 'blk_mem_gen_7'. Restoring to previous valid configuration.
+```
+
+- I had an array of structs:
+
+```cpp
+struct S {
+    bool b;
+    int16 x;
+    int16 y;
+}
+```
+
+This gets generated as 3 ports for memory, of widths `1`, `16`, `16`. Ideally,
+I wanted *one* port, of width `16+16+1=33`, for each struct value.
+However, what was generated were three ports of widths `1`, `16`, and `16`
+which I cannot connect to BRAM.
+
+- **`data_pack` allows us to create one port of width `16+16+1=33`**
+
 - Shared function names allocated on BRAM causes errors in synthesis:
 ```cpp
 struct Foo {...};
@@ -57,9 +84,12 @@ void g (Foo conflict) {
 }
 ```
 
+
 - Enums causes compile failure in RTL generation  (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
 - `ap_int` causes compile failurre in RTL generation (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
 - `x % m` where `m != 2^k` is very expensive -- there must be faster encodings of modulus?
+- How to share code between HLS and vivado SDK? I often wanted to share constant values between
+  my HLS code and my Zynq code.
 
 
 # SDAccel craziness
