@@ -44,6 +44,21 @@ ports. Fix this using:
 sudo minicom -D /dev/ttyACM0 -b 115200 -8 -o
 ```
 
+# HLS bugs
+- Shared struct names allocated on BRAM causes errors in synthesis:
+```cpp
+struct S {int conflict; } struct T{int conflict;}
+void foo (S s, T t) {
+#pragma HLS interface bram port=s
+#pragma HLS interface bram port=t
+}
+```
+
+- Enums causes compile failure in RTL generation  (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
+- `ap_int` causes compile failurre in RTL generation (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
+- `x % m` where `m != 2^k` is very expensive -- there must be faster encodings of modulus?
+
+
 # SDAccel craziness
 **[link to tutorial we were following](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2017_1/ug1028-sdsoc-intro-tutorial.pdf)**
 - The executable is named `.exe` while it's actually an ELF executable (The SDAccel tutorials say it is called as `.elf`)
