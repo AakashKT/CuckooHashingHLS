@@ -45,12 +45,15 @@ sudo minicom -D /dev/ttyACM0 -b 115200 -8 -o
 ```
 
 # HLS bugs
-- Shared struct names allocated on BRAM causes errors in synthesis:
+- Shared function names allocated on BRAM causes errors in synthesis:
 ```cpp
-struct S {int conflict; } struct T{int conflict;}
-void foo (S s, T t) {
-#pragma HLS interface bram port=s
-#pragma HLS interface bram port=t
+struct Foo {...};
+void f (Foo conflict) {
+    #pragma HLS interface bram port=conflict
+}
+
+void g (Foo conflict) {
+    #pragma HLS interface bram port=conflict
 }
 ```
 
