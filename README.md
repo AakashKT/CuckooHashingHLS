@@ -36,6 +36,7 @@ HLS implementation of cuckoo hashing. Refer to paper : https://ieeexplore.ieee.o
 - [Exampe of Matmul using HLS](https://www.xilinx.com/support/documentation/application_notes/xapp1170-zynq-hls.pdf)
 - [Video clearly explaining how to connect AXI and BRAM](https://www.youtube.com/watch?v=BUVbKonhc2w)
 - [Negative slack for ZedBoard is **okay**, I freaked out about this](https://forums.xilinx.com/t5/Design-Entry/2017-2-PSU-1-critical-warning-with-basic-Zynq-design-on-DDR/td-p/789339)
+- [How to `mmap` BRAM](https://forums.xilinx.com/t5/AXI-Infrastructure/Accessing-BRAM-through-PS-and-PL/td-p/894449)
 Oh my fucking god, Vivado's own tools don't detect their own serial
 ports. Fix this using:
 
@@ -78,3 +79,4 @@ Read about the vivado HLS tutorials on using BRAM/DRAM.
 # People to contact to burn the FPGA
 - Poornavathi
 - Vivek Gupta
+- Praneet Kakarla: `+91 73 82 96 83 69`: `praneethrdd877@gmail.com`

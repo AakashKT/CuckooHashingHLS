@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'execute'
 ================================================================
-* Date:           Sat Oct 20 00:06:18 2018
+* Date:           Tue Dec  4 12:54:27 2018
 
 * Version:        2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)
 * Project:        hashing
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      5.81|        1.25|
+    |ap_clk  |  10.00|      5.73|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -29,7 +29,7 @@
     |  Latency  |  Interval | Pipeline|
     | min | max | min | max |   Type  |
     +-----+-----+-----+-----+---------+
-    |    1|    2|    1|    2|   none  |
+    |    2|    2|    2|    2|   none  |
     +-----+-----+-----+-----+---------+
 
     + Detail: 
@@ -49,14 +49,14 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
 |DSP              |        -|      -|       -|      -|
-|Expression       |        -|      -|       0|    125|
+|Expression       |        -|      -|       0|     18|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        -|      -|       -|      -|
-|Multiplexer      |        -|      -|       -|     69|
-|Register         |        -|      -|      77|      -|
+|Multiplexer      |        -|      -|       -|     60|
+|Register         |        -|      -|       5|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        0|      0|      77|    194|
+|Total            |        0|      0|       5|     78|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
@@ -77,45 +77,36 @@
     N/A
 
     * Expression: 
-    +---------------------------+----------+-------+---+----+------------+------------+
-    |       Variable Name       | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +---------------------------+----------+-------+---+----+------------+------------+
-    |tmp_3_fu_123_p2            |     +    |      0|  0|  39|          32|           6|
-    |tmp_1_fu_112_p2            |   icmp   |      0|  0|  18|          32|           2|
-    |tmp_5_fu_134_p2            |   icmp   |      0|  0|  18|          32|          32|
-    |tmp_fu_106_p2              |   icmp   |      0|  0|  18|          32|           1|
-    |stored_val2_0_s_fu_143_p3  |  select  |      0|  0|  32|           1|          32|
-    +---------------------------+----------+-------+---+----+------------+------------+
-    |Total                      |          |      0|  0| 125|         129|          73|
-    +---------------------------+----------+-------+---+----+------------+------------+
+    +----------------+----------+-------+---+----+------------+------------+
+    |  Variable Name | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------+----------+-------+---+----+------------+------------+
+    |tmp_9_fu_66_p2  |   icmp   |      0|  0|  18|          32|           3|
+    +----------------+----------+-------+---+----+------------+------------+
+    |Total           |          |      0|  0|  18|          32|           3|
+    +----------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
-    +---------------------------------------+----+-----------+-----+-----------+
-    |                  Name                 | LUT| Input Size| Bits| Total Bits|
-    +---------------------------------------+----+-----------+-----+-----------+
-    |UnifiedRetVal_reg_93                   |  15|          3|   32|         96|
-    |ap_NS_fsm                              |  21|          4|    1|          4|
-    |ap_phi_mux_UnifiedRetVal_phi_fu_97_p6  |   9|          2|   32|         64|
-    |key_val_dram_address0                  |  15|          3|    7|         21|
-    |val_addr_bram_WEN_A                    |   9|          2|    4|          8|
-    +---------------------------------------+----+-----------+-----+-----------+
-    |Total                                  |  69|         14|   76|        193|
-    +---------------------------------------+----+-----------+-----+-----------+
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |                     Name                     | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                     |  21|          4|    1|          4|
+    |ap_phi_mux_agg_result_delete_el_phi_fu_58_p4  |  15|          3|    1|          3|
+    |ap_return                                     |   9|          2|    1|          2|
+    |key_to_metadata_occu_address0                 |  15|          3|    9|         27|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |Total                                         |  60|         12|   12|         36|
+    +----------------------------------------------+----+-----------+-----+-----------+
 
     * Register: 
-    +---------------------------+----+----+-----+-----------+
-    |            Name           | FF | LUT| Bits| Const Bits|
-    +---------------------------+----+----+-----+-----------+
-    |UnifiedRetVal_reg_93       |  32|   0|   32|          0|
-    |ap_CS_fsm                  |   3|   0|    3|          0|
-    |key_val_dram_addr_reg_164  |   7|   0|    7|          0|
-    |stored_val_reg_174         |  32|   0|   32|          0|
-    |tmp_1_reg_160              |   1|   0|    1|          0|
-    |tmp_5_reg_180              |   1|   0|    1|          0|
-    |tmp_reg_156                |   1|   0|    1|          0|
-    +---------------------------+----+----+-----+-----------+
-    |Total                      |  77|   0|   77|          0|
-    +---------------------------+----+----+-----+-----------+
+    +-------------------------------+---+----+-----+-----------+
+    |              Name             | FF| LUT| Bits| Const Bits|
+    +-------------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                      |  3|   0|    3|          0|
+    |ap_return_preg                 |  1|   0|    1|          0|
+    |key_to_metadata_occu_3_reg_82  |  1|   0|    1|          0|
+    +-------------------------------+---+----+-----+-----------+
+    |Total                          |  5|   0|    5|          0|
+    +-------------------------------+---+----+-----+-----------+
 
 
 
@@ -123,33 +114,23 @@
 == Interface
 ================================================================
 * Summary: 
-+-----------------------+-----+-----+------------+---------------+--------------+
-|       RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
-+-----------------------+-----+-----+------------+---------------+--------------+
-|ap_clk                 |  in |    1| ap_ctrl_hs |    execute    | return value |
-|ap_rst                 |  in |    1| ap_ctrl_hs |    execute    | return value |
-|ap_start               |  in |    1| ap_ctrl_hs |    execute    | return value |
-|ap_done                | out |    1| ap_ctrl_hs |    execute    | return value |
-|ap_idle                | out |    1| ap_ctrl_hs |    execute    | return value |
-|ap_ready               | out |    1| ap_ctrl_hs |    execute    | return value |
-|ap_return              | out |   32| ap_ctrl_hs |    execute    | return value |
-|op_type                |  in |   32|   ap_none  |    op_type    |    scalar    |
-|hash                   |  in |   32|   ap_none  |      hash     |    scalar    |
-|val_addr               |  in |   32|   ap_none  |    val_addr   |    scalar    |
-|key_val_dram_address0  | out |    7|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_ce0       | out |    1|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_we0       | out |    1|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_d0        | out |   32|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_q0        |  in |   32|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_address1  | out |    7|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_ce1       | out |    1|  ap_memory |  key_val_dram |     array    |
-|key_val_dram_q1        |  in |   32|  ap_memory |  key_val_dram |     array    |
-|val_addr_bram_Addr_A   | out |   32|    bram    | val_addr_bram |     array    |
-|val_addr_bram_EN_A     | out |    1|    bram    | val_addr_bram |     array    |
-|val_addr_bram_WEN_A    | out |    4|    bram    | val_addr_bram |     array    |
-|val_addr_bram_Din_A    | out |   32|    bram    | val_addr_bram |     array    |
-|val_addr_bram_Dout_A   |  in |   32|    bram    | val_addr_bram |     array    |
-|val_addr_bram_Clk_A    | out |    1|    bram    | val_addr_bram |     array    |
-|val_addr_bram_Rst_A    | out |    1|    bram    | val_addr_bram |     array    |
-+-----------------------+-----+-----+------------+---------------+--------------+
++-------------------------------+-----+-----+------------+----------------------+--------------+
+|           RTL Ports           | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++-------------------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                         |  in |    1| ap_ctrl_hs |        execute       | return value |
+|ap_rst                         |  in |    1| ap_ctrl_hs |        execute       | return value |
+|ap_start                       |  in |    1| ap_ctrl_hs |        execute       | return value |
+|ap_done                        | out |    1| ap_ctrl_hs |        execute       | return value |
+|ap_idle                        | out |    1| ap_ctrl_hs |        execute       | return value |
+|ap_ready                       | out |    1| ap_ctrl_hs |        execute       | return value |
+|ap_return                      | out |    1| ap_ctrl_hs |        execute       | return value |
+|key_to_metadata_key_address0   | out |    9|  ap_memory |  key_to_metadata_key |     array    |
+|key_to_metadata_key_ce0        | out |    1|  ap_memory |  key_to_metadata_key |     array    |
+|key_to_metadata_key_q0         |  in |   32|  ap_memory |  key_to_metadata_key |     array    |
+|key_to_metadata_occu_address0  | out |    9|  ap_memory | key_to_metadata_occu |     array    |
+|key_to_metadata_occu_ce0       | out |    1|  ap_memory | key_to_metadata_occu |     array    |
+|key_to_metadata_occu_we0       | out |    1|  ap_memory | key_to_metadata_occu |     array    |
+|key_to_metadata_occu_d0        | out |    1|  ap_memory | key_to_metadata_occu |     array    |
+|key_to_metadata_occu_q0        |  in |    1|  ap_memory | key_to_metadata_occu |     array    |
++-------------------------------+-----+-----+------------+----------------------+--------------+
 

@@ -17,46 +17,31 @@ port (
     ap_done : OUT STD_LOGIC;
     ap_idle : OUT STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
-    op_type : IN STD_LOGIC_VECTOR (31 downto 0);
-    hash : IN STD_LOGIC_VECTOR (31 downto 0);
-    val_addr : IN STD_LOGIC_VECTOR (31 downto 0);
-    key_val_dram_address0 : OUT STD_LOGIC_VECTOR (6 downto 0);
-    key_val_dram_ce0 : OUT STD_LOGIC;
-    key_val_dram_we0 : OUT STD_LOGIC;
-    key_val_dram_d0 : OUT STD_LOGIC_VECTOR (31 downto 0);
-    key_val_dram_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
-    key_val_dram_address1 : OUT STD_LOGIC_VECTOR (6 downto 0);
-    key_val_dram_ce1 : OUT STD_LOGIC;
-    key_val_dram_q1 : IN STD_LOGIC_VECTOR (31 downto 0);
-    val_addr_bram_Addr_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-    val_addr_bram_EN_A : OUT STD_LOGIC;
-    val_addr_bram_WEN_A : OUT STD_LOGIC_VECTOR (3 downto 0);
-    val_addr_bram_Din_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-    val_addr_bram_Dout_A : IN STD_LOGIC_VECTOR (31 downto 0);
-    val_addr_bram_Clk_A : OUT STD_LOGIC;
-    val_addr_bram_Rst_A : OUT STD_LOGIC;
-    ap_return : OUT STD_LOGIC_VECTOR (31 downto 0) );
+    key_to_metadata_key_address0 : OUT STD_LOGIC_VECTOR (8 downto 0);
+    key_to_metadata_key_ce0 : OUT STD_LOGIC;
+    key_to_metadata_key_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
+    key_to_metadata_occu_address0 : OUT STD_LOGIC_VECTOR (8 downto 0);
+    key_to_metadata_occu_ce0 : OUT STD_LOGIC;
+    key_to_metadata_occu_we0 : OUT STD_LOGIC;
+    key_to_metadata_occu_d0 : OUT STD_LOGIC_VECTOR (0 downto 0);
+    key_to_metadata_occu_q0 : IN STD_LOGIC_VECTOR (0 downto 0);
+    ap_return : OUT STD_LOGIC_VECTOR (0 downto 0) );
 end;
 
 
 architecture behav of execute is 
-    attribute CORE_GENERATION_INFO : STRING;
-    attribute CORE_GENERATION_INFO of behav : architecture is
-    "execute,hls_ip_2017_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.806000,HLS_SYN_LAT=2,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=77,HLS_SYN_LUT=194}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_ST_fsm_state1 : STD_LOGIC_VECTOR (2 downto 0) := "001";
     constant ap_ST_fsm_state2 : STD_LOGIC_VECTOR (2 downto 0) := "010";
     constant ap_ST_fsm_state3 : STD_LOGIC_VECTOR (2 downto 0) := "100";
     constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
-    constant ap_const_lv1_0 : STD_LOGIC_VECTOR (0 downto 0) := "0";
     constant ap_const_lv32_1 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000001";
+    constant ap_const_lv1_0 : STD_LOGIC_VECTOR (0 downto 0) := "0";
     constant ap_const_lv32_2 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000010";
     constant ap_const_lv1_1 : STD_LOGIC_VECTOR (0 downto 0) := "1";
-    constant ap_const_lv32_FFFFFFFF : STD_LOGIC_VECTOR (31 downto 0) := "11111111111111111111111111111111";
-    constant ap_const_lv4_0 : STD_LOGIC_VECTOR (3 downto 0) := "0000";
-    constant ap_const_lv4_F : STD_LOGIC_VECTOR (3 downto 0) := "1111";
-    constant ap_const_lv32_28 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000101000";
+    constant ap_const_lv64_86 : STD_LOGIC_VECTOR (63 downto 0) := "0000000000000000000000000000000000000000000000000000000010000110";
+    constant ap_const_lv32_4 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000100";
     constant ap_const_boolean_1 : BOOLEAN := true;
 
     signal ap_CS_fsm : STD_LOGIC_VECTOR (2 downto 0) := "001";
@@ -64,26 +49,15 @@ architecture behav of execute is
     attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_CS_fsm_state1 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state1 : signal is "none";
-    signal tmp_fu_106_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_reg_156 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_1_fu_112_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_1_reg_160 : STD_LOGIC_VECTOR (0 downto 0);
-    signal key_val_dram_addr_reg_164 : STD_LOGIC_VECTOR (6 downto 0);
-    signal stored_val_reg_174 : STD_LOGIC_VECTOR (31 downto 0);
+    signal key_to_metadata_occu_2_reg_72 : STD_LOGIC_VECTOR (8 downto 0);
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
-    signal tmp_5_fu_134_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_5_reg_180 : STD_LOGIC_VECTOR (0 downto 0);
-    signal stored_val2_0_s_fu_143_p3 : STD_LOGIC_VECTOR (31 downto 0);
-    signal ap_phi_mux_UnifiedRetVal_phi_fu_97_p6 : STD_LOGIC_VECTOR (31 downto 0);
-    signal UnifiedRetVal_reg_93 : STD_LOGIC_VECTOR (31 downto 0);
+    signal key_to_metadata_occu_3_reg_82 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
-    signal tmp_2_fu_118_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_4_fu_129_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_s_fu_139_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal val_addr_bram_Addr_A_orig : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_3_fu_123_p2 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_9_fu_66_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_return_preg : STD_LOGIC_VECTOR (0 downto 0) := "0";
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
 
 
@@ -104,52 +78,33 @@ begin
     end process;
 
 
-    UnifiedRetVal_reg_93_assign_proc : process (ap_clk)
+    ap_return_preg_assign_proc : process(ap_clk)
     begin
-        if (ap_clk'event and ap_clk = '1') then
-            if (((ap_start = ap_const_logic_1) and (tmp_fu_106_p2 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
-                UnifiedRetVal_reg_93 <= ap_const_lv32_FFFFFFFF;
-            elsif (((tmp_1_reg_160 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state2))) then 
-                UnifiedRetVal_reg_93 <= key_val_dram_q1;
-            elsif (((tmp_1_reg_160 = ap_const_lv1_0) and (tmp_reg_156 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
-                UnifiedRetVal_reg_93 <= stored_val2_0_s_fu_143_p3;
-            end if; 
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if (((ap_start = ap_const_logic_1) and (tmp_fu_106_p2 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
-                key_val_dram_addr_reg_164 <= tmp_2_fu_118_p1(7 - 1 downto 0);
-                tmp_1_reg_160 <= tmp_1_fu_112_p2;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
-                stored_val_reg_174 <= key_val_dram_q1;
-                tmp_5_reg_180 <= tmp_5_fu_134_p2;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if (((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
-                tmp_reg_156 <= tmp_fu_106_p2;
+        if (ap_clk'event and ap_clk =  '1') then
+            if (ap_rst = '1') then
+                ap_return_preg <= ap_const_lv1_0;
+            else
+                if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
+                    ap_return_preg <= ap_phi_mux_agg_result_delete_el_phi_fu_58_p4;
+                end if; 
             end if;
         end if;
     end process;
 
-    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1, tmp_fu_106_p2)
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
+                key_to_metadata_occu_3_reg_82 <= key_to_metadata_occu_q0;
+            end if;
+        end if;
+    end process;
+
+    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_CS_fsm_state1)
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_state1 => 
-                if (((ap_start = ap_const_logic_1) and (tmp_fu_106_p2 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
-                    ap_NS_fsm <= ap_ST_fsm_state3;
-                elsif (((ap_start = ap_const_logic_1) and (tmp_fu_106_p2 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
+                if (((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
                     ap_NS_fsm <= ap_ST_fsm_state2;
                 else
                     ap_NS_fsm <= ap_ST_fsm_state1;
@@ -166,9 +121,9 @@ begin
     ap_CS_fsm_state2 <= ap_CS_fsm(1);
     ap_CS_fsm_state3 <= ap_CS_fsm(2);
 
-    ap_done_assign_proc : process(ap_CS_fsm_state3)
+    ap_done_assign_proc : process(ap_start, ap_CS_fsm_state1, ap_CS_fsm_state3)
     begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
+        if (((ap_const_logic_1 = ap_CS_fsm_state3) or ((ap_start = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -186,12 +141,18 @@ begin
     end process;
 
 
-    ap_phi_mux_UnifiedRetVal_phi_fu_97_p6_assign_proc : process(tmp_reg_156, tmp_1_reg_160, stored_val2_0_s_fu_143_p3, UnifiedRetVal_reg_93, ap_CS_fsm_state3)
+    ap_phi_mux_agg_result_delete_el_phi_fu_58_p4_assign_proc : process(key_to_metadata_occu_3_reg_82, ap_CS_fsm_state3, tmp_9_fu_66_p2)
     begin
-        if (((tmp_1_reg_160 = ap_const_lv1_0) and (tmp_reg_156 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
-            ap_phi_mux_UnifiedRetVal_phi_fu_97_p6 <= stored_val2_0_s_fu_143_p3;
+        if ((ap_const_logic_1 = ap_CS_fsm_state3)) then
+            if (((tmp_9_fu_66_p2 = ap_const_lv1_0) or (key_to_metadata_occu_3_reg_82 = ap_const_lv1_0))) then 
+                ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 <= ap_const_lv1_1;
+            elsif (((tmp_9_fu_66_p2 = ap_const_lv1_1) and (key_to_metadata_occu_3_reg_82 = ap_const_lv1_1))) then 
+                ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 <= ap_const_lv1_0;
+            else 
+                ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 <= "X";
+            end if;
         else 
-            ap_phi_mux_UnifiedRetVal_phi_fu_97_p6 <= UnifiedRetVal_reg_93;
+            ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 <= "X";
         end if; 
     end process;
 
@@ -205,84 +166,60 @@ begin
         end if; 
     end process;
 
-    ap_return <= ap_phi_mux_UnifiedRetVal_phi_fu_97_p6;
 
-    key_val_dram_address0_assign_proc : process(ap_CS_fsm_state1, key_val_dram_addr_reg_164, ap_CS_fsm_state2, tmp_2_fu_118_p1)
+    ap_return_assign_proc : process(ap_phi_mux_agg_result_delete_el_phi_fu_58_p4, ap_CS_fsm_state3, ap_return_preg)
+    begin
+        if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
+            ap_return <= ap_phi_mux_agg_result_delete_el_phi_fu_58_p4;
+        else 
+            ap_return <= ap_return_preg;
+        end if; 
+    end process;
+
+    key_to_metadata_key_address0 <= ap_const_lv64_86(9 - 1 downto 0);
+
+    key_to_metadata_key_ce0_assign_proc : process(ap_CS_fsm_state2)
     begin
         if ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            key_val_dram_address0 <= key_val_dram_addr_reg_164;
+            key_to_metadata_key_ce0 <= ap_const_logic_1;
+        else 
+            key_to_metadata_key_ce0 <= ap_const_logic_0;
+        end if; 
+    end process;
+
+    key_to_metadata_occu_2_reg_72 <= ap_const_lv64_86(9 - 1 downto 0);
+
+    key_to_metadata_occu_address0_assign_proc : process(ap_CS_fsm_state1, key_to_metadata_occu_2_reg_72, ap_CS_fsm_state3)
+    begin
+        if ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
+            key_to_metadata_occu_address0 <= key_to_metadata_occu_2_reg_72;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state1)) then 
-            key_val_dram_address0 <= tmp_2_fu_118_p1(7 - 1 downto 0);
+            key_to_metadata_occu_address0 <= ap_const_lv64_86(9 - 1 downto 0);
         else 
-            key_val_dram_address0 <= "XXXXXXX";
+            key_to_metadata_occu_address0 <= "XXXXXXXXX";
         end if; 
     end process;
 
-    key_val_dram_address1 <= tmp_4_fu_129_p1(7 - 1 downto 0);
 
-    key_val_dram_ce0_assign_proc : process(ap_start, ap_CS_fsm_state1, ap_CS_fsm_state2)
+    key_to_metadata_occu_ce0_assign_proc : process(ap_start, ap_CS_fsm_state1, ap_CS_fsm_state3)
     begin
-        if (((ap_const_logic_1 = ap_CS_fsm_state2) or ((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
-            key_val_dram_ce0 <= ap_const_logic_1;
+        if (((ap_const_logic_1 = ap_CS_fsm_state3) or ((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
+            key_to_metadata_occu_ce0 <= ap_const_logic_1;
         else 
-            key_val_dram_ce0 <= ap_const_logic_0;
+            key_to_metadata_occu_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
+    key_to_metadata_occu_d0 <= ap_const_lv1_0;
 
-    key_val_dram_ce1_assign_proc : process(ap_start, ap_CS_fsm_state1)
+    key_to_metadata_occu_we0_assign_proc : process(key_to_metadata_occu_3_reg_82, ap_CS_fsm_state3, tmp_9_fu_66_p2)
     begin
-        if (((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
-            key_val_dram_ce1 <= ap_const_logic_1;
+        if (((tmp_9_fu_66_p2 = ap_const_lv1_1) and (key_to_metadata_occu_3_reg_82 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state3))) then 
+            key_to_metadata_occu_we0 <= ap_const_logic_1;
         else 
-            key_val_dram_ce1 <= ap_const_logic_0;
+            key_to_metadata_occu_we0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    key_val_dram_d0 <= ap_const_lv32_FFFFFFFF;
-
-    key_val_dram_we0_assign_proc : process(tmp_1_reg_160, ap_CS_fsm_state2, tmp_5_fu_134_p2)
-    begin
-        if (((tmp_5_fu_134_p2 = ap_const_lv1_1) and (tmp_1_reg_160 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state2))) then 
-            key_val_dram_we0 <= ap_const_logic_1;
-        else 
-            key_val_dram_we0 <= ap_const_logic_0;
-        end if; 
-    end process;
-
-    stored_val2_0_s_fu_143_p3 <= 
-        stored_val_reg_174 when (tmp_5_reg_180(0) = '1') else 
-        ap_const_lv32_FFFFFFFF;
-    tmp_1_fu_112_p2 <= "1" when (op_type = ap_const_lv32_2) else "0";
-    tmp_2_fu_118_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(val_addr),64));
-    tmp_3_fu_123_p2 <= std_logic_vector(unsigned(val_addr) + unsigned(ap_const_lv32_28));
-    tmp_4_fu_129_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(tmp_3_fu_123_p2),64));
-    tmp_5_fu_134_p2 <= "1" when (key_val_dram_q0 = hash) else "0";
-    tmp_fu_106_p2 <= "1" when (op_type = ap_const_lv32_1) else "0";
-    tmp_s_fu_139_p1 <= std_logic_vector(IEEE.numeric_std.resize(unsigned(hash),64));
-    val_addr_bram_Addr_A <= std_logic_vector(shift_left(unsigned(val_addr_bram_Addr_A_orig),to_integer(unsigned('0' & ap_const_lv32_2(31-1 downto 0)))));
-    val_addr_bram_Addr_A_orig <= tmp_s_fu_139_p1(32 - 1 downto 0);
-    val_addr_bram_Clk_A <= ap_clk;
-    val_addr_bram_Din_A <= ap_const_lv32_FFFFFFFF;
-
-    val_addr_bram_EN_A_assign_proc : process(ap_CS_fsm_state2)
-    begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
-            val_addr_bram_EN_A <= ap_const_logic_1;
-        else 
-            val_addr_bram_EN_A <= ap_const_logic_0;
-        end if; 
-    end process;
-
-    val_addr_bram_Rst_A <= ap_rst;
-
-    val_addr_bram_WEN_A_assign_proc : process(tmp_1_reg_160, ap_CS_fsm_state2, tmp_5_fu_134_p2)
-    begin
-        if (((tmp_5_fu_134_p2 = ap_const_lv1_1) and (tmp_1_reg_160 = ap_const_lv1_1) and (ap_const_logic_1 = ap_CS_fsm_state2))) then 
-            val_addr_bram_WEN_A <= ap_const_lv4_F;
-        else 
-            val_addr_bram_WEN_A <= ap_const_lv4_0;
-        end if; 
-    end process;
-
+    tmp_9_fu_66_p2 <= "1" when (key_to_metadata_key_q0 = ap_const_lv32_4) else "0";
 end behav;

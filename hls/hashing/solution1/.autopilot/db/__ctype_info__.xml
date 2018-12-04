@@ -1,60 +1,10 @@
 <InterfaceSummary>
 <RtlPorts>
-<name>op_type</name>
+<name>rrps</name>
 <CType>
-<TypeName>int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>0</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
-<RtlPorts>
-<name>hash</name>
-<CType>
-<TypeName>unsigned int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>0</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
-<RtlPorts>
-<name>val_addr</name>
-<CType>
-<TypeName>unsigned int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>0</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
-<RtlPorts>
-<name>key_val_dram</name>
-<CType>
-<TypeName>unsigned int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>0</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
-<RtlPorts>
-<name>val_addr_bram</name>
-<CType>
-<TypeName>unsigned int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>0</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
-<RtlPorts>
-<name>ap_return</name>
-<CType>
-<TypeName>unsigned int</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
+<TypeName>long unsigned int</TypeName>
+<TypeWidth>64</TypeWidth>
+<PhysicalWidth>64</PhysicalWidth>
 </CType>
 <CFractionWidth>0</CFractionWidth>
 <InvalidType>0</InvalidType>

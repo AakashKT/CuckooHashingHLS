@@ -7,8 +7,6 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="execute,hls_ip_2017_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.806000,HLS_SYN_LAT=2,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=77,HLS_SYN_LUT=194}" *)
-
 module execute (
         ap_clk,
         ap_rst,
@@ -16,24 +14,14 @@ module execute (
         ap_done,
         ap_idle,
         ap_ready,
-        op_type,
-        hash,
-        val_addr,
-        key_val_dram_address0,
-        key_val_dram_ce0,
-        key_val_dram_we0,
-        key_val_dram_d0,
-        key_val_dram_q0,
-        key_val_dram_address1,
-        key_val_dram_ce1,
-        key_val_dram_q1,
-        val_addr_bram_Addr_A,
-        val_addr_bram_EN_A,
-        val_addr_bram_WEN_A,
-        val_addr_bram_Din_A,
-        val_addr_bram_Dout_A,
-        val_addr_bram_Clk_A,
-        val_addr_bram_Rst_A,
+        key_to_metadata_key_address0,
+        key_to_metadata_key_ce0,
+        key_to_metadata_key_q0,
+        key_to_metadata_occu_address0,
+        key_to_metadata_occu_ce0,
+        key_to_metadata_occu_we0,
+        key_to_metadata_occu_d0,
+        key_to_metadata_occu_q0,
         ap_return
 );
 
@@ -47,61 +35,40 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [31:0] op_type;
-input  [31:0] hash;
-input  [31:0] val_addr;
-output  [6:0] key_val_dram_address0;
-output   key_val_dram_ce0;
-output   key_val_dram_we0;
-output  [31:0] key_val_dram_d0;
-input  [31:0] key_val_dram_q0;
-output  [6:0] key_val_dram_address1;
-output   key_val_dram_ce1;
-input  [31:0] key_val_dram_q1;
-output  [31:0] val_addr_bram_Addr_A;
-output   val_addr_bram_EN_A;
-output  [3:0] val_addr_bram_WEN_A;
-output  [31:0] val_addr_bram_Din_A;
-input  [31:0] val_addr_bram_Dout_A;
-output   val_addr_bram_Clk_A;
-output   val_addr_bram_Rst_A;
-output  [31:0] ap_return;
+output  [8:0] key_to_metadata_key_address0;
+output   key_to_metadata_key_ce0;
+input  [31:0] key_to_metadata_key_q0;
+output  [8:0] key_to_metadata_occu_address0;
+output   key_to_metadata_occu_ce0;
+output   key_to_metadata_occu_we0;
+output  [0:0] key_to_metadata_occu_d0;
+input  [0:0] key_to_metadata_occu_q0;
+output  [0:0] ap_return;
 
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
-reg[6:0] key_val_dram_address0;
-reg key_val_dram_ce0;
-reg key_val_dram_we0;
-reg key_val_dram_ce1;
-reg val_addr_bram_EN_A;
-reg[3:0] val_addr_bram_WEN_A;
+reg key_to_metadata_key_ce0;
+reg[8:0] key_to_metadata_occu_address0;
+reg key_to_metadata_occu_ce0;
+reg key_to_metadata_occu_we0;
+reg[0:0] ap_return;
 
 (* fsm_encoding = "none" *) reg   [2:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [0:0] tmp_fu_106_p2;
-reg   [0:0] tmp_reg_156;
-wire   [0:0] tmp_1_fu_112_p2;
-reg   [0:0] tmp_1_reg_160;
-reg   [6:0] key_val_dram_addr_reg_164;
-reg   [31:0] stored_val_reg_174;
+wire   [8:0] key_to_metadata_occu_2_reg_72;
 wire    ap_CS_fsm_state2;
-wire   [0:0] tmp_5_fu_134_p2;
-reg   [0:0] tmp_5_reg_180;
-wire   [31:0] stored_val2_0_s_fu_143_p3;
-reg   [31:0] ap_phi_mux_UnifiedRetVal_phi_fu_97_p6;
-reg   [31:0] UnifiedRetVal_reg_93;
+reg   [0:0] key_to_metadata_occu_3_reg_82;
+reg   [0:0] ap_phi_mux_agg_result_delete_el_phi_fu_58_p4;
 wire    ap_CS_fsm_state3;
-wire   [63:0] tmp_2_fu_118_p1;
-wire   [63:0] tmp_4_fu_129_p1;
-wire   [63:0] tmp_s_fu_139_p1;
-wire   [31:0] val_addr_bram_Addr_A_orig;
-wire   [31:0] tmp_3_fu_123_p2;
+wire   [0:0] tmp_9_fu_66_p2;
+reg   [0:0] ap_return_preg;
 reg   [2:0] ap_NS_fsm;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 3'd1;
+#0 ap_return_preg = 1'd0;
 end
 
 always @ (posedge ap_clk) begin
@@ -113,37 +80,23 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if (((ap_start == 1'b1) & (tmp_fu_106_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1))) begin
-        UnifiedRetVal_reg_93 <= 32'd4294967295;
-    end else if (((tmp_1_reg_160 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        UnifiedRetVal_reg_93 <= key_val_dram_q1;
-    end else if (((tmp_1_reg_160 == 1'd0) & (tmp_reg_156 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        UnifiedRetVal_reg_93 <= stored_val2_0_s_fu_143_p3;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (((ap_start == 1'b1) & (tmp_fu_106_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        key_val_dram_addr_reg_164 <= tmp_2_fu_118_p1;
-        tmp_1_reg_160 <= tmp_1_fu_112_p2;
+    if (ap_rst == 1'b1) begin
+        ap_return_preg <= 1'd0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state3)) begin
+            ap_return_preg <= ap_phi_mux_agg_result_delete_el_phi_fu_58_p4;
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        stored_val_reg_174 <= key_val_dram_q1;
-        tmp_5_reg_180 <= tmp_5_fu_134_p2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        tmp_reg_156 <= tmp_fu_106_p2;
+        key_to_metadata_occu_3_reg_82 <= key_to_metadata_occu_q0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state3)) begin
+    if (((1'b1 == ap_CS_fsm_state3) | ((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -159,10 +112,16 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((tmp_1_reg_160 == 1'd0) & (tmp_reg_156 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        ap_phi_mux_UnifiedRetVal_phi_fu_97_p6 = stored_val2_0_s_fu_143_p3;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        if (((tmp_9_fu_66_p2 == 1'd0) | (key_to_metadata_occu_3_reg_82 == 1'd0))) begin
+            ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 = 1'd1;
+        end else if (((tmp_9_fu_66_p2 == 1'd1) & (key_to_metadata_occu_3_reg_82 == 1'd1))) begin
+            ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 = 1'd0;
+        end else begin
+            ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 = 'bx;
+        end
     end else begin
-        ap_phi_mux_UnifiedRetVal_phi_fu_97_p6 = UnifiedRetVal_reg_93;
+        ap_phi_mux_agg_result_delete_el_phi_fu_58_p4 = 'bx;
     end
 end
 
@@ -175,61 +134,51 @@ always @ (*) begin
 end
 
 always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        ap_return = ap_phi_mux_agg_result_delete_el_phi_fu_58_p4;
+    end else begin
+        ap_return = ap_return_preg;
+    end
+end
+
+always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        key_val_dram_address0 = key_val_dram_addr_reg_164;
+        key_to_metadata_key_ce0 = 1'b1;
+    end else begin
+        key_to_metadata_key_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        key_to_metadata_occu_address0 = key_to_metadata_occu_2_reg_72;
     end else if ((1'b1 == ap_CS_fsm_state1)) begin
-        key_val_dram_address0 = tmp_2_fu_118_p1;
+        key_to_metadata_occu_address0 = 64'd134;
     end else begin
-        key_val_dram_address0 = 'bx;
+        key_to_metadata_occu_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) | ((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1)))) begin
-        key_val_dram_ce0 = 1'b1;
+    if (((1'b1 == ap_CS_fsm_state3) | ((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1)))) begin
+        key_to_metadata_occu_ce0 = 1'b1;
     end else begin
-        key_val_dram_ce0 = 1'b0;
+        key_to_metadata_occu_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        key_val_dram_ce1 = 1'b1;
+    if (((tmp_9_fu_66_p2 == 1'd1) & (key_to_metadata_occu_3_reg_82 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
+        key_to_metadata_occu_we0 = 1'b1;
     end else begin
-        key_val_dram_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((tmp_5_fu_134_p2 == 1'd1) & (tmp_1_reg_160 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        key_val_dram_we0 = 1'b1;
-    end else begin
-        key_val_dram_we0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state2)) begin
-        val_addr_bram_EN_A = 1'b1;
-    end else begin
-        val_addr_bram_EN_A = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((tmp_5_fu_134_p2 == 1'd1) & (tmp_1_reg_160 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        val_addr_bram_WEN_A = 4'd15;
-    end else begin
-        val_addr_bram_WEN_A = 4'd0;
+        key_to_metadata_occu_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if (((ap_start == 1'b1) & (tmp_fu_106_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1))) begin
-                ap_NS_fsm = ap_ST_fsm_state3;
-            end else if (((ap_start == 1'b1) & (tmp_fu_106_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
+            if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state1;
@@ -253,36 +202,12 @@ assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
 assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
 
-assign ap_return = ap_phi_mux_UnifiedRetVal_phi_fu_97_p6;
+assign key_to_metadata_key_address0 = 64'd134;
 
-assign key_val_dram_address1 = tmp_4_fu_129_p1;
+assign key_to_metadata_occu_2_reg_72 = 64'd134;
 
-assign key_val_dram_d0 = 32'd4294967295;
+assign key_to_metadata_occu_d0 = 1'd0;
 
-assign stored_val2_0_s_fu_143_p3 = ((tmp_5_reg_180[0:0] === 1'b1) ? stored_val_reg_174 : 32'd4294967295);
-
-assign tmp_1_fu_112_p2 = ((op_type == 32'd2) ? 1'b1 : 1'b0);
-
-assign tmp_2_fu_118_p1 = val_addr;
-
-assign tmp_3_fu_123_p2 = (val_addr + 32'd40);
-
-assign tmp_4_fu_129_p1 = tmp_3_fu_123_p2;
-
-assign tmp_5_fu_134_p2 = ((key_val_dram_q0 == hash) ? 1'b1 : 1'b0);
-
-assign tmp_fu_106_p2 = ((op_type == 32'd1) ? 1'b1 : 1'b0);
-
-assign tmp_s_fu_139_p1 = hash;
-
-assign val_addr_bram_Addr_A = val_addr_bram_Addr_A_orig << 32'd2;
-
-assign val_addr_bram_Addr_A_orig = tmp_s_fu_139_p1;
-
-assign val_addr_bram_Clk_A = ap_clk;
-
-assign val_addr_bram_Din_A = 32'd4294967295;
-
-assign val_addr_bram_Rst_A = ap_rst;
+assign tmp_9_fu_66_p2 = ((key_to_metadata_key_q0 == 32'd4) ? 1'b1 : 1'b0);
 
 endmodule //execute

@@ -1,3 +1,47 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
-<sourceFile name=""/>
+<sourceFile name="">
+<directive functionLabel="" functionName="execute" label="">
+<pragma name="INTERFACE">
+<option name="m_axi" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="key_to_val"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="execute" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="key_to_metadata"/>
+<option name="core" value="RAM_1P_BRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="execute" label="">
+<pragma name="INTERFACE">
+<option name="ap_memory" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="key_to_metadata"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="traffic_generate_and_execute" label="">
+<pragma name="INTERFACE">
+<option name="bram" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="rrps"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="traffic_generate_and_execute_param" label="">
+<pragma name="INTERFACE">
+<option name="m_axi" positionalBoolean="mode" value=""/>
+<option name="depth" value="1000"/>
+<option name="port" positionalBoolean="4" value="key_to_val"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="traffic_generate_and_execute_param" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="key_to_metadata"/>
+<option name="core" value="RAM_1P_BRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="traffic_generate_and_execute_param" label="">
+<pragma name="INTERFACE">
+<option name="ap_memory" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="key_to_metadata"/>
+</pragma>
+</directive>
+</sourceFile>
 </AutoPilot:ProjectResources>

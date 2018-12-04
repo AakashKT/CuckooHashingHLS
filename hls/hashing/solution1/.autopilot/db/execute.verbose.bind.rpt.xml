@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'execute'" level="0">
-<item name = "Date">Sat Oct 20 00:06:18 2018
+<item name = "Date">Tue Dec  4 12:54:27 2018
 </item>
 <item name = "Version">2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)</item>
 <item name = "Project">hashing</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 5.81, 1.25</column>
+<column name="ap_clk">10.00, 5.73, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">1, 2, 1, 2, none</column>
+<column name="">2, 2, 2, 2, none</column>
 </table>
 </item>
 <item name = "Detail">

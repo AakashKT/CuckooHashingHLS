@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'execute'
 ================================================================
-* Date:           Sat Oct 20 00:06:18 2018
+* Date:           Tue Dec  4 12:54:27 2018
 
 * Version:        2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)
 * Project:        hashing
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      5.81|        1.25|
+    |ap_clk  |  10.00|      5.73|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -29,7 +29,7 @@
     |  Latency  |  Interval | Pipeline|
     | min | max | min | max |   Type  |
     +-----+-----+-----+-----+---------+
-    |    1|    2|    1|    2|   none  |
+    |    2|    2|    2|    2|   none  |
     +-----+-----+-----+-----+---------+
 
     + Detail: 
@@ -47,7 +47,7 @@ ExposeGlobal: 0
 ============================================================
 + Verbose Summary: CDFG Model
 ============================================================
-IsTopModel: 1
+IsTopModel: 0
 ResetActiveHigh: 1
 IsCombinational: 0
 IsDatapathOnly: 0
@@ -71,56 +71,34 @@ IsGatedGlobalClock: 0
 
 * FSM state transitions: 
 1 --> 
-	2  / (!tmp)
-	3  / (tmp)
+	2  / true
 2 --> 
 	3  / true
 3 --> 
 
 * FSM state operations: 
 
- <State 1> : 5.81ns
-ST_1 : Operation 4 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %op_type) nounwind, !map !16"
-ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %hash) nounwind, !map !22"
-ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %val_addr) nounwind, !map !26"
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([80 x i32]* %key_val_dram) nounwind, !map !30"
-ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([10 x i32]* %val_addr_bram) nounwind, !map !36"
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !42"
-ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @execute_str) nounwind"
-ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%val_addr_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %val_addr) nounwind"
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%hash_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %hash) nounwind"
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%op_type_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %op_type) nounwind"
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface([10 x i32]* %val_addr_bram, [5 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str13, i32 0, i32 0, [1 x i8]* @p_str13, [1 x i8]* @p_str13, [1 x i8]* @p_str13, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str13, [1 x i8]* @p_str13) nounwind"
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface([80 x i32]* %key_val_dram, [10 x i8]* @p_str24, i32 0, i32 0, [1 x i8]* @p_str13, i32 0, i32 0, [1 x i8]* @p_str13, [1 x i8]* @p_str13, [1 x i8]* @p_str13, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str13, [1 x i8]* @p_str13) nounwind"
-ST_1 : Operation 16 [1/1] (2.47ns)   --->   "%tmp = icmp eq i32 %op_type_read, 1" [hashing/execute.c:9]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 17 [1/1] (1.81ns)   --->   "br i1 %tmp, label %UnifiedReturnBlock, label %1" [hashing/execute.c:9]
-ST_1 : Operation 18 [1/1] (2.47ns)   --->   "%tmp_1 = icmp eq i32 %op_type_read, 2" [hashing/execute.c:13]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%tmp_2 = zext i32 %val_addr_read to i64" [hashing/execute.c:15]
-ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%key_val_dram_addr = getelementptr [80 x i32]* %key_val_dram, i64 0, i64 %tmp_2" [hashing/execute.c:15]
-ST_1 : Operation 21 [2/2] (3.25ns)   --->   "%stored_hash = load i32* %key_val_dram_addr, align 4" [hashing/execute.c:15]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
-ST_1 : Operation 22 [1/1] (2.55ns)   --->   "%tmp_3 = add i32 %val_addr_read, 40" [hashing/execute.c:16]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%tmp_4 = zext i32 %tmp_3 to i64" [hashing/execute.c:16]
-ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%key_val_dram_addr_1 = getelementptr [80 x i32]* %key_val_dram, i64 0, i64 %tmp_4" [hashing/execute.c:16]
-ST_1 : Operation 25 [2/2] (3.25ns)   --->   "%stored_val = load i32* %key_val_dram_addr_1, align 4" [hashing/execute.c:16]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
+ <State 1> : 3.25ns
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%key_to_metadata_occu_2 = getelementptr [384 x i1]* %key_to_metadata_occu, i64 0, i64 134" [hashing/execute.cpp:208]
+ST_1 : Operation 5 [2/2] (3.25ns)   --->   "%key_to_metadata_occu_3 = load i1* %key_to_metadata_occu_2, align 1" [hashing/execute.cpp:208]   --->   Core 44 'RAM_1P_BRAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 1> <Depth = 384> <RAM>
 
- <State 2> : 5.73ns
-ST_2 : Operation 26 [1/2] (3.25ns)   --->   "%stored_hash = load i32* %key_val_dram_addr, align 4" [hashing/execute.c:15]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
-ST_2 : Operation 27 [1/2] (3.25ns)   --->   "%stored_val = load i32* %key_val_dram_addr_1, align 4" [hashing/execute.c:16]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
-ST_2 : Operation 28 [1/1] (2.47ns)   --->   "%tmp_5 = icmp eq i32 %stored_hash, %hash_read" [hashing/execute.c:18]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 29 [1/1] (0.00ns)   --->   "br i1 %tmp_1, label %2, label %4" [hashing/execute.c:13]
-ST_2 : Operation 30 [1/1] (0.00ns)   --->   "br i1 %tmp_5, label %3, label %._crit_edge1" [hashing/execute.c:18]
-ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_s = zext i32 %hash_read to i64" [hashing/execute.c:19]
-ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%val_addr_bram_addr = getelementptr [10 x i32]* %val_addr_bram, i64 0, i64 %tmp_s" [hashing/execute.c:19]
-ST_2 : Operation 33 [1/1] (2.32ns)   --->   "store i32 -1, i32* %val_addr_bram_addr, align 4" [hashing/execute.c:19]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
-ST_2 : Operation 34 [1/1] (3.25ns)   --->   "store i32 -1, i32* %key_val_dram_addr, align 4" [hashing/execute.c:20]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
-ST_2 : Operation 35 [1/1] (0.00ns)   --->   "br label %._crit_edge1" [hashing/execute.c:21]
-ST_2 : Operation 36 [1/1] (1.81ns)   --->   "br label %UnifiedReturnBlock" [hashing/execute.c:23]
+ <State 2> : 3.25ns
+ST_2 : Operation 6 [1/1] (0.00ns)   --->   "%key_to_metadata_key_s = getelementptr [384 x i32]* %key_to_metadata_key, i64 0, i64 134" [hashing/execute.cpp:208]
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecMemCore([384 x i32]* %key_to_metadata_key, [384 x i1]* %key_to_metadata_occu, [1 x i8]* @p_str3, [12 x i8]* @p_str4, [1 x i8]* @p_str3, i32 -1, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3)"
+ST_2 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface([384 x i32]* %key_to_metadata_key, [384 x i1]* %key_to_metadata_occu, [10 x i8]* @p_str5, i32 0, i32 0, [1 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str3, [1 x i8]* @p_str3)"
+ST_2 : Operation 9 [1/2] (3.25ns)   --->   "%key_to_metadata_occu_3 = load i1* %key_to_metadata_occu_2, align 1" [hashing/execute.cpp:208]   --->   Core 44 'RAM_1P_BRAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 1> <Depth = 384> <RAM>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "br i1 %key_to_metadata_occu_3, label %1, label %._crit_edge1" [hashing/execute.cpp:208]
+ST_2 : Operation 11 [2/2] (3.25ns)   --->   "%key_to_metadata_key_1 = load i32* %key_to_metadata_key_s, align 4" [hashing/execute.cpp:208]   --->   Core 44 'RAM_1P_BRAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 1> <Depth = 384> <RAM>
 
- <State 3> : 3.18ns
-ST_3 : Operation 37 [1/1] (1.37ns)   --->   "%stored_val2_0_s = select i1 %tmp_5, i32 %stored_val, i32 -1" [hashing/execute.c:31]   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 38 [1/1] (1.81ns)   --->   "br label %UnifiedReturnBlock" [hashing/execute.c:38]
-ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%UnifiedRetVal = phi i32 [ %stored_val2_0_s, %4 ], [ %stored_val, %._crit_edge1 ], [ -1, %0 ]"
-ST_3 : Operation 40 [1/1] (0.00ns)   --->   "ret i32 %UnifiedRetVal" [hashing/execute.c:38]
+ <State 3> : 5.73ns
+ST_3 : Operation 12 [1/2] (3.25ns)   --->   "%key_to_metadata_key_1 = load i32* %key_to_metadata_key_s, align 4" [hashing/execute.cpp:208]   --->   Core 44 'RAM_1P_BRAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 1> <Depth = 384> <RAM>
+ST_3 : Operation 13 [1/1] (2.47ns)   --->   "%tmp_9 = icmp eq i32 %key_to_metadata_key_1, 4" [hashing/execute.cpp:208]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 14 [1/1] (0.00ns)   --->   "br i1 %tmp_9, label %2, label %._crit_edge1" [hashing/execute.cpp:208]
+ST_3 : Operation 15 [1/1] (1.76ns)   --->   "br label %._crit_edge" [hashing/execute.cpp:211]
+ST_3 : Operation 16 [1/1] (3.25ns)   --->   "store i1 false, i1* %key_to_metadata_occu_2, align 1" [hashing/execute.cpp:218]   --->   Core 44 'RAM_1P_BRAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 1> <Depth = 384> <RAM>
+ST_3 : Operation 17 [1/1] (1.76ns)   --->   "br label %._crit_edge" [hashing/execute.cpp:220]
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%agg_result_delete_el = phi i1 [ false, %2 ], [ true, %._crit_edge1 ]"
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "ret i1 %agg_result_delete_el"
 
 
 ============================================================
@@ -128,22 +106,20 @@ ST_3 : Operation 40 [1/1] (0.00ns)   --->   "ret i32 %UnifiedRetVal" [hashing/ex
 ============================================================
 Target clock period: 10ns, clock uncertainty: 1.25ns.
 
- <State 1>: 5.81ns
+ <State 1>: 3.25ns
 The critical path consists of the following:
-	wire read on port 'val_addr' [13]  (0 ns)
-	'add' operation ('tmp_3', hashing/execute.c:16) [25]  (2.55 ns)
-	'getelementptr' operation ('key_val_dram_addr_1', hashing/execute.c:16) [27]  (0 ns)
-	'load' operation ('stored_val', hashing/execute.c:16) on array 'key_val_dram' [28]  (3.25 ns)
+	'getelementptr' operation ('key_to_metadata_occu_2', hashing/execute.cpp:208) [4]  (0 ns)
+	'load' operation ('key_to_metadata_occu_3', hashing/execute.cpp:208) on array 'key_to_metadata_occu' [7]  (3.25 ns)
 
- <State 2>: 5.73ns
+ <State 2>: 3.25ns
 The critical path consists of the following:
-	'load' operation ('stored_hash', hashing/execute.c:15) on array 'key_val_dram' [24]  (3.25 ns)
-	'icmp' operation ('tmp_5', hashing/execute.c:18) [29]  (2.47 ns)
+	'getelementptr' operation ('key_to_metadata_key_s', hashing/execute.cpp:208) [3]  (0 ns)
+	'load' operation ('key_to_metadata_key_1', hashing/execute.cpp:208) on array 'key_to_metadata_key' [10]  (3.25 ns)
 
- <State 3>: 3.18ns
+ <State 3>: 5.73ns
 The critical path consists of the following:
-	'select' operation ('stored_val2_0_s', hashing/execute.c:31) [32]  (1.37 ns)
-	multiplexor before 'phi' operation ('stored_val') with incoming values : ('stored_val', hashing/execute.c:16) ('stored_val2_0_s', hashing/execute.c:31) [45]  (1.81 ns)
+	'load' operation ('key_to_metadata_key_1', hashing/execute.cpp:208) on array 'key_to_metadata_key' [10]  (3.25 ns)
+	'icmp' operation ('tmp_9', hashing/execute.cpp:208) [11]  (2.47 ns)
 
 
 ============================================================

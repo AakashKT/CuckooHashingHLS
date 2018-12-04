@@ -1,45 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Messages>
-	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1312" content="Analyzing design file &apos;hashing/search.c&apos; ..." tag=""/>
-	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1312" content="Analyzing design file &apos;hashing/jenkins_hash.c&apos; ..." tag=""/>
-	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1312" content="Analyzing design file &apos;hashing/execute.c&apos; ..." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1312" content="Analyzing design file &apos;hashing/jenkins_hash.cpp&apos; ..." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1312" content="Analyzing design file &apos;hashing/execute.cpp&apos; ..." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="WARNING" keynum="HLS_40_1378" content="In file included from hashing/execute.cpp:1:
+hashing/execute.cpp:154:12: warning: comparison of unsigned expression &gt;= 0 is always true [-Wtautological-compare]
+ ((pick_ix &gt;= 0) ? static_cast&lt;void&gt; (0) : __assert_fail (&quot;pick_ix &gt;= 0&quot;, &quot;hashing/execute.cpp&quot;, 154, __PRETTY_FUNCTION__));
+   ~~~~~~~ ^  ~
+hashing/execute.cpp:173:9: warning: comparison of unsigned expression &gt;= 0 is always true [-Wtautological-compare]
+ ((hash &gt;= 0) ? static_cast&lt;void&gt; (0) : __assert_fail (&quot;hash &gt;= 0&quot;, &quot;hashing/execute.cpp&quot;, 173, __PRETTY_FUNCTION__));
+   ~~~~ ^  ~
+2 warnings generated." tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1465" content="Validating synthesis directives ..." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Checking Pragmas Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1107 ; free virtual = 23902" tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Linking Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1107 ; free virtual = 23902" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Checking Pragmas Time (s): cpu = 00:00:15 ; elapsed = 00:00:10 . Memory (MB): peak = 359.938 ; gain = 13.375 ; free physical = 5990 ; free virtual = 42899" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Linking Time (s): cpu = 00:00:17 ; elapsed = 00:00:11 . Memory (MB): peak = 359.938 ; gain = 13.375 ; free physical = 5988 ; free virtual = 42898" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1467" content="Starting code transformations ..." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Standard Transforms Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1105 ; free virtual = 23900" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Standard Transforms Time (s): cpu = 00:00:17 ; elapsed = 00:00:12 . Memory (MB): peak = 360.113 ; gain = 13.551 ; free physical = 5981 ; free virtual = 42894" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1472" content="Checking synthesizability ..." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Checking Synthesizability Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 359.949 ; gain = 13.375 ; free physical = 1105 ; free virtual = 23900" tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Pre-synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1087 ; free virtual = 23881" tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Architecture Synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1095 ; free virtual = 23889" tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;hash_picker_fn&apos; into &apos;execute&apos; (hashing/execute.cpp:152) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;terrible_hash_fn&apos; into &apos;execute&apos; (hashing/execute.cpp:166) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;lfsr_init&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:268) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;lfsr_next&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:275) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;create_random_request&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:279) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;request_pack&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:283) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;response_pack&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:284) automatically." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Checking Synthesizability Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 360.113 ; gain = 13.551 ; free physical = 5979 ; free virtual = 42892" tag=""/>
+	<Message prefix="[XFORM 203-102]" severity="INFO" keynum="691" content="Automatically partitioning small array &apos;random&apos; (hashing/execute.cpp:272) completely based on array size." tag=""/>
+	<Message prefix="[XFORM 203-102]" severity="INFO" keynum="691" content="Automatically partitioning small array &apos;hashes&apos; (hashing/execute.cpp:149) completely based on array size." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="INFO" keynum="692" content="Partitioning array &apos;random&apos; (hashing/execute.cpp:272) in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="INFO" keynum="692" content="Partitioning array &apos;hashes&apos; (hashing/execute.cpp:149) in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;terrible_hash_fn&apos; into &apos;execute&apos; (hashing/execute.cpp:166) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;request_pack&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:283) automatically." tag=""/>
+	<Message prefix="[XFORM 203-602]" severity="INFO" keynum="794" content="Inlining function &apos;response_pack&apos; into &apos;traffic_generate_and_execute&apos; (hashing/execute.cpp:284) automatically." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Pre-synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 487.934 ; gain = 141.371 ; free physical = 5956 ; free virtual = 42870" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished Architecture Synthesis Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 487.934 ; gain = 141.371 ; free physical = 5954 ; free virtual = 42869" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1317" content="Starting hardware synthesis ..." tag=""/>
-	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1385" content="Synthesizing &apos;execute&apos; ..." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1385" content="Synthesizing &apos;traffic_generate_and_execute&apos; ..." tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1477" content="----------------------------------------------------------------" tag=""/>
 	<Message prefix="[HLS 200-42]" severity="INFO" keynum="HLS_42_1438" content="-- Implementing module &apos;execute&apos;" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1478" content="----------------------------------------------------------------" tag=""/>
 	<Message prefix="[SCHED 204-11]" severity="INFO" keynum="139" content="Starting scheduling ..." tag=""/>
 	<Message prefix="[SCHED 204-11]" severity="INFO" keynum="138" content="Finished scheduling." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 15.48 seconds; current allocated memory: 59.612 MB." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 13.43 seconds; current allocated memory: 79.237 MB." tag=""/>
 	<Message prefix="[BIND 205-100]" severity="INFO" keynum="439" content="Starting micro-architecture generation ..." tag=""/>
 	<Message prefix="[BIND 205-101]" severity="INFO" keynum="211" content="Performing variable lifetime analysis." tag=""/>
 	<Message prefix="[BIND 205-101]" severity="INFO" keynum="210" content="Exploring resource sharing." tag=""/>
 	<Message prefix="[BIND 205-101]" severity="INFO" keynum="206" content="Binding ..." tag=""/>
 	<Message prefix="[BIND 205-100]" severity="INFO" keynum="438" content="Finished micro-architecture generation." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.02 seconds; current allocated memory: 59.780 MB." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.01 seconds; current allocated memory: 79.333 MB." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1477" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[HLS 200-42]" severity="INFO" keynum="HLS_42_1438" content="-- Implementing module &apos;traffic_generate_and_execute&apos;" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1478" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[SCHED 204-11]" severity="INFO" keynum="139" content="Starting scheduling ..." tag=""/>
+	<Message prefix="[SCHED 204-11]" severity="INFO" keynum="138" content="Finished scheduling." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.03 seconds; current allocated memory: 79.519 MB." tag=""/>
+	<Message prefix="[BIND 205-100]" severity="INFO" keynum="439" content="Starting micro-architecture generation ..." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="INFO" keynum="211" content="Performing variable lifetime analysis." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="INFO" keynum="210" content="Exploring resource sharing." tag=""/>
+	<Message prefix="[BIND 205-102]" severity="WARNING" keynum="192" content="The specified resource core for memory &apos;key_to_metadata_occu&apos; will be ignored if a simpler one can be used." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="INFO" keynum="206" content="Binding ..." tag=""/>
+	<Message prefix="[BIND 205-100]" severity="INFO" keynum="438" content="Finished micro-architecture generation." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.03 seconds; current allocated memory: 79.687 MB." tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1483" content="----------------------------------------------------------------" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1484" content="-- Generating RTL for module &apos;execute&apos;" tag=""/>
 	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1485" content="----------------------------------------------------------------" tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;execute/op_type&apos; to &apos;ap_none&apos;." tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;execute/hash&apos; to &apos;ap_none&apos;." tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;execute/val_addr&apos; to &apos;ap_none&apos;." tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;execute/key_val_dram&apos; to &apos;ap_memory&apos;." tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;execute/val_addr_bram&apos; to &apos;bram&apos;." tag=""/>
-	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on function &apos;execute&apos; to &apos;ap_ctrl_hs&apos;." tag=""/>
 	<Message prefix="[RTGEN 206-100]" severity="INFO" keynum="369" content="Finished creating RTL model for &apos;execute&apos;." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.04 seconds; current allocated memory: 60.024 MB." tag=""/>
-	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished generating all RTL models Time (s): cpu = 00:00:19 ; elapsed = 00:00:16 . Memory (MB): peak = 487.945 ; gain = 141.371 ; free physical = 1088 ; free virtual = 23883" tag=""/>
-	<Message prefix="[SYSC 207-301]" severity="INFO" keynum="SYSC_301_1065" content="Generating SystemC RTL for execute." tag=""/>
-	<Message prefix="[VHDL 208-304]" severity="INFO" keynum="VHDL_304_1066" content="Generating VHDL RTL for execute." tag=""/>
-	<Message prefix="[VLOG 209-307]" severity="INFO" keynum="VLOG_307_1067" content="Generating Verilog RTL for execute." tag=""/>
-	<Message prefix="[HLS 200-112]" severity="INFO" keynum="472" content="Total elapsed time: 15.95 seconds; peak allocated memory: 60.024 MB." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.03 seconds; current allocated memory: 79.859 MB." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1483" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1484" content="-- Generating RTL for module &apos;traffic_generate_and_execute&apos;" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="INFO" keynum="HLS_10_1485" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on port &apos;traffic_generate_and_execute/rrps&apos; to &apos;bram&apos;." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="INFO" keynum="73" content="Setting interface mode on function &apos;traffic_generate_and_execute&apos; to &apos;ap_ctrl_hs&apos;." tag=""/>
+	<Message prefix="[SYN 201-210]" severity="INFO" keynum="402" content="Renamed object name &apos;traffic_generate_and_execute_key_to_metadata_key&apos; to &apos;traffic_generate_bkb&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="INFO" keynum="402" content="Renamed object name &apos;traffic_generate_and_execute_key_to_metadata_occu&apos; to &apos;traffic_generate_cud&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="INFO" keynum="369" content="Finished creating RTL model for &apos;traffic_generate_and_execute&apos;." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="474" content=" Elapsed time: 0.03 seconds; current allocated memory: 80.431 MB." tag=""/>
+	<Message prefix="[RTMG 210-274]" severity="WARNING" keynum="RTMG_274_1758" content="Memory &apos;traffic_generate_bkb&apos; is read-only, switch it to a ROM." tag=""/>
+	<Message prefix="[RTMG 210-279]" severity="INFO" keynum="RTMG_279_1793" content="Implementing memory &apos;traffic_generate_bkb_rom&apos; using block ROMs." tag=""/>
+	<Message prefix="[RTMG 210-278]" severity="INFO" keynum="RTMG_278_1790" content="Implementing memory &apos;traffic_generate_cud_ram (RAM_1P_BRAM)&apos; using block RAMs." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="INFO" keynum="473" content="Finished generating all RTL models Time (s): cpu = 00:00:19 ; elapsed = 00:00:14 . Memory (MB): peak = 487.934 ; gain = 141.371 ; free physical = 5945 ; free virtual = 42861" tag=""/>
+	<Message prefix="[SYSC 207-301]" severity="INFO" keynum="SYSC_301_1065" content="Generating SystemC RTL for traffic_generate_and_execute." tag=""/>
+	<Message prefix="[VHDL 208-304]" severity="INFO" keynum="VHDL_304_1066" content="Generating VHDL RTL for traffic_generate_and_execute." tag=""/>
+	<Message prefix="[VLOG 209-307]" severity="INFO" keynum="VLOG_307_1067" content="Generating Verilog RTL for traffic_generate_and_execute." tag=""/>
+	<Message prefix="[HLS 200-112]" severity="INFO" keynum="472" content="Total elapsed time: 14 seconds; peak allocated memory: 80.431 MB." tag=""/>
 </Messages>

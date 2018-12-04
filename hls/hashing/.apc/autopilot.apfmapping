@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="search.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/search.c"/>
-    <originFiles name="jenkins_hash.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/jenkins_hash.c"/>
-    <originFiles name="execute.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute.c"/>
+    <originFiles name="execute.cpp" path="/home/bollu/work/CuckooHashingHLS/hls/hashing/execute.cpp"/>
+    <originFiles name="execute.h" path="/home/bollu/work/CuckooHashingHLS/hls/hashing/execute.h"/>
+    <originFiles name="jenkins_hash.cpp" path="/home/bollu/work/CuckooHashingHLS/hls/hashing/jenkins_hash.cpp"/>
+    <originFiles name="jenkins_hash.h" path="/home/bollu/work/CuckooHashingHLS/hls/hashing/jenkins_hash.h"/>
   </source>
   <testbench>
-    <originFiles name="execute_test.c" path="/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/execute_test.c"/>
+    <originFiles name="execute_test.cpp" path="/home/bollu/work/CuckooHashingHLS/hls/hashing/execute_test.cpp"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

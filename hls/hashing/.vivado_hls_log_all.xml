@@ -11,8 +11,14 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog/>
-      <simLog/>
+      <synLog>
+        <logs message="WARNING: [RTMG 210-274] Memory 'traffic_generate_bkb' is read-only, switch it to a ROM." projectName="hashing" solutionName="solution1" date="2018-12-04T12:54:27.485+0530" type="Warning"/>
+        <logs message="WARNING: [BIND 205-102] The specified resource core for memory 'key_to_metadata_occu' will be ignored if a simpler one can be used." projectName="hashing" solutionName="solution1" date="2018-12-04T12:54:27.172+0530" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] In file included from hashing/execute.cpp:1:&#xA;hashing/execute.cpp:154:12: warning: comparison of unsigned expression >= 0 is always true [-Wtautological-compare]&#xA; ((pick_ix >= 0) ? static_cast&lt;void> (0) : __assert_fail (&quot;pick_ix >= 0&quot;, &quot;hashing/execute.cpp&quot;, 154, __PRETTY_FUNCTION__));&#xA;   ~~~~~~~ ^  ~&#xA;hashing/execute.cpp:173:9: warning: comparison of unsigned expression >= 0 is always true [-Wtautological-compare]&#xA; ((hash >= 0) ? static_cast&lt;void> (0) : __assert_fail (&quot;hash >= 0&quot;, &quot;hashing/execute.cpp&quot;, 173, __PRETTY_FUNCTION__));&#xA;   ~~~~ ^  ~&#xA;2 warnings generated." projectName="hashing" solutionName="solution1" date="2018-12-04T12:54:23.743+0530" type="Warning"/>
+      </synLog>
+      <simLog>
+        <logs message="WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by Xilinx, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running fuse with the &quot;-mt off -v 1&quot; switches to see more information from the C compiler. The following environment variables have been detected:&#xA;    LIBRARY_PATH" projectName="hashing" solutionName="solution1" date="2018-12-04T12:54:45.476+0530" type="Warning"/>
+      </simLog>
       <mgLog/>
       <packageLog/>
       <csimLog/>

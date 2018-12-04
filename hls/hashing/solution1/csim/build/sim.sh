@@ -7,4 +7,4 @@
 # ==============================================================
 
 # The next line restarts using autoesl tclsh \
-    exec /media/aakash/drive2/Vivado/2017.4/bin/vivado_hls run_sim.tcl
+    exec /home/bollu/software/xilinx/Vivado/2017.4/bin/vivado_hls run_sim.tcl

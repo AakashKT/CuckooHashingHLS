@@ -21,11 +21,11 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../execute_test.c ../../../execute.c ../../../jenkins_hash.c ../../../search.c
+HLS_SOURCES = ../../../execute_test.cpp ../../../execute.cpp ../../../jenkins_hash.cpp
 
 TARGET := csim.exe
 
-AUTOPILOT_ROOT := /media/aakash/drive2/Vivado/2017.4
+AUTOPILOT_ROOT := /home/bollu/software/xilinx/Vivado/2017.4
 AUTOPILOT_MACH := lnx64
 ifdef AP_GCC_M32
   AUTOPILOT_MACH := Linux_x86
@@ -33,7 +33,7 @@ ifdef AP_GCC_M32
 endif
 IFLAG += -fPIC
 ifndef AP_GCC_PATH
-  AP_GCC_PATH := /media/aakash/drive2/Vivado/2017.4/lnx64/tools/gcc/bin
+  AP_GCC_PATH := /home/bollu/software/xilinx/Vivado/2017.4/lnx64/tools/gcc/bin
 endif
 AUTOPILOT_TOOL := ${AUTOPILOT_ROOT}/${AUTOPILOT_MACH}/tools
 AP_CLANG_PATH := ${AUTOPILOT_TOOL}/clang-3.9/bin
@@ -61,7 +61,6 @@ IFLAG += -D__SIM_DDS__
 
 IFLAG += -D__DSP48E1__
 IFLAG += -g
-DFLAG += -DAUTOCC
 DFLAG += -D__xilinx_ip_top= -DAESL_TB
 CCFLAG += 
 
@@ -73,28 +72,20 @@ all: $(TARGET)
 
 
 
-AUTOCC := apcc  
-
-$(ObjDir)/execute_test.o: ../../../execute_test.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../execute_test.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+$(ObjDir)/execute_test.o: ../../../execute_test.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../execute_test.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/execute_test.d
 
-$(ObjDir)/execute.o: ../../../execute.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../execute.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+$(ObjDir)/execute.o: ../../../execute.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../execute.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/execute.d
 
-$(ObjDir)/jenkins_hash.o: ../../../jenkins_hash.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../jenkins_hash.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+$(ObjDir)/jenkins_hash.o: ../../../jenkins_hash.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../jenkins_hash.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/jenkins_hash.d
-
-$(ObjDir)/search.o: ../../../search.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../search.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/search.d

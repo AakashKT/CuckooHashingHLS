@@ -1,5 +1,5 @@
 
-set TopModule "execute"
+set TopModule "traffic_generate_and_execute"
 set ClockPeriod "10.000000"
 set ClockList {ap_clk}
 set multiClockList {}
@@ -41,10 +41,10 @@ set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg484:-1"
-set SourceFiles {sc {} c {../search.c ../jenkins_hash.c ../execute.c}}
-set SourceFlags {sc {} c {{} {} {}}}
-set DirectiveFile {/home/aakash/Desktop/CDS/CuckooHashingHLS/hls/hashing/solution1/solution1.directive}
-set TBFiles {verilog ../execute_test.c bc ../execute_test.c vhdl ../execute_test.c sc ../execute_test.c cas ../execute_test.c c {}}
+set SourceFiles {sc {} c {../jenkins_hash.cpp ../execute.cpp}}
+set SourceFlags {sc {} c {{} {}}}
+set DirectiveFile {/home/bollu/work/CuckooHashingHLS/hls/hashing/solution1/solution1.directive}
+set TBFiles {verilog ../execute_test.cpp bc ../execute_test.cpp vhdl ../execute_test.cpp sc ../execute_test.cpp cas ../execute_test.cpp c {}}
 set SpecLanguage "C"
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

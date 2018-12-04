@@ -11,65 +11,39 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 4 \
-    name key_val_dram \
+    id 1 \
+    name key_to_metadata_key \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename key_to_metadata_key \
+    op interface \
+    ports { key_to_metadata_key_address0 { O 9 vector } key_to_metadata_key_ce0 { O 1 bit } key_to_metadata_key_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'key_to_metadata_key'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 2 \
+    name key_to_metadata_occu \
     reset_level 1 \
     sync_rst true \
     dir IO \
-    corename key_val_dram \
+    corename key_to_metadata_occu \
     op interface \
-    ports { key_val_dram_address0 { O 7 vector } key_val_dram_ce0 { O 1 bit } key_val_dram_we0 { O 1 bit } key_val_dram_d0 { O 32 vector } key_val_dram_q0 { I 32 vector } key_val_dram_address1 { O 7 vector } key_val_dram_ce1 { O 1 bit } key_val_dram_q1 { I 32 vector } } \
+    ports { key_to_metadata_occu_address0 { O 9 vector } key_to_metadata_occu_ce0 { O 1 bit } key_to_metadata_occu_we0 { O 1 bit } key_to_metadata_occu_d0 { O 1 vector } key_to_metadata_occu_q0 { I 1 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'key_val_dram'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'key_to_metadata_occu'"
 }
 }
 
-
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id 1 \
-    name op_type \
-    type other \
-    dir I \
-    reset_level 1 \
-    sync_rst true \
-    corename dc_op_type \
-    op interface \
-    ports { op_type { I 32 vector } } \
-} "
-}
-
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id 2 \
-    name hash \
-    type other \
-    dir I \
-    reset_level 1 \
-    sync_rst true \
-    corename dc_hash \
-    op interface \
-    ports { hash { I 32 vector } } \
-} "
-}
-
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id 3 \
-    name val_addr \
-    type other \
-    dir I \
-    reset_level 1 \
-    sync_rst true \
-    corename dc_val_addr \
-    op interface \
-    ports { val_addr { I 32 vector } } \
-} "
-}
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
@@ -95,7 +69,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename ap_return \
     op interface \
-    ports { ap_return { O 32 vector } } \
+    ports { ap_return { O 1 vector } } \
 } "
 }
 
