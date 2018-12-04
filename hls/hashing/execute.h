@@ -10,10 +10,10 @@ static const int NUM_HASH_TABLES = 3;
 // size of each hash table
 static const int HASH_TABLE_SIZE = 128;
 
-typedef uint32_t Key;
+typedef uint16_t Key;
 // an address in DRAM;
 typedef int DRAMAddr;
-typedef uint32_t Value;
+typedef uint16_t Value;
 
 struct KMetadata {
 	Key key;
@@ -108,16 +108,12 @@ Response execute(Request req,
 // generate traffic and execute requests.
 // Note that this is _not_ a replacement for the test bench,
 // because the test bench checks functional correctness
-static const int NUM_TEST_REQUESTS = 100;
-// 12 * 2 = 24 bytes
-struct RequestResponsePair {
-	Request request;
-	Response response;
-};
+static const int NUM_TEST_REQUESTS = 1;
+
 
 // size of the request/response pair in uint64's
-static const int RRP_SIZE_UINT64 = 2;
-void traffic_generate_and_execute(char rrp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]);
+#define RRP_SIZE_UINT64 2
+void traffic_generate_and_execute(uint64_t rrpp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]);
 
 
 // traffic generate as a parametric function, so we can

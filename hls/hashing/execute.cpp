@@ -256,13 +256,15 @@ int32 lfsr_next(int32 lfsr) {
     return (lfsr >> 1) | (bit << 31);
 }
 
-void traffic_generate_and_execute(uint64_t rrps[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]) {
-#pragma HLS INTERFACE bram port=rrps
+void traffic_generate_and_execute(uint64_t rrps[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS],
+		// stored in BRAM
+		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+		// stored in DRAM: (key, value)
+		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
+#pragma HLS INTERFACE bram depth=900 port=key_to_val name=key_to_val
+#pragma HLS INTERFACE bram depth=900 port=key_to_metadata name=key_to_metadata
+#pragma HLS INTERFACE bram depth=900 port=rrps
 
-	// stored in BRAM
-	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
-	// stored in DRAM: (key, value)
-	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 
 
 	int32 lfsr = lfsr_init();
@@ -275,13 +277,13 @@ void traffic_generate_and_execute(uint64_t rrps[RRP_SIZE_UINT64 * NUM_TEST_REQUE
 			random[j] = lfsr_next(lfsr);
 		}
 
-		RequestResponsePair rrp;
-		rrp.request = create_random_request(random);
-		rrp.response = execute(rrp.request, key_to_metadata, key_to_val);
+
+		Request req = create_random_request(random);
+		Response resp = execute(req, key_to_metadata, key_to_val);
 
 
-		rrps[writeix++] = request_pack(rrp.request);
-		rrps[writeix++] = response_pack(rrp.response);
+		rrps[writeix++] = request_pack(req);
+		rrps[writeix++] = response_pack(resp);
 	}
 }
 
