@@ -385,6 +385,25 @@
 
 /******************************************************************/
 
+/* Definitions for driver TRAFFIC_GENERATE_AND_EXECUTE */
+#define XPAR_XTRAFFIC_GENERATE_AND_EXECUTE_NUM_INSTANCES 1
+
+/* Definitions for peripheral TRAFFIC_GENERATE_AND_EXECUTE_0 */
+#define XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID 0
+#define XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_S_AXI_AXILITES_BASEADDR 0x43C00000
+#define XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_S_AXI_AXILITES_HIGHADDR 0x43C0FFFF
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral TRAFFIC_GENERATE_AND_EXECUTE_0 */
+#define XPAR_XTRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID
+#define XPAR_XTRAFFIC_GENERATE_AND_EXECUTE_0_S_AXI_AXILITES_BASEADDR 0x43C00000
+#define XPAR_XTRAFFIC_GENERATE_AND_EXECUTE_0_S_AXI_AXILITES_HIGHADDR 0x43C0FFFF
+
+
+/******************************************************************/
+
 /* Definitions for driver TTCPS */
 #define XPAR_XTTCPS_NUM_INSTANCES 3U
 

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# 
+# Start of session at: Tue Dec  4 16:33:34 2018
+# Process ID: 21998
+# Current directory: /home/bollu/work/CuckooHashingHLS/vivado/cuckoo_hashing/cuckoo_hashing.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/bollu/work/CuckooHashingHLS/vivado/cuckoo_hashing/cuckoo_hashing.sdk/webtalk/webtalk.log
+# Journal file: /home/bollu/work/CuckooHashingHLS/vivado/cuckoo_hashing/cuckoo_hashing.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

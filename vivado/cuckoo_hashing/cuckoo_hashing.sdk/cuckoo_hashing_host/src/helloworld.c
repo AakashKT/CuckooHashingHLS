@@ -47,17 +47,18 @@
 
 #include <stdio.h>
 #include "platform.h"
-#include "xil_printf.h"
 #include <stdint.h>
+#include "xil_printf.h"
+#include "xtraffic_generate_and_execute.h"
 
-volatile uint32_t *memory = (uint32_t*)(0x40000000);
+volatile uint64_t *memory = (uint64_t*)(0x40000000);
 int main()
 {
     init_platform();
 
     print("Hello World\n\r");
 
-    uint32_t i;
+    uint64_t i;
 
     for(i = 0; i < 30; i++) memory[i] = i;
 
