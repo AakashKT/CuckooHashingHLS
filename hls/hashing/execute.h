@@ -10,15 +10,15 @@ static const int NUM_HASH_TABLES = 3;
 // size of each hash table
 static const int HASH_TABLE_SIZE = 128;
 
-typedef uint16_t Key;
+typedef uint32_t Key;
 // an address in DRAM;
 typedef int DRAMAddr;
-typedef uint16_t Value;
+typedef uint32_t Value;
 
 struct KMetadata {
 	Key key;
 	// should be bool
-	bool occupied;
+	int occupied;
 
 	// default constructor that initializes occupied correctly.
 	KMetadata();
@@ -58,14 +58,14 @@ typedef uint8_t OpType;
 #define OP_TYPE_SEARCH 2
 #define OP_TYPE_ILLEGAL 3
 
-// 9 bytes
+// 5 bytes
 struct Request {
 	// 1 byte
 	OpType tag;
-	// 4 bytes
+	// 2 bytes
 	Key key;
 
-	// 4 bytes
+	// 2 bytes
 	// if tag == insert, value to be inserted
 	Value insert_value;
 
@@ -111,9 +111,18 @@ Response execute(Request req,
 static const int NUM_TEST_REQUESTS = 1;
 
 
+
+
+struct RequestResponse {
+	Request req;
+	Response resp;
+};
 // size of the request/response pair in uint64's
-#define RRP_SIZE_UINT64 2
-void traffic_generate_and_execute(uint64_t rrpp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]);
+void traffic_generate_and_execute(RequestResponse reqresps[NUM_TEST_REQUESTS],
+		// stored in BRAM
+		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
+		// stored in DRAM: (key, value)
+		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]);
 
 
 // traffic generate as a parametric function, so we can

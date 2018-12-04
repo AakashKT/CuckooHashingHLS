@@ -420,10 +420,10 @@ int main()
 
 	print_statistics(stats);
 
-	uint64_t rrp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS];
+	RequestResponse reqresps[NUM_TEST_REQUESTS];
 	// really nothing to do here, there's no output I can see,
 	// but I call it anyway?...
-	traffic_generate_and_execute(rrp, key_to_metadata, key_to_val);
+	traffic_generate_and_execute(reqresps, key_to_metadata, key_to_val);
 	// TODO: validate the request and response pairs. It should be OK since we validate
 	// the internals anyway.
 
