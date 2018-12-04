@@ -1,6 +1,8 @@
 #include "execute.h"
 #include <assert.h>
 #include <iostream>
+#include <stdio.h>
+#include <memory.h>
 // #include <ap_int.h>
 
 
@@ -77,6 +79,55 @@ Request create_random_request(unsigned int random[3]) {
 	assert (false && "unreachable");
 	return req;
 }
+
+
+union RequestPacker {
+	Request r;
+	uint64_t packed;
+};
+
+uint64_t request_pack(Request r) {
+	RequestPacker rp;
+	rp.r = r;
+	return rp.packed;
+}
+Request request_unpack(uint64_t packed) {
+	RequestPacker rp;
+	rp.packed = packed;
+	return rp.r;
+}
+
+uint64_t response_pack(Response r) {
+	uint64_t packed;
+	packed = r.tag;
+	packed = (packed << 32) | r.search_value;
+	packed = (packed << 1) | r.delete_element_not_found;
+	packed = (packed << 1) | r.search_element_not_found;
+	packed =  (packed << 1 ) | r.insert_collided;
+	return packed;
+}
+Response response_unpack(uint64_t packed) {
+	Response r;
+	r.insert_collided = packed & 1;
+	packed = packed >> 1;
+
+	r.search_element_not_found = packed & 1;
+	packed = packed >> 1;
+
+	r.delete_element_not_found = packed & 1;
+	packed = packed >> 1;
+
+	r.search_value = packed & (((uint64_t)1 << 33) - 1);
+	packed = packed >> 32;
+
+	r.tag = packed;
+
+	return r;
+}
+
+
+
+//EXECUTION----------------------------
 
 
 
@@ -205,29 +256,32 @@ int32 lfsr_next(int32 lfsr) {
     return (lfsr >> 1) | (bit << 31);
 }
 
-void traffic_generate_and_execute() {
-	static const int NUM_REQUESTS_TO_GENERATE = 1000;
+void traffic_generate_and_execute(uint64_t rrps[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]) {
+#pragma HLS INTERFACE bram port=rrps
 
 	// stored in BRAM
 	KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE];
 	// stored in DRAM: (key, value)
 	KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE];
-#pragma HLS INTERFACE m_axi port=key_to_val
-
-// BRAM
-#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
-#pragma HLS INTERFACE ap_memory port=key_to_metadata
 
 
 	int32 lfsr = lfsr_init();
+	//index at whch rrps is being written to
+	int writeix = 0;
+
 	unsigned int random[3];
-	for(int i = 0; i < NUM_REQUESTS_TO_GENERATE; i++) {
+	for(int i = 0; i < NUM_TEST_REQUESTS; i++) {
 		for(int j = 0; j < 3; j++) {
 			random[j] = lfsr_next(lfsr);
 		}
 
-		Request req = create_random_request(random);
-		execute(req, key_to_metadata, key_to_val);
+		RequestResponsePair rrp;
+		rrp.request = create_random_request(random);
+		rrp.response = execute(rrp.request, key_to_metadata, key_to_val);
+
+
+		rrps[writeix++] = request_pack(rrp.request);
+		rrps[writeix++] = response_pack(rrp.response);
 	}
 }
 

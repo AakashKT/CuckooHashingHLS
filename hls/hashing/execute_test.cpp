@@ -310,6 +310,17 @@ void push_deterministic_requests(std::vector<Request> &rs) {
 
 }
 
+
+void check_response_serialize(Response r) {
+	uint64_t packed = response_pack(r);
+	Response runpack = response_unpack(packed);
+
+	assert (r.delete_element_not_found == runpack.delete_element_not_found);
+	assert (r.insert_collided == runpack.insert_collided);
+	assert (r.search_element_not_found == runpack.search_element_not_found);
+	assert (r.search_value == runpack.search_value);
+}
+
 int main()
 {
 	// srand(time(NULL));
@@ -349,6 +360,10 @@ int main()
 		std::cout << "FPGA response: ";
 		std::cout << response_to_string(fpga);
 		std::cout << "--\n";
+
+		// Check if the response serializes properly
+		check_response_serialize(fpga);
+
 
 		// NOTE: this actually gives us another way to
 		// compare responses.
@@ -392,10 +407,13 @@ int main()
 
 	print_statistics(stats);
 
-
+	uint64_t rrp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS];
 	// really nothing to do here, there's no output I can see,
 	// but I call it anyway?...
-	traffic_generate_and_execute();
+	traffic_generate_and_execute(rrp);
+	// TODO: validate the request and response pairs. It should be OK since we validate
+	// the internals anyway.
+
 	traffic_generate_and_execute_param(key_to_metadata, key_to_val);
 
 	return 0;

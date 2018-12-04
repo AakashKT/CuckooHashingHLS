@@ -2,16 +2,18 @@
 #ifndef EXECUTE
 #define EXECUTE_
 
+#include <stdint.h>
+
 // --- Make these sizes prime, so that hashing works decent ---
 // number of hash tables;
 static const int NUM_HASH_TABLES = 3;
 // size of each hash table
 static const int HASH_TABLE_SIZE = 128;
 
-typedef int Key;
+typedef uint32_t Key;
 // an address in DRAM;
 typedef int DRAMAddr;
-typedef int Value;
+typedef uint32_t Value;
 
 struct KMetadata {
 	Key key;
@@ -49,16 +51,21 @@ enum OpType{
 };
 */
 
-typedef int OpType;
-#define OP_TYPE_ILLEGAL (-1)
+typedef uint8_t OpType;
+
 #define OP_TYPE_INSERT 0
 #define OP_TYPE_DELETE 1
 #define OP_TYPE_SEARCH 2
+#define OP_TYPE_ILLEGAL 3
 
+// 9 bytes
 struct Request {
+	// 1 byte
 	OpType tag;
+	// 4 bytes
 	Key key;
 
+	// 4 bytes
 	// if tag == insert, value to be inserted
 	Value insert_value;
 
@@ -70,9 +77,13 @@ struct Request {
 
 };
 
+uint64_t request_pack(Request r);
+Request request_unpack(uint64_t packed);
 
 
+// 1 byte + 4 bytes + 2 bits ~ 6 bytes
 struct Response {
+	// 1 byte
 	OpType tag;
 	// value that is returned if the request was a searches.
 	Value search_value;
@@ -85,6 +96,9 @@ struct Response {
 	Response();
 };
 
+uint64_t response_pack(Response r);
+Response response_unpack(uint64_t packed);
+
 Response execute(Request req,
 		// stored in BRAM: (k, address in DRAM)
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
@@ -94,7 +108,16 @@ Response execute(Request req,
 // generate traffic and execute requests.
 // Note that this is _not_ a replacement for the test bench,
 // because the test bench checks functional correctness
-void traffic_generate_and_execute();
+static const int NUM_TEST_REQUESTS = 100;
+// 12 * 2 = 24 bytes
+struct RequestResponsePair {
+	Request request;
+	Response response;
+};
+
+// size of the request/response pair in uint64's
+static const int RRP_SIZE_UINT64 = 2;
+void traffic_generate_and_execute(char rrp[RRP_SIZE_UINT64 * NUM_TEST_REQUESTS]);
 
 
 // traffic generate as a parametric function, so we can
