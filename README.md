@@ -90,6 +90,31 @@ void g (Foo conflict) {
 - `x % m` where `m != 2^k` is very expensive -- there must be faster encodings of modulus?
 - How to share code between HLS and vivado SDK? I often wanted to share constant values between
   my HLS code and my Zynq code.
+- Can't understand why array of structs that were packed does not get deserialized correctly. I had to manually
+    pack a struct into a `uint32`. For whatever reason, having a `#pragma pack` did something to the representation of the struct
+    as far as I can tell, and I couldn't treat the memory as just a raw `struct *` on the other side:
+
+```cpp
+// HLS side
+struct Vec2  { int x; int y};
+void f(Vec2 points[NUM_POINTS]) {
+	#pragma HLS DATA_PACK variable=points
+    #pragma HLS INTERFACE bram port=points
+
+    points[0] = {2, 3};
+}
+
+// Host side
+Vec2 *points = (Vec2 *)(0xPOINTER_LOCATION_FROM_VIVADO);
+
+int main() {
+    // points[0] will *not* be {2, 3}!
+}
+```
+
+- If I change my IP, there is no way to preserve the current connections in the
+  GUI why just updating the "changed connections". I'm forced to remove the IP
+  and add it again (no, the Refresh IP button does not work).
 
 
 # SDAccel craziness
