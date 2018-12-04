@@ -63,6 +63,8 @@ is supposed to go according to the tutorial!
 - Of course, there's no static library version of `libxilinxopencl.so`, so that's a dead end. I'm completely unsure if the tutorial even makes sense. 
 - This entire chain of debugging is full of luck.
 
+- [Link talking about generating `BOOT` file](https://www.xilinx.com/html_docs/xilinx2018_2/sdsoc_doc/compiling-and-running-applications-on-arm-processor-hjy1504034381720.html)
+
 # Considerations of different kinds of KV stores
 
 - [Immutable KV store can perform O(1) lookup](https://discodb.readthedocs.io/en/latest/)
