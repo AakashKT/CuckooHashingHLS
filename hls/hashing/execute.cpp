@@ -137,11 +137,6 @@ Response execute(Request req,
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
 	// DRAM: synthesize as AXI
-	#pragma HLS INTERFACE m_axi port=key_to_val
-
-	// BRAM
-	#pragma HLS RESOURCE variable=key_to_metadata core=RAM_1P_BRAM
-	#pragma HLS INTERFACE ap_memory port=key_to_metadata
 
 	Response resp;
 	resp.tag = req.tag;
@@ -261,8 +256,9 @@ void traffic_generate_and_execute(uint64_t rrps[RRP_SIZE_UINT64 * NUM_TEST_REQUE
 		KMetadata key_to_metadata[NUM_HASH_TABLES][HASH_TABLE_SIZE],
 		// stored in DRAM: (key, value)
 		KV key_to_val[NUM_HASH_TABLES][HASH_TABLE_SIZE]) {
-#pragma HLS INTERFACE bram depth=900 port=key_to_val name=key_to_val
-#pragma HLS INTERFACE bram depth=900 port=key_to_metadata name=key_to_metadata
+#pragma HLS INTERFACE s_axilite depth=300 port=return
+#pragma HLS INTERFACE bram depth=900 port=key_to_val
+#pragma HLS INTERFACE bram depth=900 port=key_to_metadata
 #pragma HLS INTERFACE bram depth=900 port=rrps
 
 
