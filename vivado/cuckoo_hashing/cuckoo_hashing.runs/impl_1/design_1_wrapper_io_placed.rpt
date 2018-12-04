@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-| Date                      : Tue Dec  4 16:32:12 2018
+| Date                      : Tue Dec  4 19:17:22 2018
 | Host                      : cantordust running 64-bit Ubuntu 16.04.3 LTS
 | Command                   : report_io -file design_1_wrapper_io_placed.rpt
 | Design                    : design_1_wrapper

@@ -51,55 +51,74 @@
 #include "xil_printf.h"
 #include "xtraffic_generate_and_execute.h"
 #include "xparameters.h"
+#include "types.h"
+#include "xil_cache.h"
+#include <assert.h>
+volatile struct RequestResponse *memory = (struct RequestResponse*)(0x40000000);
 
 
-volatile uint64_t *memory = (uint64_t*)(0x40000000);
+void print_tag(OpType tag) {
+	if (tag == OP_TYPE_INSERT) {
+		xil_printf("OP_TYPE_INSERT");
+	}
+	else if (tag == OP_TYPE_DELETE) {
+		xil_printf("OP_TYPE_DELETE");
+	}
+	else if (tag == OP_TYPE_SEARCH) {
+		xil_printf("OP_TYPE_SEARCH");
+	}
+	else if (tag == OP_TYPE_ILLEGAL) {
+		xil_printf("OP_TYPE_ILLEGAL");
+	}
+	else {
+		xil_printf("GARBLED");
+		assert(false && "unknown tag");
+	}
+}
 
+void print_request(struct Request r) {
+	xil_printf("tag: ");
+	print_tag(r.tag);
+	xil_printf("\n\r");
+	xil_printf("key: %u\n\r", r.key);
+	xil_printf("insert_value: %u\n\r", r.insert_value);
+}
+
+void print_response(struct Response r) {
+	xil_printf("tag: ");
+	print_tag(r.tag);
+	xil_printf("\n\r");
+	if (r.insert_collided) {
+			xil_printf("ERROR: insert collided \n\r");
+	}
+	else if (r.search_element_not_found) {
+		xil_printf("ERROR: search element not found \n\r");
+	}
+	else if (r.delete_element_not_found) {
+		xil_printf("ERROR: delete element not found \n\r");
+	}
+	else {
+		xil_printf("search value: %u", r.search_value);
+	}
+
+}
 
 XTraffic_generate_and_execute_Config *fpga_cfg = NULL;
 XTraffic_generate_and_execute fpga;
 
-// try to initialize the FPGA, return -1 on error
-int init_fpga() {
-    xil_printf("calling lookupConfig\n\r");
-
-
-    fpga_cfg = XTraffic_generate_and_execute_LookupConfig(XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID);
-
-    xil_printf("!!!!!!!!!!!!!!!!!!!!!!\n\r");
-    if (fpga_cfg == NULL) {
-    	xil_printf("FAILED TO INIT FPGA CONFIG OBJECT\n\r");
-    	return -1;
-    }
-
-    int status  = XTraffic_generate_and_execute_CfgInitialize(&fpga, fpga_cfg);
-    if (status != XST_SUCCESS) {
-    	xil_printf("FAILED TO INITIALIZE FPGA USING CONFIG | status: %d\n\r", status);
-    	return -1;
-    }
-
-    xil_printf("INITIALIZED FPGA SUCCESSFULLY \n\r");
-
-    return 0;
-
-
-}
-
-
 int main()
 {
-    // init_platform();
-
-    xil_printf("-------\n\r");
-    xil_printf("-------\n\r");
-    xil_printf("-------\n\r");
+	Xil_DCacheDisable();
+	init_platform();
+	uint32_t i = 0;
+	print("123456789-123456789\n\r");
 
     xil_printf("calling lookupConfig\n\r");
 
 
     fpga_cfg = XTraffic_generate_and_execute_LookupConfig(XPAR_TRAFFIC_GENERATE_AND_EXECUTE_0_DEVICE_ID);
 
-    xil_printf("!!!!!!!!!!!!!!!!!!!!!!\n\r");
+    print("123456789-123456789\n\r");
     if (fpga_cfg == NULL) {
     	xil_printf("FAILED TO INIT FPGA CONFIG OBJECT\n\r");
     	return -1;
@@ -113,16 +132,34 @@ int main()
 
     xil_printf("INITIALIZED FPGA SUCCESSFULLY \n\r");
 
+    xil_printf("EXECUTING FPGA...\n\r");
+    XTraffic_generate_and_execute_Start(&fpga);
 
-    uint32_t i;
-    for(i = 0; i < 30; i++) memory[i] = i;
+    uint32_t count = 0;
+    while (!XTraffic_generate_and_execute_IsDone(&fpga)) {
+		if (count++ % 200) {
+			print(".");
+		}
 
-    for(i = 0; i < 5; i++) {
-    	xil_printf("memory[%u] = %u\n\r", i, memory[i]);
+		if (count == 200 * 20) {
+			count = 0;
+			print("\r\n");
+		}
     }
-
-    xil_printf("Hello World\n\r");
+    xil_printf("EXECUTED FPGA!\n\r");
     xil_printf("-------\n\r");
+
+    const int NUM_ITEMS = 1;
+    for(i = 0; i < NUM_ITEMS; i++) {
+    	xil_printf("\n\rREQUEST:\n\r");
+    	print_request(memory[i].req);
+    	xil_printf("\n\rRESPONSE:\n\r");
+    	print_response(memory[i].resp);
+    	xil_printf("\n\r----\n\r");
+    }
+    xil_printf("DONE.\n\r===\n\r");
+
+
 
     return 0;
 

@@ -169,20 +169,15 @@ proc create_root_design { parentCell } {
 
   # Create instance: blk_mem_gen_0, and set properties
   set blk_mem_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_0 ]
-  set_property -dict [ list \
-   CONFIG.Enable_B {Use_ENB_Pin} \
-   CONFIG.Memory_Type {True_Dual_Port_RAM} \
-   CONFIG.Port_B_Clock {100} \
-   CONFIG.Port_B_Enable_Rate {100} \
-   CONFIG.Port_B_Write_Rate {50} \
-   CONFIG.Use_RSTB_Pin {true} \
- ] $blk_mem_gen_0
 
   # Create instance: blk_mem_gen_1, and set properties
   set blk_mem_gen_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_1 ]
 
   # Create instance: blk_mem_gen_2, and set properties
   set blk_mem_gen_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_2 ]
+
+  # Create instance: blk_mem_gen_3, and set properties
+  set blk_mem_gen_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_3 ]
   set_property -dict [ list \
    CONFIG.Enable_B {Use_ENB_Pin} \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
@@ -190,7 +185,7 @@ proc create_root_design { parentCell } {
    CONFIG.Port_B_Enable_Rate {100} \
    CONFIG.Port_B_Write_Rate {50} \
    CONFIG.Use_RSTB_Pin {true} \
- ] $blk_mem_gen_2
+ ] $blk_mem_gen_3
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
@@ -605,16 +600,16 @@ proc create_root_design { parentCell } {
  ] [get_bd_intf_pins /traffic_generate_and_execute_0/s_axi_AXILiteS]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTA]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins blk_mem_gen_3/BRAM_PORTB]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins ps7_0_axi_periph/M00_AXI] [get_bd_intf_pins traffic_generate_and_execute_0/s_axi_AXILiteS]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_bram_ctrl_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_metadata_PORTA [get_bd_intf_pins blk_mem_gen_1/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_metadata_PORTA]
-  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_val_PORTA [get_bd_intf_pins blk_mem_gen_2/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_val_PORTA]
-  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_val_PORTB [get_bd_intf_pins blk_mem_gen_2/BRAM_PORTB] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_val_PORTB]
-  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_reqresps_PORTA [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTB] [get_bd_intf_pins traffic_generate_and_execute_0/reqresps_PORTA]
+  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_metadata_PORTA [get_bd_intf_pins blk_mem_gen_2/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_metadata_PORTA]
+  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_val_PORTA [get_bd_intf_pins blk_mem_gen_1/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_val_PORTA]
+  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_key_to_val_PORTB [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/key_to_val_PORTB]
+  connect_bd_intf_net -intf_net traffic_generate_and_execute_0_reqresps_PORTA [get_bd_intf_pins blk_mem_gen_3/BRAM_PORTA] [get_bd_intf_pins traffic_generate_and_execute_0/reqresps_PORTA]
 
   # Create port connections
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk] [get_bd_pins traffic_generate_and_execute_0/ap_clk]

@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-| Date             : Tue Dec  4 16:32:50 2018
+| Date             : Tue Dec  4 19:18:16 2018
 | Host             : cantordust running 64-bit Ubuntu 16.04.3 LTS
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 | Design           : design_1_wrapper
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.692        |
+| Total On-Chip Power (W)  | 1.691        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 1.550        |
@@ -52,18 +52,18 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.005 |        3 |       --- |             --- |
-| Slice Logic             |     0.003 |     3062 |       --- |             --- |
-|   LUT as Logic          |     0.003 |     1113 |     53200 |            2.09 |
-|   Register              |    <0.001 |     1354 |    106400 |            1.27 |
+| Clocks                  |     0.006 |        3 |       --- |             --- |
+| Slice Logic             |     0.003 |     3095 |       --- |             --- |
+|   LUT as Logic          |     0.003 |     1123 |     53200 |            2.11 |
+|   Register              |    <0.001 |     1375 |    106400 |            1.29 |
 |   CARRY4                |    <0.001 |       39 |     13300 |            0.29 |
 |   LUT as Shift Register |    <0.001 |       50 |     17400 |            0.29 |
-|   Others                |     0.000 |      255 |       --- |             --- |
-| Signals                 |     0.004 |     2321 |       --- |             --- |
-| Block RAM               |     0.008 |        5 |       140 |            3.57 |
+|   Others                |     0.000 |      251 |       --- |             --- |
+| Signals                 |     0.004 |     2349 |       --- |             --- |
+| Block RAM               |     0.007 |        5 |       140 |            3.57 |
 | PS7                     |     1.529 |        1 |       --- |             --- |
 | Static Power            |     0.142 |          |           |                 |
-| Total                   |     1.692 |          |           |                 |
+| Total                   |     1.691 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -151,36 +151,36 @@ Table of Contents
 +-----------------------------------------------------------------+-----------+
 | design_1_wrapper                                                |     1.550 |
 |   design_1_i                                                    |     1.550 |
-|     axi_bram_ctrl_0                                             |     0.002 |
-|       U0                                                        |     0.002 |
-|         gext_inst.abcv4_0_ext_inst                              |     0.002 |
-|           GEN_AXI4.I_FULL_AXI                                   |     0.002 |
+|     axi_bram_ctrl_0                                             |     0.003 |
+|       U0                                                        |     0.003 |
+|         gext_inst.abcv4_0_ext_inst                              |     0.003 |
+|           GEN_AXI4.I_FULL_AXI                                   |     0.003 |
 |             GEN_ARB.I_SNG_PORT                                  |    <0.001 |
 |             I_RD_CHNL                                           |     0.002 |
 |               I_WRAP_BRST                                       |    <0.001 |
 |             I_WR_CHNL                                           |    <0.001 |
 |               BID_FIFO                                          |    <0.001 |
 |               I_WRAP_BRST                                       |    <0.001 |
-|     blk_mem_gen_0                                               |     0.006 |
-|       U0                                                        |     0.006 |
-|         inst_blk_mem_gen                                        |     0.006 |
-|           gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen |     0.006 |
-|             valid.cstr                                          |     0.006 |
-|               ramloop[0].ram.r                                  |     0.002 |
-|                 prim_noinit.ram                                 |     0.002 |
-|               ramloop[1].ram.r                                  |     0.002 |
-|                 prim_noinit.ram                                 |     0.002 |
-|               ramloop[2].ram.r                                  |     0.002 |
-|                 prim_noinit.ram                                 |     0.002 |
-|               ramloop[3].ram.r                                  |     0.002 |
-|                 prim_noinit.ram                                 |     0.002 |
-|     blk_mem_gen_1                                               |     0.002 |
+|     blk_mem_gen_2                                               |     0.002 |
 |       U0                                                        |     0.002 |
 |         inst_blk_mem_gen                                        |     0.002 |
 |           gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen |     0.002 |
 |             valid.cstr                                          |     0.002 |
 |               ramloop[0].ram.r                                  |     0.002 |
 |                 prim_noinit.ram                                 |     0.002 |
+|     blk_mem_gen_3                                               |     0.005 |
+|       U0                                                        |     0.005 |
+|         inst_blk_mem_gen                                        |     0.005 |
+|           gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen |     0.005 |
+|             valid.cstr                                          |     0.005 |
+|               ramloop[0].ram.r                                  |     0.001 |
+|                 prim_noinit.ram                                 |     0.001 |
+|               ramloop[1].ram.r                                  |     0.001 |
+|                 prim_noinit.ram                                 |     0.001 |
+|               ramloop[2].ram.r                                  |     0.001 |
+|                 prim_noinit.ram                                 |     0.001 |
+|               ramloop[3].ram.r                                  |     0.001 |
+|                 prim_noinit.ram                                 |     0.001 |
 |     processing_system7_0                                        |     1.530 |
 |       inst                                                      |     1.530 |
 |     ps7_0_axi_periph                                            |     0.009 |
@@ -245,7 +245,7 @@ Table of Contents
 |           SEQ_COUNTER                                           |    <0.001 |
 |     traffic_generate_and_execute_0                              |    <0.001 |
 |       inst                                                      |    <0.001 |
-|         grp_execute_fu_51                                       |    <0.001 |
+|         grp_execute_fu_72                                       |    <0.001 |
 |         traffic_generate_and_execute_AXILiteS_s_axi_U           |    <0.001 |
 +-----------------------------------------------------------------+-----------+
 
